@@ -1,0 +1,25 @@
+Brightcart Data Retention and Access Policy
+Document owner: Helen Okafor, Head of Data
+Version 3.1, effective 1 September 2026, supersedes version 3.0
+Review cycle: annual
+
+1. Purpose and scope
+This policy sets out how long data held on the Brightcart data platform is kept, who may access it, and how exceptions are handled. It applies to all employees and contractors of the data platform team and to the systems operated by it, including the Orion warehouse and StreamHub. It does not cover finance ledgers, which are governed by the Finance Records Policy. The purpose of this document is to make the rules easy to find rather than to restate everything in the legal register, so please read it together with the register where necessary. Where this policy and the register disagree, the register wins and the discrepancy should be reported to the policy owner.
+
+2. Retention periods
+2.1 Customer personal data in the Orion warehouse is retained for 24 months after the customer's last order and is then purged by the monthly purge job.
+2.2 Raw clickstream events are retained for 13 months. Aggregated clickstream tables may be kept longer if they contain no personal data.
+2.3 Application logs are kept for 90 days in the logging platform. Logs are not a system of record and should not be queried for reporting. Teams who need longer log retention for debugging a specific problem should export the relevant lines to the ticket instead.
+
+3. Access
+3.1 Access to production tables containing PII requires written approval from the data owner and from Security.
+3.2 Temporary PII access is granted for no more than 90 days and expires automatically; it can be renewed once.
+3.3 Production PII extracts must not be stored on shared drives or in personal cloud storage. Use the secure analysis workspace instead.
+3.4 Access reviews are run by Security every quarter and results are shared with the data owners.
+
+4. Exceptions
+4.1 Exceptions to any rule in this policy require written sign-off from the Head of Data. Exceptions are logged in the policy register and reviewed each quarter.
+4.2 Emergency access during an incident may be granted by the on-call lead and must be reported to Security within one business day.
+
+5. Housekeeping
+Questions about this policy go to the #data-governance channel. The next review is planned for the end of Q3 2027. Thanks to Aiko for proofreading the previous version and for finding the three places where we had written "gdpr" in lower case. Thanks also to Sven for the diagram that nobody has yet found a place for.

@@ -1,0 +1,346 @@
+{
+ "facts": [
+  {
+   "id": "F01",
+   "source": "2026-09-14-ops-sync.txt",
+   "quote": "Priya Nair owns the Orion warehouse going forward",
+   "claim": "Priya Nair is the owner of the Orion warehouse (since the September 2026 ownership change).",
+   "durable": true
+  },
+  {
+   "id": "F02",
+   "source": "2026-09-14-ops-sync.txt",
+   "quote": "the nightly load has to land by 06:30 UTC",
+   "claim": "The Orion nightly load must complete by 06:30 UTC.",
+   "durable": true
+  },
+  {
+   "id": "F03",
+   "source": "2026-09-14-ops-sync.txt",
+   "quote": "we decided to raise StreamHub retention from 7 days to 14 days",
+   "claim": "The team decided to raise StreamHub retention from 7 days to 14 days.",
+   "durable": true
+  },
+  {
+   "id": "F04",
+   "source": "2026-09-18-fivewire-pricing.txt",
+   "quote": "The Standard plan is $1,150 per month and includes 5 million monthly active rows",
+   "claim": "Fivewire's published list price for the Standard plan is $1,150 per month including 5 million monthly active rows.",
+   "durable": true
+  },
+  {
+   "id": "F05",
+   "source": "2026-09-18-fivewire-pricing.txt",
+   "quote": "billed at $0.35 per 1,000 monthly active rows",
+   "claim": "Fivewire Standard overage is billed at $0.35 per 1,000 monthly active rows.",
+   "durable": true
+  },
+  {
+   "id": "F06",
+   "source": "2026-09-18-fivewire-pricing.txt",
+   "quote": "save 15% versus monthly billing",
+   "claim": "Fivewire's published annual billing discount is 15% versus monthly billing.",
+   "durable": true
+  },
+  {
+   "id": "F07",
+   "source": "2026-09-18-fivewire-pricing.txt",
+   "quote": "Annual plans renew automatically unless cancelled 60 days before the renewal date",
+   "claim": "Fivewire annual plans auto-renew unless cancelled 60 days before the renewal date.",
+   "durable": true
+  },
+  {
+   "id": "F08",
+   "source": "2026-09-21-fivewire-renewal-thread.txt",
+   "quote": "Your current renewal date is 31 January 2027",
+   "claim": "Brightcart's current Fivewire renewal date is 31 January 2027.",
+   "durable": true
+  },
+  {
+   "id": "F09",
+   "source": "2026-09-21-fivewire-renewal-thread.txt",
+   "quote": "We can hold you at $1,020 per month for the 12-month term if you sign the renewal by 30 November 2026",
+   "claim": "Fivewire offered to hold Brightcart at $1,020 per month for a 12-month term if the renewal is signed by 30 November 2026 (below the $1,150 list price).",
+   "durable": true
+  },
+  {
+   "id": "F10",
+   "source": "2026-09-21-fivewire-renewal-thread.txt",
+   "quote": "Dana is the right person for commercial questions",
+   "claim": "Dana Whitcombe is Brightcart's Fivewire account manager for commercial questions; outages go through the Fivewire support portal.",
+   "durable": true
+  },
+  {
+   "id": "F11",
+   "source": "2026-09-25-data-retention-policy.txt",
+   "quote": "retained for 24 months after the customer's last order",
+   "claim": "Policy 2.1: customer personal data in Orion is retained for 24 months after the customer's last order, then purged by the monthly purge job.",
+   "durable": true
+  },
+  {
+   "id": "F12",
+   "source": "2026-09-25-data-retention-policy.txt",
+   "quote": "Raw clickstream events are retained for 13 months",
+   "claim": "Policy 2.2: raw clickstream events are retained for 13 months.",
+   "durable": true
+  },
+  {
+   "id": "F13",
+   "source": "2026-09-25-data-retention-policy.txt",
+   "quote": "Temporary PII access is granted for no more than 90 days",
+   "claim": "Policy 3.2: temporary PII access is granted for no more than 90 days and can be renewed once.",
+   "durable": true
+  },
+  {
+   "id": "F14",
+   "source": "2026-09-25-data-retention-policy.txt",
+   "quote": "must not be stored on shared drives or in personal cloud storage",
+   "claim": "Policy 3.3: production PII extracts must not be stored on shared drives or in personal cloud storage.",
+   "durable": true
+  },
+  {
+   "id": "F15",
+   "source": "2026-09-25-data-retention-policy.txt",
+   "quote": "require written sign-off from the Head of Data",
+   "claim": "Policy 4.1: exceptions to the retention and access policy require written sign-off from the Head of Data.",
+   "durable": true
+  },
+  {
+   "id": "F16",
+   "source": "2026-10-02-slack-data-eng.txt",
+   "quote": "the Airflow 2.10 upgrade is scheduled for 2026-10-20",
+   "claim": "The Airflow 2.10 upgrade was scheduled for 2026-10-20.",
+   "durable": true
+  },
+  {
+   "id": "F17",
+   "source": "2026-10-02-slack-data-eng.txt",
+   "quote": "paying Monitorly $640 a month and the contract ends 2026-12-31",
+   "claim": "Monitorly costs $640 per month and its contract ends 2026-12-31.",
+   "durable": true
+  },
+  {
+   "id": "F18",
+   "source": "2026-10-02-slack-data-eng.txt",
+   "quote": "evaluate Tallybase as a possible replacement for Monitorly, no decision yet",
+   "claim": "Priya Nair proposed evaluating Tallybase as a possible replacement for Monitorly; as of 2 Oct 2026 no decision was made (decision due 2026-10-15).",
+   "durable": true
+  },
+  {
+   "id": "F19",
+   "source": "2026-10-02-slack-data-eng.txt",
+   "quote": "escalate to the secondary on-call if the primary has not acknowledged within 15 minutes",
+   "claim": "Orion pages escalate to the secondary on-call if the primary has not acknowledged within 15 minutes.",
+   "durable": true
+  },
+  {
+   "id": "F20",
+   "source": "2026-10-07-incident-postmortem-inc2291.txt",
+   "quote": "completed at 08:40 UTC on 2026-10-05, which is 2 hours 10 minutes after the 06:30 UTC deadline",
+   "claim": "INC-2291: the Orion nightly load completed at 08:40 UTC on 2026-10-05, 2 hours 10 minutes after the 06:30 UTC deadline.",
+   "durable": true
+  },
+  {
+   "id": "F21",
+   "source": "2026-10-07-incident-postmortem-inc2291.txt",
+   "quote": "The Checkout team added a new column to the orders table on 2026-10-02",
+   "claim": "INC-2291 root cause: the Checkout team added an unannounced column to the orders table on 2026-10-02, which blocked the Fivewire sync (block on change).",
+   "durable": true
+  },
+  {
+   "id": "F22",
+   "source": "2026-10-07-incident-postmortem-inc2291.txt",
+   "quote": "A schema contract check was added to the orders ingestion on 2026-10-06",
+   "claim": "A schema contract check was added to the orders ingestion on 2026-10-06; it pages the primary on schema mismatch.",
+   "durable": true
+  },
+  {
+   "id": "F23",
+   "source": "2026-10-07-incident-postmortem-inc2291.txt",
+   "quote": "Source teams must post schema changes in #src-schema-alerts at least 3 business days before release",
+   "claim": "Source teams must post schema changes in #src-schema-alerts at least 3 business days before release (Checkout owner: Tomasz Brandt).",
+   "durable": true
+  },
+  {
+   "id": "F24",
+   "source": "2026-10-12-orion-4.2-release-notes.txt",
+   "quote": "The v1 events API is removed in 4.2",
+   "claim": "Orion 4.2 (released 12 October 2026) removes the v1 events API; /v1/events returns HTTP 410 and clients must use /v2/events.",
+   "durable": true
+  },
+  {
+   "id": "F25",
+   "source": "2026-10-12-orion-4.2-release-notes.txt",
+   "quote": "The SDK now requires Python 3.12 or newer",
+   "claim": "The Orion 4.2 SDK requires Python 3.12 or newer.",
+   "durable": true
+  },
+  {
+   "id": "F26",
+   "source": "2026-10-12-orion-4.2-release-notes.txt",
+   "quote": "default query timeout was raised from 300 seconds to 600 seconds",
+   "claim": "Orion 4.2 raised the default query timeout from 300 seconds to 600 seconds.",
+   "durable": true
+  },
+  {
+   "id": "F27",
+   "source": "2026-10-15-budget-thread.txt",
+   "quote": "capped at $2.4 million for FY27",
+   "claim": "Data platform cloud spend is capped at $2.4 million for FY27, flat versus FY26.",
+   "durable": true
+  },
+  {
+   "id": "F28",
+   "source": "2026-10-15-budget-thread.txt",
+   "quote": "A one-year reserved commitment of $410,000",
+   "claim": "Cobalt Cloud quoted a one-year reserved commitment of $410,000 for Orion compute (roughly a fifth below on-demand).",
+   "durable": true
+  },
+  {
+   "id": "F29",
+   "source": "2026-10-15-budget-thread.txt",
+   "quote": "The hiring freeze for the two open data engineer roles holds until April 2027",
+   "claim": "The hiring freeze on the two open data engineer roles holds until April 2027.",
+   "durable": true
+  },
+  {
+   "id": "F30",
+   "source": "2026-10-15-budget-thread.txt",
+   "quote": "I'm the budget owner and any request that pushes us over goes through me",
+   "claim": "Helen Okafor is the budget owner; any request exceeding the FY27 cap goes through her.",
+   "durable": true
+  },
+  {
+   "id": "F31",
+   "source": "2026-10-20-vendor-security-review.txt",
+   "quote": "the Fivewire DPA refresh is still waiting for legal review and has not been signed",
+   "claim": "As of 2026-10-20 the Fivewire DPA refresh is waiting for legal review and has not been signed; nothing is approved.",
+   "durable": true
+  },
+  {
+   "id": "F32",
+   "source": "2026-10-20-vendor-security-review.txt",
+   "quote": "Our policy requires a SOC 2 Type II report from every vendor processing PII",
+   "claim": "Security policy requires a SOC 2 Type II report from every vendor processing PII.",
+   "durable": true
+  },
+  {
+   "id": "F33",
+   "source": "2026-10-20-vendor-security-review.txt",
+   "quote": "Fivewire does not retain Brightcart payloads after delivery to Orion",
+   "claim": "Per its questionnaire answer, Fivewire does not retain Brightcart payloads after delivery to Orion (Security wants this in the DPA text).",
+   "durable": true
+  },
+  {
+   "id": "F34",
+   "source": "2026-10-27-ops-sync.txt",
+   "quote": "decided to run a 30-day Tallybase pilot starting 2 November 2026 while Monitorly stays the primary alerting system",
+   "claim": "The team decided to run a 30-day Tallybase pilot starting 2 November 2026; Monitorly stays the primary alerting system. Marcus owns the pilot.",
+   "durable": true
+  },
+  {
+   "id": "F35",
+   "source": "2026-10-27-ops-sync.txt",
+   "quote": "retention change from the September sync was applied on 22 October, so retention is now 14 days",
+   "claim": "StreamHub retention is 14 days; the change was applied on 22 October 2026.",
+   "durable": true
+  },
+  {
+   "id": "F36",
+   "source": "2026-10-27-ops-sync.txt",
+   "quote": "Marcus owns StreamHub, and Aiko is backup",
+   "claim": "Marcus Lindqvist owns StreamHub; Aiko Tanaka is backup.",
+   "durable": true
+  },
+  {
+   "id": "F37",
+   "source": "2026-10-27-ops-sync.txt",
+   "quote": "get a first response within 2 business days",
+   "claim": "Requests to the Orion team go through #data-requests and get a first response within 2 business days; Priya Nair triages.",
+   "durable": true
+  },
+  {
+   "id": "F38",
+   "source": "2026-11-03-slack-analytics-eng.txt",
+   "quote": "customer_360 refreshes every 4 hours",
+   "claim": "The customer_360 table refreshes every 4 hours (hourly refresh was dropped after the Orion 4.2 migration).",
+   "durable": true
+  },
+  {
+   "id": "F39",
+   "source": "2026-11-03-slack-analytics-eng.txt",
+   "quote": "Checkout owns the orders-service and its schema",
+   "claim": "The Checkout team (Tomasz Brandt) owns the orders-service and its schema and is responsible for contract changes.",
+   "durable": true
+  },
+  {
+   "id": "F40",
+   "source": "2026-11-09-deletion-design-notes.txt",
+   "quote": "deletion requests are propagated to Orion within 7 days of the request",
+   "claim": "Customer deletion requests are propagated to Orion within 7 days of the request (target agreed with Legal and Priya Nair).",
+   "durable": true
+  }
+ ],
+ "nondurable": [
+  {
+   "source": "2026-09-14-ops-sync.txt",
+   "text": "Marcus will send out the notes, Priya will chase the room booking"
+  },
+  {
+   "source": "2026-09-14-ops-sync.txt",
+   "text": "Aiko to re-run the backfill for the returns table by hand tonight because the scheduler skipped it"
+  },
+  {
+   "source": "2026-09-14-ops-sync.txt",
+   "text": "The team lunch is moving to Thursday because of the holiday on Friday"
+  },
+  {
+   "source": "2026-09-21-fivewire-renewal-thread.txt",
+   "text": "Let's not forget to put the signing deadline on the shared calendar"
+  },
+  {
+   "source": "2026-10-02-slack-data-eng.txt",
+   "text": "I put a cron on the box to restart it every 6 hours until the upgrade"
+  },
+  {
+   "source": "2026-10-02-slack-data-eng.txt",
+   "text": "cake in the kitchen, birthday, don't ask whose"
+  },
+  {
+   "source": "2026-10-07-incident-postmortem-inc2291.txt",
+   "text": "Think about whether we should write a shorter postmortem template"
+  },
+  {
+   "source": "2026-10-07-incident-postmortem-inc2291.txt",
+   "text": "Move Fivewire block-on-change alerts to the paging channel"
+  },
+  {
+   "source": "2026-10-12-orion-4.2-release-notes.txt",
+   "text": "Temporary workaround for slow lineage: collapse the wide models by hand"
+  },
+  {
+   "source": "2026-10-15-budget-thread.txt",
+   "text": "Cobalt asked for a call next week to talk about the commitment"
+  },
+  {
+   "source": "2026-10-20-vendor-security-review.txt",
+   "text": "Lucia will send the redlines by Friday"
+  },
+  {
+   "source": "2026-10-20-vendor-security-review.txt",
+   "text": "the conference room projector has a pink tint"
+  },
+  {
+   "source": "2026-10-27-ops-sync.txt",
+   "text": "Aiko will rename the staging cluster tags, not urgent"
+  },
+  {
+   "source": "2026-11-03-slack-analytics-eng.txt",
+   "text": "can someone approve my PR, it's a one-line typo fix"
+  },
+  {
+   "source": "2026-11-09-deletion-design-notes.txt",
+   "text": "I'll draft the tombstone table schema sometime next week"
+  }
+ ]
+}

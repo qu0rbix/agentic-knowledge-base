@@ -1,0 +1,99 @@
+{
+ "cite1": {
+  "notes": 5,
+  "words": 4153,
+  "bullets": 78,
+  "bullets_with_citation_or_quote": 43,
+  "citation_char_share": 0.399,
+  "sources_sections": 0
+ },
+ "cite2": {
+  "notes": 6,
+  "words": 4562,
+  "bullets": 97,
+  "bullets_with_citation_or_quote": 28,
+  "citation_char_share": 0.383,
+  "sources_sections": 0
+ },
+ "cite3": {
+  "notes": 4,
+  "words": 4018,
+  "bullets": 74,
+  "bullets_with_citation_or_quote": 11,
+  "citation_char_share": 0.293,
+  "sources_sections": 0
+ },
+ "light1": {
+  "notes": 6,
+  "words": 2466,
+  "bullets": 69,
+  "bullets_with_citation_or_quote": 20,
+  "citation_char_share": 0.241,
+  "sources_sections": 0
+ },
+ "light2": {
+  "notes": 5,
+  "words": 2281,
+  "bullets": 53,
+  "bullets_with_citation_or_quote": 14,
+  "citation_char_share": 0.186,
+  "sources_sections": 0
+ },
+ "light3": {
+  "notes": 5,
+  "words": 2446,
+  "bullets": 69,
+  "bullets_with_citation_or_quote": 19,
+  "citation_char_share": 0.209,
+  "sources_sections": 0
+ },
+ "note1": {
+  "notes": 9,
+  "words": 2306,
+  "bullets": 127,
+  "bullets_with_citation_or_quote": 7,
+  "citation_char_share": 0.01,
+  "sources_sections": 9
+ },
+ "note2": {
+  "notes": 5,
+  "words": 2049,
+  "bullets": 101,
+  "bullets_with_citation_or_quote": 4,
+  "citation_char_share": 0.014,
+  "sources_sections": 5
+ },
+ "none1": {
+  "notes": 8,
+  "words": 2319,
+  "bullets": 70,
+  "bullets_with_citation_or_quote": 5,
+  "citation_char_share": 0.01,
+  "sources_sections": 0
+ },
+ "none2": {
+  "notes": 5,
+  "words": 1896,
+  "bullets": 48,
+  "bullets_with_citation_or_quote": 12,
+  "citation_char_share": 0.022,
+  "sources_sections": 0
+ },
+ "none3": {
+  "notes": 8,
+  "words": 2041,
+  "bullets": 71,
+  "bullets_with_citation_or_quote": 6,
+  "citation_char_share": 0.009,
+  "sources_sections": 0
+ },
+ "kb1": {
+  "notes": 8,
+  "words": 2915,
+  "bullets": 79,
+  "bullets_with_citation_or_quote": 66,
+  "citation_char_share": 0.497,
+  "sources_sections": 0,
+  "kb_check_after_plants": "WARN notes/nodejs.md: 451 words (> 400) - split it if created in this filing, otherwise propose a split (refactor skill)\nFAIL guard heartbeat missing or stale: the hooks in .claude/settings.json are not running (uv on PATH? settings loaded?) - writes are unguarded until this is fixed\nFAIL notes/debian.md: 'Debian 12 receives five years of regular security ': number(s) 12 not in any quote - quote the passage that states them\nFAIL notes/nodejs-16-eol-brought-forward.md: 'The Node.js TSC decided on 2022-05-04 to end Node.': date(s) 2022-05-04 not in any quote (any notation counts) - quote the passage that states them\nFAIL notes/nodejs.md: 'Node.js 10.x (codename Dubnium) is Active LTS and ': date(s) 2020-04-30 not in any quote (any notation counts) - quote the passage that states them\nFAIL notes/nodejs.md: 'Node.js 12.x moves to maintenance on 2020-10-20 (a': date(s) 2020-10-20 not in any quote (any notation counts) - quote the passage that states them\nFAIL notes/nodejs.md: 'Node.js 18.x moves to maintenance on 2023-10-28 (a': date(s) 2023-10-28 not in any quote (any notation counts) - quote the passage that states them\nFAIL notes/nodejs.md: 'Node.js 18 security support is extended to 2025-10': quote not found in 2022-10-25-nodejs-release-schedule: \"Security support for Node.js 18 is extended to 2025-10-31 fo\"\nFAIL notes/nodejs.md: 'Our standard: production services must run on a No': number(s) 6 not in any quote - quote the passage that states them\nFAIL notes/postgresql.md: 'PostgreSQL 12 receives one extra year of community': date(s) 2025-11-13 not in any quote (any notation counts) - quote the passage that states them\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): build-servers: 'The upgrade of our build servers to Debian 12 (bookworm) is planned fo'\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): debian: 'Debian 11 bullseye LTS is supported from 15 August 2024 to 31 August 2'\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): nodejs: 'Node.js 10.x (codename Dubnium) is Active LTS and moves to maintenance'\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): nodejs: 'Node.js 12.x moves to maintenance on 2020-11-30 (as of 2020-10-12). [s'\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): nodejs: 'Node.js 16.x reaches end-of-life on September 11, 2023 (since 2022-06-'\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): nodejs: 'Node.js 18.x moves to maintenance on 2023-10-18 (as of 2022-10-25). [s'\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): nodejs: 'Our standard: production services must run on a Node.js version with a'\nFAIL claim changed or removed since last commit without a history/ entry (supersede with '## Superseded <date>' + 'reason:'; wording-only edits use 'reason: rewording'): postgresql: 'PostgreSQL 13 reaches end-of-life with its final release on November 1'\n17 problem(s), 1 warning(s) in 8 notes\n"
+ }
+}

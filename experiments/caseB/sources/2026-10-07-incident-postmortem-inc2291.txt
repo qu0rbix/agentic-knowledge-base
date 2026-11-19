@@ -1,0 +1,29 @@
+Postmortem: INC-2291 - Orion nightly load missed SLA
+Date of incident: 2026-10-05 (Monday). Postmortem written 2026-10-07 by Jonas Weber, reviewed by Priya Nair. Blameless format, please keep it that way in the comments.
+
+Summary
+The Orion nightly load completed at 08:40 UTC on 2026-10-05, which is 2 hours 10 minutes after the 06:30 UTC deadline. Three finance dashboards showed Friday's figures until late morning. There was no customer-facing impact, although two controllers asked in the finance channel why the numbers looked old.
+
+Timeline (UTC)
+01:05 Fivewire sync of the orders source starts as usual.
+01:22 Sync fails with a column mismatch error. Alert fires in Monitorly but lands in a low-priority channel.
+05:50 Aiko notices the load is not progressing while doing the morning dashboard check; pages the primary.
+06:10 Priya confirms the failed sync, begins a manual resync.
+08:40 Load completes. Dashboards refresh by 09:00.
+
+Root cause
+The Checkout team added a new column to the orders table on 2026-10-02 as part of a feature launch. The change was not announced. Fivewire's schema handling for this connector is set to block on change, so the sync stopped instead of adding the column. Contributing factor: the alert went to the wrong channel, and the on-call was not paged until after the deadline was already at risk.
+
+What went well
+Priya's manual resync was quick, and the resync did not need a full backfill. Aiko deserves credit for noticing, since the alert itself was silent. The team also stayed calm and polite in the incident channel, which Helen remarked on, and the pizza afterwards was good.
+
+What went badly
+Nobody looked at the low-priority channel for most of the night, which is understandable, it is where the noise lives. The deadline was missed by a wide margin before anybody with the right access was awake.
+
+Action items
+1. A schema contract check was added to the orders ingestion on 2026-10-06; it compares the source schema to the contract before each sync and pages the primary on mismatch. (done, Jonas)
+2. Source teams must post schema changes in #src-schema-alerts at least 3 business days before release. Owner: Tomasz Brandt for Checkout.
+3. Move Fivewire block-on-change alerts to the paging channel. (Marcus, open, no date)
+4. Think about whether we should write a shorter postmortem template. (nobody yet)
+
+Lessons: we got lucky that it was a Monday and not month end.

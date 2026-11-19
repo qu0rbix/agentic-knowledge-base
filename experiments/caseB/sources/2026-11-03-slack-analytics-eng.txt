@@ -1,0 +1,26 @@
+# analytics-eng - export 2026-11-03
+
+[09:00] Tomasz Brandt: hey data folks, Checkout is shipping a new promo field on orders in the sprint ending 13 Nov. posting here since #src-schema-alerts is the thing now
+[09:02] Jonas Weber: thanks, that is exactly the channel to use. contract update PR coming
+[09:03] Tomasz Brandt: can someone approve my PR, it's a one-line typo fix
+[09:04] Jonas Weber: looking
+[09:10] Aiko Tanaka: while I have you: customer_360 refreshes every 4 hours, so the promo field will show up within one refresh after the sync
+[09:11] Tomasz Brandt: perfect. is 4 hours new? I remember hourly
+[09:12] Aiko Tanaka: it was hourly until the Orion 4.2 migration, we moved to every 4 hours to keep the cluster calm. hourly is off the table for now
+[09:20] Tomasz Brandt: for the record, Checkout owns the orders-service and its schema, my team is on the hook for contract changes
+[09:21] Jonas Weber: good to have that in writing, we kept guessing
+[09:35] Aiko Tanaka: standup in 5, who is sharing screen
+[09:36] Jonas Weber: not me, my laptop fan sounds like a jet
+[09:37] Tomasz Brandt: not me either, I have a dentist at 15:00 so I leave early
+[10:15] Aiko Tanaka: the vending machine on 2 ate my coin again
+[10:16] Jonas Weber: it has a personality
+[11:02] Tomasz Brandt: PR approved, thanks. merging after lunch
+[11:03] Jonas Weber: nice
+[13:30] Aiko Tanaka: anyone want to take the 14:00 retro facilitation? I did it last time
+[13:31] Tomasz Brandt: I will, if I can use the new template
+[13:31] Aiko Tanaka: please do, the old one made everyone sleepy
+[16:40] Aiko Tanaka: retro notes are in the wiki, mostly 'more coffee' and 'fewer meetings'
+[16:41] Jonas Weber: both seconded
+[16:42] Tomasz Brandt: third. also can we please stop scheduling things at 16:30 on a Tuesday
+[16:43] Aiko Tanaka: noted, will pass on to whoever schedules things at 16:30 on a Tuesday (me)
+[16:55] Jonas Weber: happy Tuesday all

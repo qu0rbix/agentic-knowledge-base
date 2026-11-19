@@ -1,0 +1,50 @@
+Subject: FY27 data platform budget - final numbers
+From: Helen Okafor
+To: Data platform leads
+Date: Thu, 15 Oct 2026
+
+Team,
+
+Finance came back this morning. After three rounds, the cloud spend for the data platform is capped at $2.4 million for FY27, which is flat versus FY26 despite the volume growth. I know that is tight. I'm the budget owner and any request that pushes us over goes through me, no exceptions, so please do not ask the CFO directly. Also thanks for the patience with the spreadsheet, I know the tabs were a mess and the colour coding made no sense to anyone but me.
+
+Helen
+
+---
+From: Marcus Lindqvist
+
+Thanks Helen. For Orion compute, Cobalt Cloud sent us the reserved pricing. A one-year reserved commitment of $410,000 saves roughly a fifth against on-demand. The sales rep also suggested we could look at a three-year commitment for a deeper discount but I would want to see the numbers before we even consider it, and it would need your sign-off. No plan to do this now.
+
+---
+From: Jonas Weber
+
+What about the two open data engineer roles?
+
+---
+From: Helen Okafor
+
+The hiring freeze for the two open data engineer roles holds until April 2027, HR confirmed. I know. I am sorry. We will revisit it when the Q1 numbers are in.
+
+---
+From: Priya Nair
+
+Do we have a view on the Monitorly vs Tallybase cost?
+
+---
+From: Helen Okafor
+
+Let's park that until the pilot is done, it is tiny compared to compute anyway.
+
+---
+From: Aiko Tanaka
+
+Unrelated, but is the budget meeting recording available?
+
+---
+From: Helen Okafor
+
+I did not record it. There was nothing on the slides that is not in the spreadsheet.
+
+---
+From: Marcus Lindqvist
+
+One more thing, Cobalt asked for a call next week to talk about the commitment. I said Tuesday afternoon, which I will put in the calendar. If anyone wants to join, shout.

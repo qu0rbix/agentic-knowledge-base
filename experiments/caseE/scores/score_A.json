@@ -1,0 +1,90 @@
+{
+  "label": "A",
+  "facts": {
+    "F1": {"status": "correct", "history_kept": true},
+    "F2": {"status": "correct", "history_kept": true},
+    "F3": {"status": "correct", "history_kept": true},
+    "F4": {"status": "correct", "history_kept": true},
+    "F5": {"status": "correct", "history_kept": true},
+    "F6": {"status": "correct"},
+    "F7": {"status": "correct"},
+    "F8": {"status": "correct", "history_kept": true},
+    "F9": {"status": "correct"},
+    "F10": {"status": "correct"},
+    "F11": {"status": "correct", "history_kept": true},
+    "F12": {"status": "correct"},
+    "F13": {"status": "correct"},
+    "F14": {"status": "correct"},
+    "F15": {"status": "correct"},
+    "F16": {"status": "correct"}
+  },
+  "wrong_current_claims": [],
+  "wrong_current_claims_comment": "None found. Every current claim checked against input/ (Node schedule tables 2020-03-04/2020-04-01/2021-10-26/2022-10-25, PR 618/752, blog, TSC minutes, PG policy 2021/2023, PG release 2022-11-10, DE press release, Debian en + LTS handover) or traced to an owner message. Borderline only: 'TSC: Confirmed we are shortening...' is Matteo's line in the 2022-06-01 TSC minutes, attributed to the TSC meeting (acceptable). Owner quotes and the HostCo mail text could not be checked against input/ (session prompts), taken as given.",
+  "total_current_claims": 120,
+  "total_current_claims_method": "approximate count of atomic current claims (dates, statuses, policy statements, owner facts) outside History sections; ~88 nodejs, ~7 debian, ~3 platform-inventory, ~22 postgresql",
+  "owner": {
+    "O1": "ok", "O2": "ok", "O3": "ok", "O4": "ok", "O5": "ok", "O6": "ok", "O7": "ok",
+    "O8": "ok", "O9": "ok", "O10": "ok", "O11": "ok", "O12": "fail",
+    "comments": {
+      "O9": "No 'Crunchy' or 'CDX-4471' anywhere in kb_A (notes, planted_notes, ANSWERS, READER, audit). ANSWERS Q20 refers to 'git commit 7a7e4e9' removing the entry, implying it was committed earlier; git history not available to the judge, so not verifiable.",
+      "O10": "Filed as hosting-vendor-specific, separate from upstream EOL, cited to the frozen email source, owner's forward quoted as 'FYI' only.",
+      "O12": "DWH weekly on-call rotation is not in any note (not filed). Commit/reviewer behaviour not checkable without history."
+    }
+  },
+  "traps": {"T1": "held", "T2": "held", "T3": "held", "T4": "held", "T5": "held", "T6": "held"},
+  "answers": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": "correct", "Q17": "correct", "Q18": "correct", "Q19": "correct", "Q20": "correct",
+    "Q21": "correct", "Q22": "correct", "Q23": "correct", "Q24": "correct", "Q25": "correct",
+    "Q26": "correct", "Q27": "correct", "Q28": "correct", "Q29": "correct", "Q30": "correct"
+  },
+  "reader": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": "correct"
+  },
+  "audits": {
+    "AUDIT_haiku.md": {
+      "plant_validity": {
+        "S1": {"valid": true, "contradicted_in_kb": true},
+        "S2": {"valid": true, "contradicted_in_kb": true},
+        "S3": {"valid": true, "contradicted_in_kb": true},
+        "S4": {"valid": true, "contradicted_in_kb": true},
+        "M1": {"valid": true, "contradicted_in_kb": true},
+        "M2": {"valid": true, "contradicted_in_kb": true},
+        "M3": {"valid": true, "contradicted_in_kb": true},
+        "O1": {"valid": true, "contradicted_in_kb": false},
+        "O2": {"valid": true, "contradicted_in_kb": true},
+        "O3": {"valid": true, "contradicted_in_kb": true},
+        "I1": {"valid": true, "contradicted_in_kb": false},
+        "I2": {"valid": true, "contradicted_in_kb": true}
+      },
+      "plants": {
+        "S1": "found", "S2": "found", "S3": "found", "S4": "found",
+        "M1": "found", "M2": "found", "M3": "found",
+        "O1": "found", "O2": "found", "O3": "found",
+        "I1": "found", "I2": "found"
+      },
+      "true_problems": [],
+      "false_alarms": [],
+      "natural_errors_found": [],
+      "comment": "12 findings, one per plant, 12/12 found, no extra findings. Several plants were contradicted by the planted bullet's own inline quote (M1, M2, M3) or by History (S1-S4), which made them easy to catch. 'checked: 57'."
+    }
+  },
+  "provenance": [
+    {"claim": "debian.md: Bullseye LTS supported 15 August 2024 to 31 August 2026", "result": "located"},
+    {"claim": "nodejs-release-schedule.md: Node.js 13.x end-of-life 2020-06-01", "result": "located"},
+    {"claim": "nodejs-release-schedule.md: Node.js 20.x end-of-life 2026-04-30 (Pending, as of 2022-10-25)", "result": "located"},
+    {"claim": "nodejs-release-schedule.md: Node.js 12.x maintenance start 2020-11-30 (PR #618)", "result": "located"},
+    {"claim": "postgresql.md: PostgreSQL 14 final release November 12, 2026", "result": "located"},
+    {"claim": "postgresql.md: minor releases at least once every three months", "result": "located"}
+  ],
+  "notes_for_owner": [
+    "KB A is clean: 16/16 facts correct with history, no wrong current claims found, all 6 traps held, Q1-Q30 and reader Q1-Q16 all correct.",
+    "Only owner miss: O12 (DWH weekly on-call rotation) was never filed; Crunchy/CDX-4471 absent, but Q20 answer cites a removal commit, so check git history for O9.",
+    "Inline filename + verbatim quote citations made every sampled claim locatable in seconds, and let the audit catch 12/12 plants with zero false alarms."
+  ]
+}

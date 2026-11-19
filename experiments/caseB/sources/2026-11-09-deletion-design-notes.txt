@@ -1,0 +1,21 @@
+Design notes - deletion propagation (draft 2), Aiko Tanaka, 9 Nov 2026
+
+Context: customer deletion requests arrive via the privacy portal and need to reach Orion, the clickstream store and the backups. This note is mostly me thinking out loud so please skim, not study. Thanks Priya and Sven for the early comments, and sorry about the diagram, I drew it on the train.
+
+What happens today
+The privacy portal exports a daily CSV of pending deletions. Jonas wrote the loader. Rows are matched against customer_id in Orion and the personal fields are nulled. It works but it relies on the CSV landing, and twice in October the export came late. Both times someone noticed by accident rather than by alert, which is not a great sign.
+
+Decision
+Per the privacy team, deletion requests are propagated to Orion within 7 days of the request. The target of 7 days was agreed with Lucia last week and Priya signed off. I have written it on the wiki so people stop asking me in the hallway.
+
+Options considered
+Option A: keep the CSV, add a monitor on arrival time. Cheap, boring.
+Option B: a tombstone table in Orion that every downstream job joins against. More robust, but every job needs changes. We are still considering Option B for next year; no decision has been made and nobody has estimated the effort.
+Option C: event-driven deletions through StreamHub. Looks elegant, but the privacy portal cannot publish events at the moment, and I do not want to be the person who asks them to.
+
+Open points
+- I'll draft the tombstone table schema sometime next week.
+- Not sure whether backups need handling in the same window. Sven says probably not, to be confirmed.
+- Does the 7 day target apply to the clickstream store? Not yet answered.
+
+Cheers, Aiko. P.S. The train had no wifi so I wrote half of this offline, apologies for the typos, and for the pun in the title of the first draft which I have since removed.

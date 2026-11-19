@@ -1,0 +1,1007 @@
+{
+ "lean1": {
+  "cost_total": 1.4,
+  "seconds_total": 1250,
+  "tool_calls": 1789,
+  "denied_total": 0,
+  "denied_median_per_session": 0,
+  "commits": 6,
+  "unreviewed_commits": [],
+  "forget": {
+   "working_tree": [
+    "meta/purges.tsv",
+    "meta/audits/2026-11-14-180000-review.md"
+   ],
+   "in_git_history": true
+  },
+  "check_last": "1 problem(s), 0 warning(s) in 19 notes",
+  "notes": 19,
+  "history_files": 8,
+  "per_session": {
+   "s01": {
+    "cost": 0.1146,
+    "tools": 153,
+    "denied": 0,
+    "seconds": 18
+   },
+   "s02": {
+    "cost": 0.0174,
+    "tools": 38,
+    "denied": 0,
+    "seconds": 179
+   },
+   "s03": {
+    "cost": 0.0864,
+    "tools": 121,
+    "denied": 0,
+    "seconds": 40
+   },
+   "s04": {
+    "cost": 0.0021,
+    "tools": 1,
+    "denied": 0,
+    "seconds": 14
+   },
+   "s05": {
+    "cost": 0.1064,
+    "tools": 128,
+    "denied": 0,
+    "seconds": 31
+   },
+   "s06": {
+    "cost": 0.0256,
+    "tools": 60,
+    "denied": 0,
+    "seconds": 17
+   },
+   "s07": {
+    "cost": 0.1939,
+    "tools": 247,
+    "denied": 0,
+    "seconds": 24
+   },
+   "s08": {
+    "cost": 0.0169,
+    "tools": 34,
+    "denied": 0,
+    "seconds": 18
+   },
+   "s09": {
+    "cost": 0.0695,
+    "tools": 135,
+    "denied": 0,
+    "seconds": 16
+   },
+   "s10": {
+    "cost": 0.0697,
+    "tools": 92,
+    "denied": 0,
+    "seconds": 44
+   },
+   "s11": {
+    "cost": 0.0289,
+    "tools": 57,
+    "denied": 0,
+    "seconds": 19
+   },
+   "s12": {
+    "cost": 0.0072,
+    "tools": 12,
+    "denied": 0,
+    "seconds": 58
+   },
+   "s13": {
+    "cost": 0.0671,
+    "tools": 98,
+    "denied": 0,
+    "seconds": 17
+   },
+   "s13.limited": {
+    "cost": 0.0077,
+    "tools": 12,
+    "denied": 0,
+    "seconds": 0
+   },
+   "s14": {
+    "cost": 0.2631,
+    "tools": 240,
+    "denied": 0,
+    "seconds": 73
+   },
+   "s14.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s15": {
+    "cost": 0.0113,
+    "tools": 18,
+    "denied": 0,
+    "seconds": 45
+   },
+   "s15.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s16": {
+    "cost": 0.0036,
+    "tools": 4,
+    "denied": 0,
+    "seconds": 58
+   },
+   "s16.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s17": {
+    "cost": 0.2444,
+    "tools": 234,
+    "denied": 0,
+    "seconds": 20
+   },
+   "s17.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 2
+   },
+   "s18": {
+    "cost": 0.0072,
+    "tools": 9,
+    "denied": 0,
+    "seconds": 70
+   },
+   "s18.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s19": {
+    "cost": 0.004,
+    "tools": 5,
+    "denied": 0,
+    "seconds": 36
+   },
+   "s19.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 4
+   },
+   "s20": {
+    "cost": 0.0094,
+    "tools": 15,
+    "denied": 0,
+    "seconds": 70
+   },
+   "s20.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 4
+   },
+   "s21": {
+    "cost": 0.0148,
+    "tools": 27,
+    "denied": 0,
+    "seconds": 135
+   },
+   "s21.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s22": {
+    "cost": 0.0261,
+    "tools": 49,
+    "denied": 0,
+    "seconds": 229
+   },
+   "s22.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 4
+   }
+  }
+ },
+ "lean2": {
+  "cost_total": 1.01,
+  "seconds_total": 1713,
+  "tool_calls": 1441,
+  "denied_total": 5,
+  "denied_median_per_session": 0,
+  "commits": 12,
+  "unreviewed_commits": [],
+  "forget": {
+   "working_tree": [
+    "inbox/2026-11-14-forget-crunchy-data.md",
+    "meta/purges.tsv",
+    "meta/audits/2026-11-14-025551-review.md",
+    "meta/audits/2026-11-14-030503-review.md",
+    "meta/audits/2026-11-14-032203-review.md"
+   ],
+   "in_git_history": true
+  },
+  "check_last": "1 problem(s), 1 warning(s) in 11 notes",
+  "notes": 11,
+  "history_files": 5,
+  "per_session": {
+   "s01": {
+    "cost": 0.1084,
+    "tools": 118,
+    "denied": 0,
+    "seconds": 35
+   },
+   "s02": {
+    "cost": 0.0187,
+    "tools": 40,
+    "denied": 0,
+    "seconds": 16
+   },
+   "s03": {
+    "cost": 0.026,
+    "tools": 56,
+    "denied": 1,
+    "seconds": 22
+   },
+   "s04": {
+    "cost": 0.0021,
+    "tools": 1,
+    "denied": 0,
+    "seconds": 13
+   },
+   "s05": {
+    "cost": 0.0272,
+    "tools": 49,
+    "denied": 1,
+    "seconds": 112
+   },
+   "s06": {
+    "cost": 0.019,
+    "tools": 48,
+    "denied": 1,
+    "seconds": 347
+   },
+   "s07": {
+    "cost": 0.1315,
+    "tools": 155,
+    "denied": 1,
+    "seconds": 47
+   },
+   "s08": {
+    "cost": 0.0297,
+    "tools": 51,
+    "denied": 0,
+    "seconds": 40
+   },
+   "s09": {
+    "cost": 0.0199,
+    "tools": 44,
+    "denied": 0,
+    "seconds": 216
+   },
+   "s10": {
+    "cost": 0.0925,
+    "tools": 108,
+    "denied": 0,
+    "seconds": 22
+   },
+   "s11": {
+    "cost": 0.0304,
+    "tools": 59,
+    "denied": 0,
+    "seconds": 20
+   },
+   "s12": {
+    "cost": 0.049,
+    "tools": 90,
+    "denied": 1,
+    "seconds": 290
+   },
+   "s13": {
+    "cost": 0.0297,
+    "tools": 45,
+    "denied": 0,
+    "seconds": 13
+   },
+   "s14": {
+    "cost": 0.1296,
+    "tools": 137,
+    "denied": 0,
+    "seconds": 21
+   },
+   "s15": {
+    "cost": 0.0085,
+    "tools": 13,
+    "denied": 0,
+    "seconds": 30
+   },
+   "s16": {
+    "cost": 0.0217,
+    "tools": 32,
+    "denied": 0,
+    "seconds": 18
+   },
+   "s17": {
+    "cost": 0.0318,
+    "tools": 46,
+    "denied": 0,
+    "seconds": 49
+   },
+   "s17.limited": {
+    "cost": 0.1312,
+    "tools": 168,
+    "denied": 0,
+    "seconds": 5
+   },
+   "s18": {
+    "cost": 0.0558,
+    "tools": 105,
+    "denied": 0,
+    "seconds": 40
+   },
+   "s18.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 6
+   },
+   "s19": {
+    "cost": 0.0028,
+    "tools": 3,
+    "denied": 0,
+    "seconds": 18
+   },
+   "s19.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s20": {
+    "cost": 0.008,
+    "tools": 10,
+    "denied": 0,
+    "seconds": 39
+   },
+   "s20.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s21": {
+    "cost": 0.0156,
+    "tools": 25,
+    "denied": 0,
+    "seconds": 96
+   },
+   "s21.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s22": {
+    "cost": 0.0218,
+    "tools": 38,
+    "denied": 0,
+    "seconds": 194
+   },
+   "s22.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   }
+  }
+ },
+ "full1": {
+  "cost_total": 1.56,
+  "seconds_total": 3529,
+  "tool_calls": 1762,
+  "denied_total": 1,
+  "denied_median_per_session": 0,
+  "commits": 8,
+  "unreviewed_commits": [],
+  "forget": {
+   "working_tree": [
+    "index.md",
+    "inbox/2026-11-14-forget-crunchy-data.md",
+    "meta/log.md",
+    "meta/purges.tsv",
+    "notes/crunchy-data.md",
+    "meta/audits/2026-11-14-033303-review.md",
+    "meta/audits/2026-11-14-035243-review.md",
+    "meta/audits/2026-11-14-064509-review.md"
+   ],
+   "in_git_history": true
+  },
+  "check_last": "1 problem(s), 0 warning(s) in 17 notes",
+  "notes": 17,
+  "history_files": 5,
+  "per_session": {
+   "s01": {
+    "cost": 0.1141,
+    "tools": 137,
+    "denied": 0,
+    "seconds": 26
+   },
+   "s02": {
+    "cost": 0.0212,
+    "tools": 52,
+    "denied": 0,
+    "seconds": 26
+   },
+   "s03": {
+    "cost": 0.0266,
+    "tools": 57,
+    "denied": 0,
+    "seconds": 107
+   },
+   "s04": {
+    "cost": 0.0022,
+    "tools": 1,
+    "denied": 0,
+    "seconds": 66
+   },
+   "s05": {
+    "cost": 0.0923,
+    "tools": 141,
+    "denied": 0,
+    "seconds": 13
+   },
+   "s06": {
+    "cost": 0.0442,
+    "tools": 90,
+    "denied": 0,
+    "seconds": 25
+   },
+   "s07": {
+    "cost": 0.315,
+    "tools": 218,
+    "denied": 0,
+    "seconds": 759
+   },
+   "s08": {
+    "cost": 0.1058,
+    "tools": 145,
+    "denied": 0,
+    "seconds": 577
+   },
+   "s09": {
+    "cost": 0.0572,
+    "tools": 76,
+    "denied": 0,
+    "seconds": 11
+   },
+   "s10": {
+    "cost": 0.1731,
+    "tools": 192,
+    "denied": 0,
+    "seconds": 522
+   },
+   "s11": {
+    "cost": 0.0362,
+    "tools": 64,
+    "denied": 1,
+    "seconds": 36
+   },
+   "s11.limited": {
+    "cost": 0.007,
+    "tools": 12,
+    "denied": 0,
+    "seconds": 34
+   },
+   "s12": {
+    "cost": 0.0609,
+    "tools": 110,
+    "denied": 0,
+    "seconds": 602
+   },
+   "s12.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s13": {
+    "cost": 0.0233,
+    "tools": 38,
+    "denied": 0,
+    "seconds": 31
+   },
+   "s13.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s14": {
+    "cost": 0.2298,
+    "tools": 178,
+    "denied": 0,
+    "seconds": 12
+   },
+   "s14.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s15": {
+    "cost": 0.0082,
+    "tools": 8,
+    "denied": 0,
+    "seconds": 63
+   },
+   "s15.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s16": {
+    "cost": 0.0052,
+    "tools": 4,
+    "denied": 0,
+    "seconds": 40
+   },
+   "s16.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s17": {
+    "cost": 0.1484,
+    "tools": 104,
+    "denied": 0,
+    "seconds": 261
+   },
+   "s17.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s18": {
+    "cost": 0.0411,
+    "tools": 69,
+    "denied": 0,
+    "seconds": 20
+   },
+   "s18.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 4
+   },
+   "s19": {
+    "cost": 0.0034,
+    "tools": 3,
+    "denied": 0,
+    "seconds": 23
+   },
+   "s19.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s20": {
+    "cost": 0.009,
+    "tools": 9,
+    "denied": 0,
+    "seconds": 43
+   },
+   "s20.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s21": {
+    "cost": 0.015,
+    "tools": 20,
+    "denied": 0,
+    "seconds": 88
+   },
+   "s21.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s22": {
+    "cost": 0.0207,
+    "tools": 34,
+    "denied": 0,
+    "seconds": 129
+   },
+   "s22.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 2
+   }
+  }
+ },
+ "full2": {
+  "cost_total": 1.79,
+  "seconds_total": 5316,
+  "tool_calls": 1977,
+  "denied_total": 9,
+  "denied_median_per_session": 0,
+  "commits": 5,
+  "unreviewed_commits": [],
+  "forget": {
+   "working_tree": [
+    "meta/purges.tsv",
+    "meta/audits/2026-11-14-073847-review.md"
+   ],
+   "in_git_history": false
+  },
+  "check_last": "1 problem(s), 0 warning(s) in 15 notes",
+  "notes": 15,
+  "history_files": 6,
+  "per_session": {
+   "s01": {
+    "cost": 0.1311,
+    "tools": 192,
+    "denied": 0,
+    "seconds": 659
+   },
+   "s02": {
+    "cost": 0.024,
+    "tools": 55,
+    "denied": 0,
+    "seconds": 22
+   },
+   "s03": {
+    "cost": 0.0291,
+    "tools": 77,
+    "denied": 5,
+    "seconds": 462
+   },
+   "s04": {
+    "cost": 0.0022,
+    "tools": 1,
+    "denied": 0,
+    "seconds": 23
+   },
+   "s05": {
+    "cost": 0.0841,
+    "tools": 111,
+    "denied": 0,
+    "seconds": 46
+   },
+   "s06": {
+    "cost": 0.0301,
+    "tools": 57,
+    "denied": 0,
+    "seconds": 343
+   },
+   "s07": {
+    "cost": 0.1615,
+    "tools": 165,
+    "denied": 0,
+    "seconds": 36
+   },
+   "s08": {
+    "cost": 0.0293,
+    "tools": 59,
+    "denied": 0,
+    "seconds": 25
+   },
+   "s09": {
+    "cost": 0.024,
+    "tools": 57,
+    "denied": 0,
+    "seconds": 13
+   },
+   "s10": {
+    "cost": 0.1669,
+    "tools": 197,
+    "denied": 0,
+    "seconds": 503
+   },
+   "s11": {
+    "cost": 0.1349,
+    "tools": 185,
+    "denied": 0,
+    "seconds": 967
+   },
+   "s12": {
+    "cost": 0.0049,
+    "tools": 6,
+    "denied": 0,
+    "seconds": 66
+   },
+   "s12.limited": {
+    "cost": 0.0368,
+    "tools": 63,
+    "denied": 0,
+    "seconds": 99
+   },
+   "s13": {
+    "cost": 0.0759,
+    "tools": 97,
+    "denied": 0,
+    "seconds": 564
+   },
+   "s13.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s14": {
+    "cost": 0.255,
+    "tools": 196,
+    "denied": 0,
+    "seconds": 26
+   },
+   "s14.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 3
+   },
+   "s15": {
+    "cost": 0.0115,
+    "tools": 13,
+    "denied": 3,
+    "seconds": 85
+   },
+   "s15.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 4
+   },
+   "s16": {
+    "cost": 0.0525,
+    "tools": 69,
+    "denied": 0,
+    "seconds": 291
+   },
+   "s16.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s17": {
+    "cost": 0.3877,
+    "tools": 204,
+    "denied": 0,
+    "seconds": 570
+   },
+   "s17.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 4
+   },
+   "s18": {
+    "cost": 0.0932,
+    "tools": 105,
+    "denied": 1,
+    "seconds": 242
+   },
+   "s18.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 6
+   },
+   "s19": {
+    "cost": 0.0039,
+    "tools": 4,
+    "denied": 0,
+    "seconds": 20
+   },
+   "s19.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 3
+   },
+   "s20": {
+    "cost": 0.0073,
+    "tools": 6,
+    "denied": 0,
+    "seconds": 30
+   },
+   "s20.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 2
+   },
+   "s21": {
+    "cost": 0.0145,
+    "tools": 20,
+    "denied": 0,
+    "seconds": 64
+   },
+   "s21.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 2
+   },
+   "s22": {
+    "cost": 0.0255,
+    "tools": 38,
+    "denied": 0,
+    "seconds": 132
+   },
+   "s22.limited": {
+    "cost": 0,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 2
+   }
+  }
+ },
+ "plain1": {
+  "cost_total": 0.3,
+  "seconds_total": 1253,
+  "tool_calls": 210,
+  "denied_total": 18,
+  "denied_median_per_session": 1,
+  "commits": 15,
+  "unreviewed_commits": "n/a",
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "check_last": "n/a",
+  "notes": 5,
+  "history_files": 0,
+  "per_session": {
+   "s01": {
+    "cost": 0.0133,
+    "tools": 6,
+    "denied": 0,
+    "seconds": 71
+   },
+   "s02": {
+    "cost": 0.0069,
+    "tools": 8,
+    "denied": 3,
+    "seconds": 29
+   },
+   "s03": {
+    "cost": 0.0052,
+    "tools": 4,
+    "denied": 0,
+    "seconds": 35
+   },
+   "s04": {
+    "cost": 0.0012,
+    "tools": 0,
+    "denied": 0,
+    "seconds": 1
+   },
+   "s05": {
+    "cost": 0.0133,
+    "tools": 16,
+    "denied": 1,
+    "seconds": 69
+   },
+   "s06": {
+    "cost": 0.004,
+    "tools": 3,
+    "denied": 0,
+    "seconds": 34
+   },
+   "s07": {
+    "cost": 0.0343,
+    "tools": 22,
+    "denied": 2,
+    "seconds": 206
+   },
+   "s08": {
+    "cost": 0.0054,
+    "tools": 3,
+    "denied": 0,
+    "seconds": 20
+   },
+   "s09": {
+    "cost": 0.005,
+    "tools": 5,
+    "denied": 1,
+    "seconds": 37
+   },
+   "s10": {
+    "cost": 0.0271,
+    "tools": 25,
+    "denied": 4,
+    "seconds": 95
+   },
+   "s11": {
+    "cost": 0.01,
+    "tools": 8,
+    "denied": 0,
+    "seconds": 40
+   },
+   "s12": {
+    "cost": 0.0087,
+    "tools": 6,
+    "denied": 1,
+    "seconds": 47
+   },
+   "s13": {
+    "cost": 0.0032,
+    "tools": 4,
+    "denied": 0,
+    "seconds": 28
+   },
+   "s14": {
+    "cost": 0.0765,
+    "tools": 35,
+    "denied": 1,
+    "seconds": 206
+   },
+   "s15": {
+    "cost": 0.0095,
+    "tools": 6,
+    "denied": 1,
+    "seconds": 41
+   },
+   "s16": {
+    "cost": 0.0018,
+    "tools": 1,
+    "denied": 0,
+    "seconds": 14
+   },
+   "s17": {
+    "cost": 0.0301,
+    "tools": 19,
+    "denied": 2,
+    "seconds": 121
+   },
+   "s18": {
+    "cost": 0.0074,
+    "tools": 7,
+    "denied": 1,
+    "seconds": 31
+   },
+   "s19": {
+    "cost": 0.0018,
+    "tools": 2,
+    "denied": 0,
+    "seconds": 9
+   },
+   "s20": {
+    "cost": 0.0089,
+    "tools": 8,
+    "denied": 1,
+    "seconds": 28
+   },
+   "s21": {
+    "cost": 0.0079,
+    "tools": 3,
+    "denied": 0,
+    "seconds": 34
+   },
+   "s22": {
+    "cost": 0.0186,
+    "tools": 19,
+    "denied": 0,
+    "seconds": 57
+   }
+  }
+ }
+}

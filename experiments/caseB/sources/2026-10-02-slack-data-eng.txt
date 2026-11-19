@@ -1,0 +1,31 @@
+# data-eng - export 2026-10-02 (messages 08:14 - 17:52 CET)
+
+[08:14] Aiko Tanaka: morning all. anyone else seeing the airflow UI crawl or is that just me
+[08:15] Jonas Weber: not just you, scheduler heartbeat is flapping
+[08:17] Marcus Lindqvist: that's the old 2.7 box. reminder that the Airflow 2.10 upgrade is scheduled for 2026-10-20, after that the UI should be a lot snappier
+[08:18] Aiko Tanaka: great, I'll hold my complaints until the 21st :)
+[08:30] Jonas Weber: restarted the scheduler, workaround for now, I put a cron on the box to restart it every 6 hours until the upgrade. please don't copy this pattern
+[08:31] Marcus Lindqvist: noted and judged
+[09:02] Priya Nair: quick one on observability. we have been paying Monitorly $640 a month and the contract ends 2026-12-31. renewal emails have started so the clock is ticking
+[09:03] Priya Nair: I want to evaluate Tallybase as a possible replacement for Monitorly, no decision yet, decision due 2026-10-15
+[09:05] Jonas Weber: fine by me, the Monitorly alert routing is clunky
+[09:06] Marcus Lindqvist: tallybase demo was nice but I did not see how they do alert dedup
+[09:07] Priya Nair: good point, add it to the question list for the vendor
+[09:41] Aiko Tanaka: lunch? the new ramen place opens today
+[09:41] Jonas Weber: in
+[09:42] Marcus Lindqvist: in, if they have a vegetarian option
+[10:12] Priya Nair: on-call reminder for the new people. Orion pages go to the primary first, and they escalate to the secondary on-call if the primary has not acknowledged within 15 minutes. weekly handoff is monday 10:00 CET
+[10:13] Aiko Tanaka: do we have a doc for this?
+[10:14] Priya Nair: it's in the runbook, I'll link it later
+[11:30] Marcus Lindqvist: who broke the dev dashboard, my chart is blank
+[11:32] Jonas Weber: me, sorry, renamed a column. fixed
+[11:33] Marcus Lindqvist: you owe me a coffee
+[13:05] Aiko Tanaka: cake in the kitchen, birthday, don't ask whose
+[13:06] Jonas Weber: asking whose
+[13:06] Aiko Tanaka: no
+[14:40] Marcus Lindqvist: the vpn is slow again, is it just my flat
+[14:41] Jonas Weber: it's the whole street, someone is digging
+[15:20] Jonas Weber: friday deploy freeze starts at 16:00 as usual
+[15:21] Marcus Lindqvist: nobody deploys on fridays anyway :P
+[16:44] Priya Nair: thanks all, offline
+[17:52] Aiko Tanaka: ok bye, weekend plans: sleep

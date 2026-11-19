@@ -1,0 +1,24 @@
+Data Platform Ops Sync - 27 Oct 2026
+Attendees: Priya, Marcus, Jonas, Aiko, Helen (remote)
+
+Room was fine this time. Jonas brought croissants and Aiko said that does not count as an agenda item.
+
+1. Airflow upgrade retro
+The 2.10 upgrade ran last Tuesday and went fine apart from two DAGs that imported a removed operator. Aiko fixed both the same day. The UI is faster. Jonas has disabled the six-hour scheduler restart cron since the upgrade, and wants to delete it for good. Good.
+
+2. Monitoring
+Tallybase demo feedback was positive. We decided to run a 30-day Tallybase pilot starting 2 November 2026 while Monitorly stays the primary alerting system. Nobody is switching the paging integration during the pilot. Marcus will own the pilot and report back at the first sync in December. Alert dedup was shown and it works as advertised, according to Marcus, though only on the test data.
+
+3. StreamHub
+The retention change from the September sync was applied on 22 October, so retention is now 14 days. Marcus confirmed disk usage grew about 40 percent, which is within what we expected. Marcus owns StreamHub, and Aiko is backup. Helen asked if the fraud team's replay worked; yes, they replayed nine days without trouble.
+
+4. Intake
+Requests to the Orion team now go through the #data-requests channel and get a first response within 2 business days. Priya is the person who triages. Previously people were pinging individuals directly, which Priya says was not sustainable. Please stop DMing Jonas about dashboards, he has asked nicely three times.
+
+5. AOB
+- Aiko will rename the staging cluster tags, not urgent.
+- Marcus is out Friday.
+- Someone should check whether the office plants survived the heating being off.
+- Next sync 10 Nov, same room.
+- The croissant situation was discussed again at length and the result was that Jonas will bring more next time, and that Marcus will bring something that is not a croissant.
+- Helen asked that we keep the notes short. This item has been kept short.

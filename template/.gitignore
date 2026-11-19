@@ -1,0 +1,11 @@
+data/*.db
+data/*.sqlite
+work/*
+!work/.gitkeep
+.cache/
+.kb-guard/
+__pycache__/
+.env
+# owner messages stay out of git until a claim cites them (`kb.py commit` adds those)
+sources/user/*
+!sources/user/.gitkeep

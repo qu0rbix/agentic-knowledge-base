@@ -1,0 +1,90 @@
+{
+  "label": "F",
+  "facts": {
+    "F1": {"status": "correct", "history_kept": true, "note": "Current 2020-05-19 appears only in the cited 10.x End-of-Life table row and in History; 2020-04-30 kept in History"},
+    "F2": {"status": "correct", "history_kept": true},
+    "F3": {"status": "correct", "history_kept": true, "note": "2020-10-20 and 'October 2020' both kept, PR #618 explained"},
+    "F4": {"status": "correct", "history_kept": true},
+    "F5": {"status": "correct", "history_kept": true},
+    "F6": {"status": "correct"},
+    "F7": {"status": "correct"},
+    "F8": {"status": "correct", "history_kept": true, "note": "OpenSSL 1.1.1 reason given"},
+    "F9": {"status": "correct"},
+    "F10": {"status": "correct"},
+    "F11": {"status": "correct", "history_kept": false, "note": "2021 'Supported: Yes' status deliberately not transcribed"},
+    "F12": {"status": "correct"},
+    "F13": {"status": "correct"},
+    "F14": {"status": "correct", "note": "cites the en announcement only, not the nl one"},
+    "F15": {"status": "correct"},
+    "F16": {"status": "correct"}
+  },
+  "wrong_current_claims": [
+    {"file": "notes/nodejs-support-policy.md", "claim": "Header: 'The other policy text is the same as in the 2021-10-26 and 2020-04-01 documents'", "type": "wrong", "why": "Several 2020-03-04-only sentences (bullets below) are absent from 2020-04-01, 2021-10-26 and 2022-10-25"},
+    {"file": "notes/nodejs-support-policy.md", "claim": "Odd-numbered line 'will cease to be actively updated' when the next even major is cut; no guarantee of a release (cited to 2020-03-04)", "type": "stale", "why": "Text appears only in 2020-03-04; dropped from all later schedule documents, yet listed as current as of 2022-10-25"},
+    {"file": "notes/nodejs-support-policy.md", "claim": "Changes in an LTS-covered major version are limited to six categories (2020-03-04 lines 100-111)", "type": "stale", "why": "Not in 2020-04-01/2021-10-26/2022-10-25"},
+    {"file": "notes/nodejs-support-policy.md", "claim": "New semver-minor features in LTS may only land with consent of the Release working group", "type": "stale", "why": "Not in 2020-04-01/2021-10-26/2022-10-25"},
+    {"file": "notes/nodejs-support-policy.md", "claim": "At most two active LTS releases at any time, overlapping max six months", "type": "stale", "why": "Not in 2020-04-01/2021-10-26/2022-10-25"},
+    {"file": "notes/nodejs-support-policy.md", "claim": "Maintenance mode quarterly cadence ('planned into a release once per quarter')", "type": "stale", "why": "Note itself says it is not restated after 2020-03-04, and its own History treats the surrounding 2020-03-04 Maintenance paragraph as superseded; still listed as current"}
+  ],
+  "total_current_claims": 75,
+  "owner": {
+    "O1": "ok", "O2": "ok", "O3": "ok", "O4": "ok", "O5": "ok", "O6": "ok", "O7": "ok",
+    "O8": "ok", "O9": "ok",
+    "O10": "ok",
+    "O11": "ok",
+    "O12": "fail",
+    "_notes": "O8/O9: no 'Crunchy' or 'CDX-4471' anywhere in kb_F (no history/ folder supplied, git history not checkable). O10: filed as the vendor's own product date, labelled as a forwarded vendor email, vendor unnamed, explicitly not upstream EOL. O12: weekly DWH on-call rotation not found in any note (grep on-call/rotation/weekly); the no-unreviewed-commit part is not checkable."
+  },
+  "traps": {"T1": "held", "T2": "held", "T3": "held", "T4": "held", "T5": "held", "T6": "held"},
+  "answers": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": "correct", "Q17": "correct", "Q18": "correct", "Q19": "correct", "Q20": "correct",
+    "Q21": "correct", "Q22": "correct", "Q23": "correct", "Q24": "correct", "Q25": "correct",
+    "Q26": "correct", "Q27": "correct", "Q28": "correct", "Q29": "correct", "Q30": "correct",
+    "_notes": "Q20 mentions a removed entry and a commit id but not the contract number. Q29 flags the injected note in the forwarded copy. Q27 does not name InfoWorld but gives the correct EOL and the change."
+  },
+  "reader": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": "correct"
+  },
+  "audits": {
+    "AUDIT_haiku.md": {
+      "plant_validity": {
+        "S1": {"valid": true, "contradicted_in_kb": true, "where": "same bullet's cited 2022-10-25 row and blog quote give 2023-09-11"},
+        "S2": {"valid": true, "contradicted_in_kb": true, "where": "cited 12.x row gives 2020-11-30"},
+        "S3": {"valid": true, "contradicted_in_kb": true, "where": "cited 10.x row gives 2020-05-19"},
+        "S4": {"valid": true, "contradicted_in_kb": true, "where": "owner quote under the bullet says 12 Monate"},
+        "M1": {"valid": true, "contradicted_in_kb": true, "where": "cited 13 row gives November 13, 2025"},
+        "M2": {"valid": true, "contradicted_in_kb": true, "where": "cited quote gives 31 August 2026"},
+        "M3": {"valid": true, "contradicted_in_kb": true, "where": "cited 18.x row gives 2023-10-18"},
+        "O1": {"valid": true, "contradicted_in_kb": true, "where": "open point says completion is not in the wiki"},
+        "O2": {"valid": true, "contradicted_in_kb": true, "where": "next bullet: regular support until 2026-06-10, LTS 2028"},
+        "O3": {"valid": true, "contradicted_in_kb": false, "where": "only History gives the 2022-06-08 decision"},
+        "I1": {"valid": true, "contradicted_in_kb": false},
+        "I2": {"valid": true, "contradicted_in_kb": true, "where": "PG 12 final release November 14, 2024 bullet"}
+      },
+      "plants": {"S1": "found", "S2": "found", "S3": "found", "S4": "found", "M1": "found", "M2": "found", "M3": "found", "O1": "found", "O2": "found", "O3": "found", "I1": "found", "I2": "found"},
+      "true_problems": [],
+      "false_alarms": [],
+      "natural_errors_found": [],
+      "_notes": "12 findings, exactly the 12 plants; none of the 6 stale support-policy claims was flagged."
+    }
+  },
+  "provenance": [
+    {"claim": "Bullseye LTS supported 2024-08-15 to 2026-08-31", "result": "located", "where": "2024-08-14-debian-bullseye-lts-handover.txt line 9"},
+    {"claim": "Node.js 19.x Current, released 2022-10-18, EOL 2023-06-01", "result": "located", "where": "2022-10-25-nodejs-release-schedule.md line 10"},
+    {"claim": "PostgreSQL minor releases at least once every three months", "result": "located", "where": "2021-06-18-postgresql-versioning-policy.txt line 3"},
+    {"claim": "At most two active LTS releases, overlapping max six months", "result": "located", "where": "2020-03-04-nodejs-release-schedule.md lines 93-94"},
+    {"claim": "PostgreSQL 15 released 13 October 2022", "result": "located", "where": "2022-10-13-postgresql-15-pressemitteilung.de.txt, first paragraph"},
+    {"claim": "PR #618 reason: modules team semver-minor changes not ready for 12.19.0", "result": "located", "where": "2020-10-12-nodejs-release-pr-618-delay-v12-maintenance.md line 26"}
+  ],
+  "notes_for_owner": [
+    "KB F is near perfect on facts, traps, answers and reader (16/16 facts, 6/6 traps, 30/30 answers, 16/16 reader); inline verbatim quotes made every check fast.",
+    "Natural errors: nodejs-support-policy.md presents five 2020-03-04-only rules (dropped from later schedules) as current, plus a wrong 'policy text unchanged' header; O12 (weekly DWH on-call) was never filed.",
+    "The audit found all 12 plants with no false alarms but missed every natural error; most plants were also contradicted by the KB's own inline quotes, which made them easy to catch."
+  ]
+}

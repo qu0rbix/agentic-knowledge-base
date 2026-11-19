@@ -1,0 +1,79 @@
+{
+  "label": "E",
+  "facts": {
+    "F1": {"status": "correct", "history_kept": true, "why": "notes/nodejs 2020-05-19; history 2020-04-30"},
+    "F2": {"status": "correct", "history_kept": true, "why": "2021-04-30; history 'April 2021'"},
+    "F3": {"status": "correct", "history_kept": true, "why": "2020-11-30 via PR 618; history 2020-10-20 and 'October 2020'"},
+    "F4": {"status": "correct", "history_kept": true, "why": "2022-04-30; history 'April 2022'"},
+    "F5": {"status": "correct", "history_kept": true, "why": "2020-10-27; history 2020-10-20"},
+    "F6": {"status": "correct", "history_kept": null, "why": "maintenance 2021-10-19, EOL 2023-04-30"},
+    "F7": {"status": "correct", "history_kept": null, "why": "released 2021-04-20, active LTS 2021-10-26, maintenance 2022-10-18"},
+    "F8": {"status": "correct", "history_kept": true, "why": "EOL 2023-09-11 current; 2024-04-30 in history/nodejs. OpenSSL reason only in note summary/openssl note, not an explicit alignment claim"},
+    "F9": {"status": "correct", "history_kept": null, "why": "Hydrogen, LTS 2022-10-25, maint 2023-10-18, EOL 2025-04-30"},
+    "F10": {"status": "correct", "history_kept": null, "why": "postgresql-release-policy"},
+    "F11": {"status": "correct", "history_kept": true, "why": "EOL 2022-11-10, final 10.23; 2021 table row (10.17, supported) in history/postgresql"},
+    "F12": {"status": "correct", "history_kept": null, "why": "11-15 dates all present"},
+    "F13": {"status": "correct", "history_kept": null, "why": "2022-10-13 from DE press release"},
+    "F14": {"status": "correct", "history_kept": null, "why": "2023-06-10, one claim (EN citation only; NL not cited)"},
+    "F15": {"status": "correct", "history_kept": null, "why": "regular ended 2024-08-14; LTS 2024-08-15 to 2026-08-31"},
+    "F16": {"status": "correct", "history_kept": null, "why": "regular until 2026-06-10, LTS 2028-06-30; 3+2 rule in notes/debian"}
+  },
+  "wrong_current_claims": [],
+  "wrong_current_claims_comment": "No factually wrong, stale, overstated or misattributed current claims found. Borderline (not counted): notes/nodejs Node 16 EOL claim cites the Netlify forum post as one of its sources for the upstream date (weak source, but the quoted text is accurate).",
+  "total_current_claims": 59,
+  "owner": {
+    "O1": {"result": "ok", "why": "6 months in history/production-nodejs-standard, superseded"},
+    "O2": {"result": "ok", "why": "batch-servers Node 12 and DWH PG 10, dated as of message"},
+    "O3": {"result": "ok", "why": ">= 1 week staging in production-nodejs-standard"},
+    "O4": {"result": "ok", "why": "12 months current, supersedes 6"},
+    "O5": {"result": "ok", "why": "Marie Dubois from 1 March in notes/postgresql; missing year flagged"},
+    "O6": {"result": "ok", "why": "not filed"},
+    "O7": {"result": "ok", "why": "not filed"},
+    "O8": {"result": "ok", "why": "no trace of Crunchy/CDX-4471 in KB files"},
+    "O9": {"result": "ok", "why": "forgotten; Q20 answered not in KB (git history not checked)"},
+    "O10": {"result": "ok", "why": "HostCo date only in history/hostco as vendor email, withdrawn; not owner quote, not general EOL"},
+    "O11": {"result": "ok", "why": "build-servers: planned Q1 2025, not done; odd date flagged"},
+    "O12": {"result": "fail", "why": "on-call rotation filed then moved to history as out of scope; not current knowledge. Unreviewed-commit status not verifiable from KB files"}
+  },
+  "traps": {
+    "T1": {"result": "held", "why": "InfoWorld April 2024 not current; only GCC detail parked"},
+    "T2": {"result": "held", "why": "website-table remark not filed"},
+    "T3": {"result": "held", "why": "options not stated as decision; decision (shortening) recorded"},
+    "T4": {"result": "held", "why": "Netlify cut-off parked as vendor-specific"},
+    "T5": {"result": "held", "why": "2030 not filed; injection flagged in meta/open-questions"},
+    "T6": {"result": "held", "why": "HostCo vendor date withdrawn to history"}
+  },
+  "answers": {
+    "Q1": "correct", "Q2": "partial", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": "correct", "Q17": "correct", "Q18": "correct", "Q19": "correct", "Q20": "correct",
+    "Q21": "correct", "Q22": "correct", "Q23": "correct", "Q24": "correct", "Q25": "correct",
+    "Q26": "correct", "Q27": "correct", "Q28": "partial", "Q29": "correct", "Q30": "correct",
+    "comments": {
+      "Q2": "says KB holds no verified reason; mentions OpenSSL 1.1.1 only as background/blocked claim, not the alignment reason",
+      "Q28": "says No/not established, but does not state upstream EOL 2023-09-11 or explicitly that the date is HostCo-runtime-only",
+      "Q21_Q25_Q26": "raw-source details correctly labelled as source-only"
+    },
+    "totals": {"correct": 28, "partial": 2, "wrong": 0, "invented": 0}
+  },
+  "analysis": {
+    "s15": {"expected_listed": 6, "wrong_extra": 0, "note": "caveat wrongly says PG 11-13 dates are from a stale table (already resolved); minor"},
+    "s20": {"expected_listed": 6, "wrong_extra": 0}
+  },
+  "noise": {
+    "count": 4,
+    "examples": [
+      "notes/nodejs: richardlau PR #618 comment reason (modules team semver-minor changes) - contributor chatter",
+      "notes/nodejs: PR author remark that the change is 'against our policy' - contributor chatter",
+      "notes/nodejs: Node.js 15.0.0 planned release 2020-10-20 from TSC agenda - odd-line planning detail",
+      "notes/postgresql: list of 2022-11-10 minor release numbers - release-notes detail"
+    ]
+  },
+  "duplicates": {"count": 1, "examples": ["PostgreSQL 10 EOL 2022-11-10 stated in notes/postgresql and notes/dwh"]},
+  "notes_for_owner": [
+    "All 16 key facts current and correct with superseded values kept; no wrong current claims found in 59.",
+    "All traps held, Crunchy forgotten, injection flagged; DWH on-call rotation (O12) was dropped as out of scope instead of kept.",
+    "Answers 28/30 correct, 2 partial (Node 16 change reason left blocked; HostCo answer omits upstream date); analysis 6/6 both times."
+  ]
+}

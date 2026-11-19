@@ -1,0 +1,18 @@
+165 queries; modes: keyword, hybrid
+claim-detail   keyword  n= 20  R@1 0.95  R@5 1.00  MRR 0.97
+claim-detail   hybrid   n= 20  R@1 0.95  R@5 1.00  MRR 0.97
+dutch          keyword  n= 15  R@1 0.13  R@5 0.33  MRR 0.22
+dutch          hybrid   n= 15  R@1 0.67  R@5 0.67  MRR 0.67
+lexical        keyword  n= 20  R@1 1.00  R@5 1.00  MRR 1.00
+lexical        hybrid   n= 20  R@1 1.00  R@5 1.00  MRR 1.00
+near_miss      keyword  n= 20  no expected note: semantic-only hits on 0/20
+near_miss      hybrid   n= 20  no expected note: semantic-only hits on 0/20
+out_of_kb      keyword  n= 15  no expected note: semantic-only hits on 0/15
+out_of_kb      hybrid   n= 15  no expected note: semantic-only hits on 0/15
+paraphrase     keyword  n= 45  R@1 0.56  R@5 0.69  MRR 0.61
+paraphrase     hybrid   n= 45  R@1 0.60  R@5 0.71  MRR 0.65
+paraphrase2    keyword  n= 20  R@1 0.15  R@5 0.40  MRR 0.23
+paraphrase2    hybrid   n= 20  R@1 0.25  R@5 0.45  MRR 0.35
+superseded     keyword  n= 10  no expected note: semantic-only hits on 0/10
+superseded     hybrid   n= 10  no expected note: semantic-only hits on 0/10
+paired R@5: hybrid wins 7, keyword wins 0

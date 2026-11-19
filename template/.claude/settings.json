@@ -1,0 +1,156 @@
+{
+  "autoMemoryEnabled": false,
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Agent",
+      "Bash(uv run tools/kb.py:*)",
+      "Bash(uv run --quiet tools/kb.py:*)",
+      "Bash(uv run tools/fetch.py:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "PowerShell(uv run tools/kb.py:*)",
+      "PowerShell(uv run --quiet tools/kb.py:*)",
+      "PowerShell(uv run tools/fetch.py:*)",
+      "PowerShell(git status:*)",
+      "PowerShell(git diff:*)",
+      "PowerShell(git log:*)",
+      "PowerShell(git show:*)"
+    ],
+    "ask": [
+      "Edit(/CLAUDE.md)",
+      "Edit(/charter.md)",
+      "Edit(/CONVENTIONS.md)",
+      "Edit(/kb.toml)",
+      "Edit(/.env)",
+      "Edit(/.claude/**)",
+      "Edit(/tools/hooks/**)",
+      "Edit(/tools/kb.py)",
+      "Edit(/tools/kbsem.py)",
+      "Edit(/tools/fetch.py)"
+    ],
+    "deny": [
+      "Read(/.env)",
+      "Bash(cat .env*)",
+      "PowerShell(Get-Content .env*)",
+      "PowerShell(type .env*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv",
+            "args": [
+              "run",
+              "--quiet",
+              "python",
+              "-I",
+              "${CLAUDE_PROJECT_DIR}/tools/hooks/guard.py",
+              "pre"
+            ],
+            "onFailure": "block"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv",
+            "args": [
+              "run",
+              "--quiet",
+              "python",
+              "-I",
+              "${CLAUDE_PROJECT_DIR}/tools/hooks/guard.py",
+              "post"
+            ],
+            "onFailure": "block"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv",
+            "args": [
+              "run",
+              "--quiet",
+              "python",
+              "-I",
+              "${CLAUDE_PROJECT_DIR}/tools/hooks/guard.py",
+              "post"
+            ],
+            "onFailure": "block"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv",
+            "args": [
+              "run",
+              "--quiet",
+              "python",
+              "-I",
+              "${CLAUDE_PROJECT_DIR}/tools/hooks/guard.py",
+              "manifest"
+            ]
+          },
+          {
+            "type": "command",
+            "command": "uv",
+            "args": [
+              "run",
+              "--quiet",
+              "--directory",
+              "${CLAUDE_PROJECT_DIR}",
+              "tools/kb.py",
+              "stats"
+            ]
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv",
+            "args": [
+              "run",
+              "--quiet",
+              "python",
+              "-I",
+              "${CLAUDE_PROJECT_DIR}/tools/hooks/capture.py",
+              "prompt"
+            ],
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_FORK_SUBAGENT": "0"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "label": "I",
+  "facts": {
+    "F1": {"status": "correct", "history_kept": true, "note": "2020-05-19 appears only as the final value of a History chain (10.x maintenance start 2020-04-30 -> 2020-05-19); the current EOL list gives only 10.x EOL"},
+    "F2": {"status": "correct", "history_kept": true},
+    "F3": {"status": "correct", "history_kept": true, "note": "2020-11-30 given as final value in History chain (Oct 2020 -> 2020-10-20 -> 2020-11-30); current EOL list omits 12.x maintenance start"},
+    "F4": {"status": "correct", "history_kept": true},
+    "F5": {"status": "correct", "history_kept": true},
+    "F6": {"status": "correct", "history_kept": null},
+    "F7": {"status": "correct", "history_kept": null},
+    "F8": {"status": "correct", "history_kept": true, "note": "OpenSSL 1.1.1 reason in History bullet"},
+    "F9": {"status": "correct", "history_kept": null},
+    "F10": {"status": "correct", "history_kept": null},
+    "F11": {"status": "correct", "history_kept": true},
+    "F12": {"status": "correct", "history_kept": null},
+    "F13": {"status": "correct", "history_kept": null},
+    "F14": {"status": "correct", "history_kept": null, "note": "no citations at all in this KB, so the en/nl two-citation ideal is not met (not scored)"},
+    "F15": {"status": "correct", "history_kept": null},
+    "F16": {"status": "correct", "history_kept": null}
+  },
+  "wrong_current_claims": [
+    {"file": "notes/nodejs-release-policy.md", "line": "14-15", "claim": "The move to LTS happens in a semver-minor release and can happen before or after the new major release (header says restated unchanged as of 2022-10-25)", "problem": "stale: 2022-10-25 schedule says it 'should happen after the new major version is released'"},
+    {"file": "notes/nodejs-release-policy.md", "line": "3-4, 29-30", "claim": "Release phases restated unchanged as of 2022-10-25; semver-major security changes land as semver-minor", "problem": "minor: 2022-10-25 adds that such changes should include a revert option, so 'unchanged' is wrong"},
+    {"file": "notes/nodejs-release-schedule.md", "line": "17-18", "claim": "19.x and 20.x are odd-numbered lines, so they have no Active LTS dates", "problem": "wrong: 20.x is even-numbered and the source (and the note's own table) gives it a planned Active LTS start 2023-10-24"}
+  ],
+  "total_current_claims": 82,
+  "owner": {
+    "O1": "ok", "O2": "ok", "O3": "ok", "O4": "ok", "O5": "ok", "O6": "ok", "O7": "ok",
+    "O8": "ok", "O9": "ok",
+    "O10": "ok",
+    "O11": "fail",
+    "O12": "fail",
+    "_note": "No trace of Crunchy/CDX-4471 anywhere (these messages are not in this run's OWNER_MESSAGES). HostCo mail not filed. O11 (Bookworm build-server upgrade planned Q1 2025) and O12 (DWH on-call weekly) are not filed in any note."
+  },
+  "traps": {"T1": "held", "T2": "held", "T3": "held", "T4": "held", "T5": "held", "T6": "held"},
+  "answers": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": "correct", "Q17": "correct", "Q18": "correct", "Q19": "correct", "Q20": "correct",
+    "Q21": "correct", "Q22": "correct", "Q23": "correct", "Q24": "correct",
+    "Q25": "correct",
+    "Q26": "correct", "Q27": "correct",
+    "Q28": "partial",
+    "Q29": "correct", "Q30": "correct",
+    "_note": "Q25 gives V8 9.0 labelled as tier-3 raw source. Q28 says No and upstream EOL 2023-09-11, but attributes the question to the Netlify post and says 2024-12-31 is not mentioned - it does not recognise the HostCo managed-runtime mail (which the KB never filed)."
+  },
+  "reader": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": "correct"
+  },
+  "audits": {
+    "AUDIT_haiku.md": {
+      "plant_validity": {
+        "S1": {"valid": true, "contradicted_in_kb": true, "note": "current bullet '16.x end-of-life is 2023-09-11' remains"},
+        "S2": {"valid": true, "contradicted_in_kb": false, "note": "placed in current EOL section; correct 2020-11-30 only in History"},
+        "S3": {"valid": true, "contradicted_in_kb": false, "note": "placed in current EOL section; correct 2020-05-19 only in History"},
+        "S4": {"valid": true, "contradicted_in_kb": false, "note": "History says 'Replaced by the 12-month requirement above'"},
+        "M1": {"valid": true, "contradicted_in_kb": false},
+        "M2": {"valid": true, "contradicted_in_kb": false},
+        "M3": {"valid": true, "contradicted_in_kb": false, "note": "History says 2023-10-18 unchanged"},
+        "O1": {"valid": true, "contradicted_in_kb": false},
+        "O2": {"valid": true, "contradicted_in_kb": true, "note": "current line 3y regular + 2y LTS remains"},
+        "O3": {"valid": true, "contradicted_in_kb": false},
+        "I1": {"valid": true, "contradicted_in_kb": true, "note": "table still gives 18.x EOL 2025-04-30"},
+        "I2": {"valid": true, "contradicted_in_kb": true, "note": "table still gives 12 final release 2024-11-14"}
+      },
+      "plants": {
+        "S1": "found", "S2": "found", "S3": "found", "S4": "found",
+        "M1": "found", "M2": "found", "M3": "found",
+        "O1": "found", "O2": "found", "O3": "found",
+        "I1": "found", "I2": "found"
+      },
+      "true_problems": [
+        "nodejs-release-policy.md: LTS transition 'can happen before or after' is stale vs 2022-10-25 'should happen after'; header 'unchanged' wrong",
+        "nodejs-release-policy.md: revert-option condition from 2022-10-25 dropped while note claims unchanged (low severity)",
+        "nodejs-release-schedule.md: '19.x and 20.x are odd-numbered lines' - 20.x is even"
+      ],
+      "false_alarms": [],
+      "natural_errors_found": [
+        "nodejs-release-policy before/after LTS transition (stale)",
+        "nodejs-release-policy revert option / 'unchanged' header",
+        "nodejs-release-schedule 20.x called odd-numbered"
+      ]
+    }
+  },
+  "provenance": [
+    {"claim": "Bullseye LTS runs from 2024-08-15 to 2026-08-31 (as of 2024-08-14)", "result": "located", "how": "as-of date matches input file 2024-08-14-debian-bullseye-lts-handover.txt"},
+    {"claim": "PostgreSQL minor releases at least once every three months (as of 2021-06-18, restated 2023-01-12)", "result": "located", "how": "date maps to 2021-06-18-postgresql-versioning-policy.txt"},
+    {"claim": "19.x maintenance start 2023-04-01, EOL 2023-06-01 (as of 2022-10-25)", "result": "located", "how": "2022-10-25-nodejs-release-schedule.md table"},
+    {"claim": "Debian 12 includes PostgreSQL 15 (as of 2023-06-10)", "result": "located", "how": "two files share that date (en/nl); en package list"},
+    {"claim": "Maintenance phase may add features at LTS team's discretion (as of 2020-04-01)", "result": "located", "how": "2020-04-01-nodejs-release-schedule.md Release Phases"},
+    {"claim": "Marie Dubois takes over PostgreSQL from 1 March", "result": "located", "how": "no pointer in note, but OWNER_MESSAGES is 8 messages; found in Message 4 in seconds"}
+  ],
+  "provenance_note": "Notes carry no file citations, only '(as of DATE)' markers; location worked because input filenames are date-prefixed. Owner-derived claims carry no message reference.",
+  "notes_for_owner": [
+    "Source facts are excellent: all 16 key facts correct with history, all 6 traps held, reader 16/16, answers 29/30 (Q28 partial).",
+    "Two owner statements were never filed: the Bookworm build-server upgrade plan (Q1 2025) and the weekly DWH on-call rotation.",
+    "3 natural errors (stale LTS-transition wording, dropped revert-option clause, 20.x called odd-numbered); the audit caught all 3 plus all 12 plants with no false alarms."
+  ]
+}

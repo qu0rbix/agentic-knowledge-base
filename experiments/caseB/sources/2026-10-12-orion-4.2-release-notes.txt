@@ -1,0 +1,26 @@
+Orion Platform 4.2 - Release notes
+Released 12 October 2026. Previous release: 4.1.3 (July 2026).
+
+Hi all, this is the internal release notes mail for the Orion transformation layer. Please read the breaking changes section before upgrading your jobs. Thanks to everyone who tested the release candidate, and a special thank you to Aiko for the tidy changelog. If you find something odd, the place to say so is the release thread, not a private message to the release manager, who is on holiday next week anyway.
+
+Highlights
+- Orion 4.2 shipped on 12 October 2026 and is the first release to run on the new scheduler core. Job start latency is down noticeably in our tests, though we have not published numbers yet.
+- The new lineage view is available to all users behind the Lineage (beta) menu item. It is slow on very wide models, known issue.
+- Dark mode for the console. Yes, finally.
+- Roughly forty small fixes to the console, mostly tooltips and typos.
+
+Breaking changes
+- The v1 events API is removed in 4.2. Clients still calling /v1/events will receive HTTP 410. Please move to /v2/events, which has been available since 4.0.
+- The SDK now requires Python 3.12 or newer. Python 3.10 and 3.11 are no longer supported.
+- The default query timeout was raised from 300 seconds to 600 seconds. Jobs that set their own timeout are not affected.
+
+Support policy
+4.2 will receive patch releases; the 4.1 line gets security fixes only for 90 days after the 4.2 release.
+
+Known issues
+- Lineage view does not show cross-project edges.
+- The console search box sometimes loses focus after typing the third character, a fix is planned for 4.2.1.
+- Temporary workaround for slow lineage: collapse the wide models by hand.
+
+Upgrade notes
+Upgrade staging first. The staging environment is called orion-staging and is separate from production; production upgrade happens in the window agreed in the ops sync. Contact Marcus if your job needs a longer window. Please do not upgrade on a Friday afternoon, we have all learned that lesson.

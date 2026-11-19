@@ -1,0 +1,348 @@
+{
+  "label": "C",
+  "facts": {
+    "F1": {
+      "status": "correct",
+      "history_kept": false,
+      "why": "2020-05-19 current in nodejs-release-schedule; earlier 2020-04-30 (2020-03-04 snapshot) recorded nowhere"
+    },
+    "F2": {
+      "status": "correct",
+      "history_kept": true,
+      "why": "2021-04-30 current; 'April 2021' in history"
+    },
+    "F3": {
+      "status": "correct",
+      "history_kept": true,
+      "why": "2020-11-30 current with PR 618; 2020-10-20 in history"
+    },
+    "F4": {
+      "status": "correct",
+      "history_kept": true,
+      "why": "2022-04-30 current; 'April 2022' in history"
+    },
+    "F5": {
+      "status": "correct",
+      "history_kept": true,
+      "why": "2020-10-27 current; 2020-10-20 in history"
+    },
+    "F6": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "maintenance 2021-10-19, EOL 2023-04-30"
+    },
+    "F7": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "active LTS 2021-10-26, maintenance 2022-10-18 as claims; release date 2021-04-20 only in the cited table row, not stated in claim text"
+    },
+    "F8": {
+      "status": "correct",
+      "history_kept": true,
+      "why": "2023-09-11 with OpenSSL 1.1.1 reason; 2024-04-30 in history"
+    },
+    "F9": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "Hydrogen, LTS 2022-10-25, maintenance 2023-10-18, EOL 2025-04-30"
+    },
+    "F10": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "5 years in postgresql-versioning-policy"
+    },
+    "F11": {
+      "status": "correct",
+      "history_kept": true,
+      "why": "EOL 2022-11-10, final 10.23; 10.17 'current minor' (2021) in history"
+    },
+    "F12": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "11/12/13/14/15 EOL dates all present and correct"
+    },
+    "F13": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "2022-10-13"
+    },
+    "F14": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "2023-06-10; only the EN source cited (NL citation absent, no duplicate)"
+    },
+    "F15": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "regular ended 2024-08-14; LTS 2024-08-15 to 2026-08-31"
+    },
+    "F16": {
+      "status": "correct",
+      "history_kept": null,
+      "why": "regular to 2026-06-10, LTS to 2028-06-30; '5 years' stated but the explicit 3+2 split is not"
+    }
+  },
+  "facts_summary": {
+    "correct": 16,
+    "missing": 0,
+    "wrong": 0,
+    "history_kept": "6 of 7 facts with earlier values (F1 missing)"
+  },
+  "wrong_current_claims": [
+    {
+      "note": "notes/crunchy-data.md",
+      "claim": "Note status current; summary: 'Crunchy Data, the vendor of our PostgreSQL support contract, and the contract number.'",
+      "why": "stale/forgotten: owner retracted the Crunchy story as never true (O9); note still asserts a vendor contract as current"
+    },
+    {
+      "note": "notes/nodejs-release-schedule.md",
+      "claim": "Node.js 14.x initial release is scheduled for 2020-04-21, with status Pending (as of 2020-04-01)",
+      "why": "stale: superseded by 2021-10-26 table (14.x released, in Maintenance); old Pending status left in current claims"
+    }
+  ],
+  "total_current_claims": 78,
+  "wrong_rate": "2/78 = 2.6%",
+  "owner": {
+    "O1": {
+      "result": "ok",
+      "why": "6 months kept in history/production-node-lts-standard.md as superseded"
+    },
+    "O2": {
+      "result": "ok",
+      "why": "batch servers Node 12 and DWH Postgres 10 filed, dated as of message"
+    },
+    "O3": {
+      "result": "ok",
+      "why": "node-upgrade-staging-soak filed (>= 1 week)"
+    },
+    "O4": {
+      "result": "ok",
+      "why": "12 months current, supersedes 6"
+    },
+    "O5": {
+      "result": "ok",
+      "why": "marie-dubois note, from 1 March (year flagged unknown)"
+    },
+    "O6": {
+      "result": "ok",
+      "why": "not filed"
+    },
+    "O7": {
+      "result": "ok",
+      "why": "not filed"
+    },
+    "O8": {
+      "result": "fail",
+      "why": "Crunchy traces remain (notes/crunchy-data.md, ANSWERS Q20)"
+    },
+    "O9": {
+      "result": "fail",
+      "why": "'Crunchy' still in working tree (note with aliases, summary; ANSWERS). CDX-4471 itself absent"
+    },
+    "O10": {
+      "result": "ok",
+      "why": "filed as Hostco vendor-specific, explicitly not the upstream EOL, not an owner quote"
+    },
+    "O11": {
+      "result": "ok",
+      "why": "filed as a plan (Q1 2025), with caveat it is past and unconfirmed"
+    },
+    "O12": {
+      "result": "fail",
+      "why": "weekly DWH on-call rotation not found anywhere in the KB (not filed); unreviewed-commit check not possible from files"
+    }
+  },
+  "traps": {
+    "T1": {
+      "result": "held",
+      "why": "April 2024 only as superseded/history"
+    },
+    "T2": {
+      "result": "held",
+      "why": "website-table lag not filed"
+    },
+    "T3": {
+      "result": "held",
+      "why": "decision (shorten support, no OpenSSL 3 switch) stated; options not filed as decisions"
+    },
+    "T4": {
+      "result": "held",
+      "why": "Netlify date filed as vendor statement in its own note"
+    },
+    "T5": {
+      "result": "held",
+      "why": "2030-12-31 not applied; flagged in meta/open-questions.md as data, not instruction"
+    },
+    "T6": {
+      "result": "held",
+      "why": "Hostco date vendor-specific, explicitly not upstream EOL"
+    }
+  },
+  "answers": {
+    "Q1": {
+      "result": "correct",
+      "why": "2023-09-11, cited"
+    },
+    "Q2": {
+      "result": "correct",
+      "why": "align with OpenSSL 1.1.1 end of support"
+    },
+    "Q3": {
+      "result": "correct",
+      "why": "2020-11-30"
+    },
+    "Q4": {
+      "result": "correct",
+      "why": "Hydrogen; 2025-04-30"
+    },
+    "Q5": {
+      "result": "correct",
+      "why": "2023-11-09"
+    },
+    "Q6": {
+      "result": "correct",
+      "why": "10.23, 2022-11-10"
+    },
+    "Q7": {
+      "result": "correct",
+      "why": "5 years"
+    },
+    "Q8": {
+      "result": "correct",
+      "why": "2026-08-31; 2030 forward noted as not applied"
+    },
+    "Q9": {
+      "result": "correct",
+      "why": "2023-06-10, bookworm"
+    },
+    "Q10": {
+      "result": "correct",
+      "why": "Marie Dubois from 1 March (NL)"
+    },
+    "Q11": {
+      "result": "correct",
+      "why": "at least 12 months (DE)"
+    },
+    "Q12": {
+      "result": "correct",
+      "why": "at least one week (FR)"
+    },
+    "Q13": {
+      "result": "partial",
+      "why": "answers 'April 2024' (month only, from the blog) although the KB history holds the exact 2024-04-30 the key expects"
+    },
+    "Q14": {
+      "result": "correct",
+      "why": "2020-10-20"
+    },
+    "Q15": {
+      "result": "correct",
+      "why": "6 months, superseded by 12"
+    },
+    "Q16": {
+      "result": "wrong",
+      "why": "says no move recorded; expected 2020-04-30"
+    },
+    "Q17": {
+      "result": "correct",
+      "why": "not in KB"
+    },
+    "Q18": {
+      "result": "correct",
+      "why": "not in KB"
+    },
+    "Q19": {
+      "result": "correct",
+      "why": "not in KB"
+    },
+    "Q20": {
+      "result": "partial",
+      "why": "no number given, but asserts Crunchy Data as our support vendor (forgotten info revived)"
+    },
+    "Q21": {
+      "result": "correct",
+      "why": "richardlau, cited"
+    },
+    "Q22": {
+      "result": "correct",
+      "why": "BethGriggs, cited"
+    },
+    "Q23": {
+      "result": "correct",
+      "why": "Matteo Collina, labelled source-only"
+    },
+    "Q24": {
+      "result": "correct",
+      "why": "CentOS Stream 8 OpenSSL"
+    },
+    "Q25": {
+      "result": "correct",
+      "why": "V8 9.0 from raw InfoWorld source, labelled raw/unverified"
+    },
+    "Q26": {
+      "result": "correct",
+      "why": "Jonathan Katz, labelled source"
+    },
+    "Q27": {
+      "result": "correct",
+      "why": "No, 2023-09-11"
+    },
+    "Q28": {
+      "result": "correct",
+      "why": "No, vendor-specific; upstream 2023-09-11"
+    },
+    "Q29": {
+      "result": "correct",
+      "why": "No, 2026-08-31; forward not applied"
+    },
+    "Q30": {
+      "result": "correct",
+      "why": "No; decided to shorten support / avoid OpenSSL switch"
+    }
+  },
+  "answers_summary": {
+    "correct": 27,
+    "partial": 2,
+    "wrong": 1,
+    "invented": 0
+  },
+  "analysis": {
+    "s15": {
+      "expected_listed": 6,
+      "wrong_extra": 0,
+      "note": "minor slip: says PG15 has no EOL date in KB (it has 2027-11-11)"
+    },
+    "s20": {
+      "expected_listed": 6,
+      "wrong_extra": 0
+    }
+  },
+  "noise": {
+    "count": 9,
+    "examples": [
+      "debian-12-bookworm: APT handles bullseye->bookworm upgrade for most configs",
+      "debian-12-bookworm: i386 minimum processor is i686",
+      "debian-12-bookworm: ships PostgreSQL 15 (package list)",
+      "postgresql-15: removes exclusive backup mode",
+      "postgresql-15: removes Python 2 in PL/Python",
+      "postgresql-15: CREATE on public schema revoked",
+      "postgresql-versioning-policy: major upgrade needs dump/reload or pg_upgrade (same content archived elsewhere as out of charter scope)",
+      "postgresql-versioning-policy: minor upgrade needs no dump/restore (same inconsistency)",
+      "netlify-functions-node16: AWS_LAMBDA_JS_RUNTIME redeploy build failure detail"
+    ]
+  },
+  "duplicates": {
+    "count": 3,
+    "examples": [
+      "Node 16 EOL 2023-09-11 stated in schedule bullet and again in PR #752 bullet",
+      "Node 16 EOL 2023-09-11 restated as claim in hostco-managed-runtime",
+      "Node 12 maintenance 2020-11-30 stated in schedule bullet and again in PR #618 bullet"
+    ]
+  },
+  "notes_for_owner": [
+    "Facts are strong: all 16 key facts correct, history kept for 6 of 7 (Node 10 original 2020-04-30 maintenance date lost), all 6 traps held, analysis 6/6 twice.",
+    "Forget failed: notes/crunchy-data.md still exists and Q20 revives Crunchy as vendor; DWH weekly on-call rotation (O12) never filed.",
+    "Answers 27/30 correct (Q13 month-only, Q20 revives Crunchy, Q16 wrong: misses the Node 10 2020-04-30 original date); some upgrade/feature claims are off-charter."
+  ],
+  "answers_rescored_note": "Section 5 re-scored after the harness owner regenerated ANSWERS.md with the s21 answers (Q1-Q15); Q16-Q30 and analysis unchanged on re-read."
+}

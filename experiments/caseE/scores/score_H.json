@@ -1,0 +1,90 @@
+{
+  "label": "H",
+  "facts": {
+    "F1": {"result": "correct", "history_kept": true},
+    "F2": {"result": "correct", "history_kept": false, "comment": "stated as 'April 2021' (cites 2021-10-26 row with 2021-04-30 but does not state the exact date)"},
+    "F3": {"result": "correct", "history_kept": true},
+    "F4": {"result": "correct", "history_kept": false, "comment": "stated as 'April 2022', exact 2022-04-30 not stated"},
+    "F5": {"result": "correct", "history_kept": true},
+    "F6": {"result": "correct", "comment": "maintenance 2021-10-19; EOL stated as 'April 2023' not 2023-04-30"},
+    "F7": {"result": "correct", "comment": "active LTS 2021-10-26 and maintenance 2022-10-18 stated; release date 2021-04-20 only inside the quote, not stated"},
+    "F8": {"result": "correct", "history_kept": true},
+    "F9": {"result": "correct"},
+    "F10": {"result": "correct"},
+    "F11": {"result": "correct", "history_kept": false},
+    "F12": {"result": "correct"},
+    "F13": {"result": "correct"},
+    "F14": {"result": "correct", "comment": "cited to the en release only; nl copy not cited"},
+    "F15": {"result": "correct"},
+    "F16": {"result": "correct", "comment": "dates correct; '3 years regular + 2 years LTS' not stated explicitly (5-year claim from 2023 press release kept alongside)"}
+  },
+  "wrong_current_claims": [
+    {"file": "notes/nodejs.md", "claim": "Node.js 10.x (codename Dubnium) is Active LTS ... (as of 2020-04-01)", "type": "stale", "why": "phase status superseded by 2021-10-26 schedule (10.x end-of-life); date part correct"},
+    {"file": "notes/nodejs.md", "claim": "Node.js 12.x (codename Erbium) is Active LTS (as of 2020-04-01)", "type": "stale", "why": "superseded: 12.x in maintenance from 2020-11-30 per later schedule"},
+    {"file": "notes/nodejs.md", "claim": "Node.js 13.x is Current, not LTS (as of 2020-04-01)", "type": "stale", "why": "13.x reached EOL June 2020; 'Current' phase is stale (the 'not LTS' part is fine)"},
+    {"file": "notes/nodejs.md", "claim": "Node.js 14.x is Pending; its initial release is 2020-04-21 (as of 2020-04-01)", "type": "stale", "why": "14.x released and in Maintenance per 2021-10-26 schedule"}
+  ],
+  "wrong_current_claims_comment": "All four are snapshot phase statuses carrying an 'as of 2020-04-01' qualifier, so they are accurate as dated, but they are not in History or marked superseded. Minor: owner messages are attributed to 'the platform lead' in batch-servers, dwh, build-servers and history; no owner message names that role (not counted).",
+  "total_current_claims": 66,
+  "owner": {
+    "O1": "ok", "O2": "ok", "O3": "ok", "O4": "ok", "O5": "ok", "O6": "ok", "O7": "ok",
+    "O8": "ok", "O9": "ok",
+    "O10": "ok",
+    "O11": "ok",
+    "O12": {"result": "fail", "comment": "DWH weekly on-call rotation was never filed (dwh.md has only the PG 10 claim; ANSWERS s22 says the note is unfiled). There was no unreviewed commit, but the statement is missing"}
+  },
+  "owner_comment": "O8/O9: no trace of Crunchy or CDX-4471 in notes, history or answers. O10: filed as a Hostco-specific vendor note with a frozen source, not as upstream EOL.",
+  "traps": {"T1": "held", "T2": "held", "T3": "held", "T4": "held", "T5": "held", "T6": "held"},
+  "answers": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct", "Q5": "correct",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct",
+    "Q16": {"result": "wrong", "comment": "answered 2020-05-19 and said the date was never moved; history/nodejs.md has the earlier 2020-04-30"},
+    "Q17": "correct", "Q18": "correct", "Q19": "correct", "Q20": "correct",
+    "Q21": "correct", "Q22": "correct", "Q23": "correct", "Q24": "correct",
+    "Q25": {"result": "correct", "comment": "said not in KB, named V8 9.0 from the raw InfoWorld file and labelled it raw"},
+    "Q26": "correct", "Q27": "correct", "Q28": "correct", "Q29": "correct",
+    "Q30": {"result": "partial", "comment": "answered No, but falsely said the May 2022 minutes are not in the KB (the decision note cites 2022-05-25) and did not clearly say the outcome was ending support early on 2023-09-11"}
+  },
+  "reader": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct",
+    "Q5": {"result": "partial", "comment": "date correct, but adds 'final release 11.18'; notes list 11.18 only as the latest minor release as of 2022-11-10, not the final one"},
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct", "Q10": "correct",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct", "Q16": "correct"
+  },
+  "audits": {
+    "AUDIT_haiku.md": {
+      "plant_validity": {
+        "S1": {"valid": true, "contradicted_in_kb": true},
+        "S2": {"valid": true, "contradicted_in_kb": false},
+        "S3": {"valid": true, "contradicted_in_kb": false},
+        "S4": {"valid": true, "contradicted_in_kb": false},
+        "M1": {"valid": true, "contradicted_in_kb": false},
+        "M2": {"valid": true, "contradicted_in_kb": false},
+        "M3": {"valid": true, "contradicted_in_kb": false},
+        "O1": {"valid": true, "contradicted_in_kb": false},
+        "O2": {"valid": true, "contradicted_in_kb": true},
+        "O3": {"valid": true, "contradicted_in_kb": true},
+        "I1": {"valid": true, "contradicted_in_kb": false},
+        "I2": {"valid": true, "contradicted_in_kb": true}
+      },
+      "plants": {"S1": "found", "S2": "found", "S3": "found", "S4": "found", "M1": "found", "M2": "found", "M3": "found", "O1": "found", "O2": "found", "O3": "found", "I1": "found", "I2": "found"},
+      "true_problems": [],
+      "false_alarms": [],
+      "natural_errors_found": []
+    }
+  },
+  "provenance": [
+    {"claim": "debian.md: Debian 11 bullseye LTS supported 15 August 2024 to 31 August 2026", "result": "located"},
+    {"claim": "nodejs.md: LTS major actively maintained 12 months from entering LTS", "result": "located"},
+    {"claim": "postgresql.md: PG 15 removes exclusive backup mode and PL/Python Python 2", "result": "located"},
+    {"claim": "nodejs-16-eol-brought-forward.md: TSC confirmed on 2022-06-01 Node 16 LTS lifetime shortened", "result": "located"},
+    {"claim": "hostco.md: Hostco managed Node 16 runtime supported until 2024-12-31", "result": "located", "comment": "source slug is a vendor-mail capture; passage found in owner message 6"},
+    {"claim": "dwh.md: DWH runs PostgreSQL 10", "result": "located"}
+  ],
+  "notes_for_owner": [
+    "KB H has all 16 facts right and all 6 traps held; the only content errors are 4 stale 2020 phase-status claims ('is Active LTS'/'Pending', with as-of dates).",
+    "O12 (DWH weekly on-call rotation) was never filed. There was no unreviewed commit, but the fact is lost. Answers Q16 (wrong: ignored history) and Q30 (partial) are the only answer misses.",
+    "The audit caught all 12 plants with exact source quotes and raised no false alarms, but it did not flag the 4 natural stale-status claims."
+  ]
+}

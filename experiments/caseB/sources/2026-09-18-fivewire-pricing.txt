@@ -1,0 +1,30 @@
+Fivewire - Pricing (saved copy of the vendor pricing page, captured 18 Sep 2026 by Jonas)
+
+Pipelines your team will actually trust.
+
+Fivewire moves data from your SaaS tools and databases into your warehouse without the glue code. Trusted by more than 4,000 data teams worldwide. Syncs run up to 10x faster than self-managed pipelines, and our customers describe setup as boring, in the best way. Whether you are a three person startup or a global retailer, Fivewire grows with you.
+
+Plans
+
+Free - up to 500,000 monthly active rows (MAR), 5 connectors, community support, daily syncs.
+
+Standard - The Standard plan is $1,150 per month and includes 5 million monthly active rows. Unlimited connectors, 15-minute minimum sync interval, email support with an 8 business hour first response target, role-based access for up to 10 users.
+
+Enterprise - Custom pricing. 1-minute sync interval, SSO and SCIM, private networking, dedicated solutions engineer, and a contractual 99.9% monthly uptime commitment with service credits. Our platform delivers 99.99% pipeline reliability in practice, which is why the largest retailers in Europe and North America choose us.
+
+Overage
+Usage beyond the included volume on Standard is billed at $0.35 per 1,000 monthly active rows, calculated at the end of each billing month. Overage is not capped unless you set a spend limit in the dashboard. We will email account admins at 80 percent and 100 percent of the included volume.
+
+Annual billing
+Pay annually and save 15% versus monthly billing. Annual plans renew automatically unless cancelled 60 days before the renewal date. Cancellation must be sent in writing to the address on your order form.
+
+Frequently asked
+Q: What counts as a monthly active row? A: A row counts once per month if it is inserted, updated or deleted by a sync, no matter how many times it changes.
+Q: Do you support custom connectors? A: Yes, through our connector SDK. Many customers build one in an afternoon.
+Q: Is there a free trial of Standard? A: 14 days, no card needed.
+Q: Where is my data processed? A: In the region you select at setup. Regions available today are US-East, EU-West and AP-Southeast.
+Q: Can I talk to a human? A: Of course! Contact sales and we will get back to you within one business day.
+
+(c) 2026 Fivewire Inc. Prices exclude VAT and are subject to change without notice. Contact sales for volume discounts.
+
+Jonas note at the bottom: copied this for the budget thread, prices shown in USD.

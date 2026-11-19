@@ -1,0 +1,23 @@
+Data Platform Ops Sync - 14 Sep 2026
+Attendees: Priya Nair, Marcus Lindqvist, Helen Okafor (first ten minutes), Jonas Weber, Aiko Tanaka
+
+Kicked off late because the room booking clashed with the finance offsite and Jonas had to find a different room. The coffee machine on the third floor is still broken, Aiko brought her own thermos which got a round of applause.
+
+1. Orion ownership
+Helen opened by saying the org chart change landed last week and that the ownership tables on the wiki are out of date. After some back and forth about whether Analytics Engineering should co-own, it was settled that Priya Nair owns the Orion warehouse going forward. Marcus had been the interim owner since June and is visibly relieved. He wants a handover doc by end of month, which is a to-do for him and Priya, not a decision. Helen said she would update the wiki herself but we all know how that goes, so Aiko volunteered to nag her.
+
+2. Nightly load
+Jonas walked through the load timings from the last two weeks. The finance dashboards are read by the EMEA controllers at 07:30 CET, so the nightly load has to land by 06:30 UTC. Everyone agreed that has been hit most days but the margin is thin. Aiko pointed out that the margin looks worse on Mondays because of the weekend backlog. Nobody had a fix on the spot. Jonas will look at partition pruning when he gets time, no date given. Marcus joked that we should just tell the controllers to start later, which nobody found funny except Marcus.
+
+3. StreamHub retention
+Long discussion. Marcus said the replay requests from the fraud team keep running into the retention limit. Storage cost is not a big concern at the current volume. After comparing notes, we decided to raise StreamHub retention from 7 days to 14 days. Marcus will apply the change in the config repo, expected in the next two weeks. Aiko asked whether 30 days was worth discussing; Helen said not this quarter and we moved on.
+
+4. Misc
+- Someone needs to remind the BI folks about the dashboard naming convention, again.
+- Jonas ran through the dashboard list while we waited for Helen to join, nothing notable there.
+- The team lunch is moving to Thursday because of the holiday on Friday.
+- Aiko to re-run the backfill for the returns table by hand tonight because the scheduler skipped it; she says it is a one-off and not worth a ticket.
+- Priya asked everyone to stop pasting screenshots of error messages into the channel and use text.
+- Someone left a very sad looking plant in the meeting room. Adopted by Jonas.
+
+Next sync is in two weeks. Marcus will send out the notes, Priya will chase the room booking.

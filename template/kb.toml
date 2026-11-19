@@ -1,0 +1,36 @@
+# Owner-owned settings for this KB. Agents change this file only with the owner's approval (Edit tool prompt);
+# the tools read it, so tools/ itself can be upgraded without losing your choices.
+
+[notes]
+# note types allowed in frontmatter `type:`
+types = ["process", "system", "person", "team", "vendor", "decision", "preference", "topic", "method", "dataset"]
+
+# days after which a claim counts as stale, per note type (unknown types: default)
+[notes.review_days]
+default = 180
+process = 90
+system = 120
+person = 180
+team = 180
+vendor = 90
+decision = 365
+preference = 180
+topic = 180
+method = 180
+dataset = 365
+
+[review]
+# "audit": the main agent files directly; the reviewer checks recent filings when you ask for an audit (default).
+# "always": every filing needs an approved review before kb.py commit (slower, the original design).
+mode = "audit"
+
+[search]
+# what semantic search embeds (keyword search always covers every scope): notes, history, and optionally
+# sources, reports, inbox, work, meta, data. Raw material is embedded in ~700-character chunks.
+embed = ["notes", "history"]
+
+[fetch]
+max_url_length = 300
+max_query_length = 100
+# optional allowlist; empty = any public host. Hosts outside it are refused (ask the owner to add them).
+hosts = []

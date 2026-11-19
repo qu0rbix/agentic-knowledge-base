@@ -1,0 +1,3118 @@
+{
+ "notes": [
+  {
+   "id": "sys-ordb",
+   "type": "system",
+   "folder": "systems",
+   "title": "Orders database (ORDB)",
+   "aliases": [
+    "ORDB",
+    "orders postgres"
+   ],
+   "summary": "Primary PostgreSQL cluster holding customer orders and shipment bookings.",
+   "claims": [
+    "ORDB runs PostgreSQL 15 on three nodes in the eu-west region.",
+    "ORDB is owned by the Data Platform team.",
+    "ORDB nightly snapshots are retained for 14 days.",
+    "Only the order-service account may write to ORDB in production.",
+    "Replica lag on ORDB read replicas triggers an alert at 30 seconds."
+   ]
+  },
+  {
+   "id": "sys-trkdb",
+   "type": "system",
+   "folder": "systems",
+   "title": "Tracking events store (TRKDB)",
+   "aliases": [
+    "TRKDB",
+    "tracking cassandra"
+   ],
+   "summary": "Cassandra cluster that stores scan and GPS tracking events for every shipment.",
+   "claims": [
+    "TRKDB is a nine-node Cassandra cluster owned by the Routing team.",
+    "TRKDB rows expire after a TTL of 400 days.",
+    "TRKDB ingests from the Kafka topic tracking.events.v2.",
+    "Queries on TRKDB must always include the shipment_id partition key; full scans are blocked.",
+    "TRKDB uses LOCAL_QUORUM for reads and writes."
+   ]
+  },
+  {
+   "id": "sys-repwh",
+   "type": "system",
+   "folder": "systems",
+   "title": "Reporting warehouse (REPWH)",
+   "aliases": [
+    "REPWH",
+    "Snowflake warehouse",
+    "analytics warehouse"
+   ],
+   "summary": "Snowflake-based warehouse used for dashboards, finance reports and ad-hoc analysis.",
+   "claims": [
+    "REPWH is hosted on Snowflake and administered by the Data Platform team.",
+    "REPWH is refreshed nightly by Airflow starting at 02:00 UTC.",
+    "REPWH keeps 18 months of shipment history; older data lives in the archive bucket.",
+    "Analysts get read-only roles on REPWH; write roles require a Data Platform ticket.",
+    "The default REPWH compute warehouse is size X-Small and auto-suspends after 60 seconds."
+   ]
+  },
+  {
+   "id": "sys-routewise",
+   "type": "system",
+   "folder": "systems",
+   "title": "Routewise transport management system",
+   "aliases": [
+    "Routewise",
+    "TMS"
+   ],
+   "summary": "Internal TMS that plans delivery routes and dispatches loads to drivers.",
+   "claims": [
+    "Routewise is currently on version 7.4 and is owned by the Routing team.",
+    "The Routewise dispatch cut-off for next-day routes is 17:30 local depot time.",
+    "Routewise gets drive-time matrices from the Pathly API.",
+    "Routewise re-plans open routes automatically every 15 minutes during the delivery window.",
+    "Planners can lock a route in Routewise to stop automatic re-planning."
+   ]
+  },
+  {
+   "id": "sys-stockpilot",
+   "type": "system",
+   "folder": "systems",
+   "title": "StockPilot warehouse management system",
+   "aliases": [
+    "StockPilot",
+    "WMS"
+   ],
+   "summary": "Warehouse management system running in all six distribution centres.",
+   "claims": [
+    "StockPilot is deployed in six warehouses and owned by Warehouse Engineering.",
+    "StockPilot cycle counts are scheduled nightly for the A-class slotting zone.",
+    "Handheld scanners connect to StockPilot over the warehouse Wi-Fi VLAN 40.",
+    "StockPilot publishes inventory change events to Kafka topic wms.inventory.v3.",
+    "StockPilot upgrades are only allowed outside the Q4 peak season."
+   ]
+  },
+  {
+   "id": "sys-beacon",
+   "type": "system",
+   "folder": "systems",
+   "title": "Beacon customer portal",
+   "aliases": [
+    "Beacon",
+    "customer portal"
+   ],
+   "summary": "Web portal where customers book shipments, print labels and watch tracking.",
+   "claims": [
+    "Beacon has about 4,200 active customer accounts.",
+    "Beacon is a React frontend backed by the public API gateway and is owned by Customer Integrations.",
+    "Customer logins on Beacon support SAML federation but not social login.",
+    "Beacon bulk shipment upload accepts CSV files up to 10 MB.",
+    "Beacon maintenance windows are Sundays 03:00 to 04:00 UTC."
+   ]
+  },
+  {
+   "id": "sys-edi",
+   "type": "system",
+   "folder": "systems",
+   "title": "EDI gateway",
+   "aliases": [
+    "EDI gateway",
+    "AS2 gateway"
+   ],
+   "summary": "Exchanges electronic documents such as shipment status and invoices with large customers and carriers.",
+   "claims": [
+    "The EDI gateway supports X12 214, X12 210 and EDIFACT IFTMIN messages.",
+    "The legacy EDI v1 AS2 endpoint will be retired on 2027-06-30.",
+    "EDI v2 exposes a REST interface with JSON payloads and API keys.",
+    "About 38 customers still send orders through the EDI v1 endpoint.",
+    "The EDI gateway is owned by Customer Integrations."
+   ]
+  },
+  {
+   "id": "sys-apigw",
+   "type": "system",
+   "folder": "systems",
+   "title": "Public API gateway (Gatekeeper)",
+   "aliases": [
+    "Gatekeeper",
+    "API gateway"
+   ],
+   "summary": "Front door for all customer-facing REST APIs, handling auth and throttling.",
+   "claims": [
+    "Gatekeeper limits each API key to 600 requests per minute.",
+    "Gatekeeper authenticates partners with OAuth2 client credentials; tokens last 60 minutes.",
+    "Gatekeeper is operated by the SRE team.",
+    "Burst traffic above the limit receives HTTP 429 with a Retry-After header.",
+    "Gatekeeper keeps request logs for 30 days."
+   ]
+  },
+  {
+   "id": "sys-kafka",
+   "type": "system",
+   "folder": "systems",
+   "title": "Event bus (Kafka bus-prod)",
+   "aliases": [
+    "Kafka",
+    "bus-prod",
+    "event bus"
+   ],
+   "summary": "Central Kafka cluster that carries domain events between services.",
+   "claims": [
+    "bus-prod has 12 brokers spread over three availability zones.",
+    "Default topic retention on bus-prod is 7 days.",
+    "Topic names follow the pattern domain.entity.vN, for example tracking.events.v2.",
+    "New topics need a Data Platform ticket and a named owning team.",
+    "Schemas are registered in the schema registry and must stay backward compatible."
+   ]
+  },
+  {
+   "id": "sys-airflow",
+   "type": "system",
+   "folder": "systems",
+   "title": "Airflow scheduler",
+   "aliases": [
+    "Airflow",
+    "DAG scheduler"
+   ],
+   "summary": "Workflow scheduler that runs the nightly data pipelines and exports.",
+   "claims": [
+    "Airflow runs version 2.9 and is operated by the Data Platform team.",
+    "At most 40 Airflow tasks run concurrently across all DAGs.",
+    "A failed Airflow DAG in the core-data group pages the Data Platform on-call after two retries.",
+    "DAG files live in the data-pipelines repository and deploy on merge to main.",
+    "Airflow connections hold no passwords; they reference secrets in the vault."
+   ]
+  },
+  {
+   "id": "sys-grafana",
+   "type": "system",
+   "folder": "systems",
+   "title": "Grafana and Prometheus monitoring",
+   "aliases": [
+    "Grafana",
+    "Prometheus",
+    "Loki"
+   ],
+   "summary": "Metrics, dashboards and log search used by engineering and SRE.",
+   "claims": [
+    "Prometheus keeps metrics for 45 days at full resolution.",
+    "Loki keeps application logs for 30 days.",
+    "Every production service must expose a /metrics endpoint and appear on a Grafana service dashboard.",
+    "Alert rules are stored in the sre-alerts repository.",
+    "The shared Grafana is reachable only over the VPN or the office network."
+   ]
+  },
+  {
+   "id": "sys-vpn",
+   "type": "system",
+   "folder": "systems",
+   "title": "Company VPN",
+   "aliases": [
+    "VPN",
+    "WireGuard VPN"
+   ],
+   "summary": "WireGuard-based remote access to internal tools.",
+   "claims": [
+    "The VPN is WireGuard-based and sessions expire after 12 hours.",
+    "Contractors from Brightdesk must use the VPN even for the staging environment.",
+    "VPN access requires an enrolled device and SSO MFA.",
+    "The VPN gateways are in Frankfurt and Dublin.",
+    "Split tunnelling is enabled; only internal CIDR ranges go through the VPN."
+   ]
+  },
+  {
+   "id": "sys-sso",
+   "type": "system",
+   "folder": "systems",
+   "title": "Single sign-on (Authwise)",
+   "aliases": [
+    "SSO",
+    "Authwise"
+   ],
+   "summary": "Identity provider for employees and contractors.",
+   "claims": [
+    "Employee SSO is provided by the Authwise identity service.",
+    "MFA is mandatory for all SSO accounts; hardware keys are required for admins.",
+    "Passwords must be at least 14 characters.",
+    "Inactive SSO accounts are suspended after 60 days.",
+    "SSO group membership drives access to GitHub, Grafana and the VPN."
+   ]
+  },
+  {
+   "id": "sys-ci",
+   "type": "system",
+   "folder": "systems",
+   "title": "CI/CD on GitHub Actions",
+   "aliases": [
+    "GitHub Actions",
+    "CI",
+    "pipelines"
+   ],
+   "summary": "Build and deployment pipelines for all services.",
+   "claims": [
+    "CI runs on GitHub Actions with 20 self-hosted runners.",
+    "The build time target for service pipelines is 10 minutes.",
+    "Deployments to production are triggered from the deploy workflow on tagged commits.",
+    "Jenkins was decommissioned on 2026-02-28.",
+    "Pipeline secrets come from the vault via OIDC, never from repository secrets."
+   ]
+  },
+  {
+   "id": "sys-registry",
+   "type": "system",
+   "folder": "systems",
+   "title": "Artifact registry",
+   "aliases": [
+    "container registry",
+    "image registry"
+   ],
+   "summary": "Stores container images and build artefacts.",
+   "claims": [
+    "Untagged container images are deleted after 90 days.",
+    "All production images must be signed in CI before they are pushed.",
+    "The registry is hosted in the Cumulus eu-west region.",
+    "Images with critical vulnerabilities are blocked from production by an admission policy.",
+    "Release images are kept for 24 months."
+   ]
+  },
+  {
+   "id": "sys-vault",
+   "type": "system",
+   "folder": "systems",
+   "title": "Secrets vault",
+   "aliases": [
+    "vault",
+    "secret store"
+   ],
+   "summary": "Central store for credentials, keys and certificates.",
+   "claims": [
+    "Database credentials in the vault rotate every 90 days.",
+    "Static secrets must have a named owner and a review date.",
+    "Developers have no read access to production secrets; services fetch them at runtime.",
+    "Break-glass access to the vault is logged and reviewed by Security the next business day.",
+    "The vault runs as a three-node cluster operated by SRE."
+   ]
+  },
+  {
+   "id": "sys-flags",
+   "type": "system",
+   "folder": "systems",
+   "title": "Toggleboard feature flags",
+   "aliases": [
+    "Toggleboard",
+    "feature flags"
+   ],
+   "summary": "Service for runtime feature toggles.",
+   "claims": [
+    "Every Toggleboard flag needs an owner and an expiry date at most 60 days away.",
+    "Expired flags are reported weekly to the owning team's Slack channel.",
+    "Flags that affect pricing need approval from Finance Systems before being enabled in production.",
+    "Toggleboard evaluates flags locally from a cache refreshed every 30 seconds."
+   ]
+  },
+  {
+   "id": "sys-driverapp",
+   "type": "system",
+   "folder": "systems",
+   "title": "Haul driver app",
+   "aliases": [
+    "Haul",
+    "driver app"
+   ],
+   "summary": "Android app drivers use for stops, scans and proof of delivery.",
+   "claims": [
+    "Haul runs on Android only; current release is 5.2.",
+    "Haul works offline for up to 8 hours and syncs when connectivity returns.",
+    "Proof of delivery in Haul requires a photo or a recipient signature.",
+    "Haul is built by the Mobile team.",
+    "Haul force-updates when the installed version is more than two releases behind."
+   ]
+  },
+  {
+   "id": "sys-labels",
+   "type": "system",
+   "folder": "systems",
+   "title": "Label printing service",
+   "aliases": [
+    "label service",
+    "ZPL labels"
+   ],
+   "summary": "Generates shipping labels as ZPL for warehouse printers.",
+   "claims": [
+    "Labels are generated as ZPL for 4x6 inch thermal stock.",
+    "The label service reaches carriers through the ShipLink aggregator.",
+    "Label generation latency p95 is under 400 milliseconds.",
+    "Reprints within 24 hours reuse the original tracking number.",
+    "The label service is owned by Warehouse Engineering."
+   ]
+  },
+  {
+   "id": "sys-addrval",
+   "type": "system",
+   "folder": "systems",
+   "title": "Address validation service",
+   "aliases": [
+    "address checker",
+    "geocode service"
+   ],
+   "summary": "Cleans and geocodes delivery addresses at booking time.",
+   "claims": [
+    "Addresses with a geocoding confidence below 0.82 are sent to manual review.",
+    "The service calls MapForge for geocoding and caches results for 30 days.",
+    "Corrections made by dispatchers are stored in the address corrections dataset.",
+    "The service is owned by the Routing team.",
+    "Postal code format checks cover 31 countries."
+   ]
+  },
+  {
+   "id": "sys-rateeng",
+   "type": "system",
+   "folder": "systems",
+   "title": "Rate engine",
+   "aliases": [
+    "pricing engine",
+    "quote service"
+   ],
+   "summary": "Calculates freight quotes and surcharges.",
+   "claims": [
+    "Rate quotes have a p95 latency target of 250 milliseconds.",
+    "Rate tables are reloaded every Monday at 05:00 UTC.",
+    "Fuel surcharge percentages are updated on the first of each month.",
+    "Contract rates for key accounts are stored separately from list prices.",
+    "The rate engine is owned by Finance Systems."
+   ]
+  },
+  {
+   "id": "sys-billing",
+   "type": "system",
+   "folder": "systems",
+   "title": "Ledgerline invoicing",
+   "aliases": [
+    "Ledgerline",
+    "billing system"
+   ],
+   "summary": "Produces customer invoices and posts to the general ledger.",
+   "claims": [
+    "Ledgerline runs the monthly invoice run on the third business day.",
+    "Invoices are posted to the general ledger nightly at 23:30 UTC.",
+    "Credit notes above 5,000 EUR need Finance Systems sign-off.",
+    "Ledgerline is owned by Finance Systems.",
+    "Customers receive invoices by EDI or by email PDF."
+   ]
+  },
+  {
+   "id": "sys-sandbox",
+   "type": "system",
+   "folder": "systems",
+   "title": "Customer sandbox environment",
+   "aliases": [
+    "sandbox",
+    "partner test environment"
+   ],
+   "summary": "Test environment where customers certify their integrations.",
+   "claims": [
+    "The sandbox mirrors the public API but returns synthetic shipments only.",
+    "Sandbox API keys start with sbx_ and cannot be used in production.",
+    "The sandbox is reset every Sunday at 01:00 UTC.",
+    "Customers must pass the certification checklist in the sandbox before getting production keys."
+   ]
+  },
+  {
+   "id": "sys-archive",
+   "type": "system",
+   "folder": "systems",
+   "title": "Cold data archive",
+   "aliases": [
+    "archive bucket",
+    "cold storage"
+   ],
+   "summary": "Object storage for shipment data older than 18 months.",
+   "claims": [
+    "Archived shipment data is stored as Parquet files in the Cumulus archive bucket.",
+    "Restoring archived data takes up to 6 hours.",
+    "Archive objects are deleted after 7 years to meet retention rules.",
+    "Archive restore requests go through the Data Platform queue."
+   ]
+  },
+  {
+   "id": "vend-mapforge",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "MapForge",
+   "aliases": [
+    "MapForge",
+    "geocoding vendor"
+   ],
+   "summary": "Vendor providing address geocoding.",
+   "claims": [
+    "MapForge geocoding is contracted until 2027-03-31.",
+    "The MapForge contract allows 50 million geocoding calls per year.",
+    "MapForge replaced Geonexus as geocoder in June 2025.",
+    "The MapForge account manager is reached through the support portal, not by phone.",
+    "MapForge is called only by the address validation service."
+   ]
+  },
+  {
+   "id": "vend-pathly",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Pathly",
+   "aliases": [
+    "Pathly",
+    "maps matrix API"
+   ],
+   "summary": "Vendor of road network data and drive-time matrices used for routing.",
+   "claims": [
+    "Pathly charges per matrix element requested.",
+    "The Pathly contract ends on 2026-12-31 and is under review.",
+    "Pathly provides the drive-time matrices that Routewise uses for planning.",
+    "Pathly traffic data covers Europe only.",
+    "The Pathly API key is stored in the vault under routing/pathly."
+   ]
+  },
+  {
+   "id": "vend-trackbox",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Trackbox",
+   "aliases": [
+    "Trackbox",
+    "telematics vendor"
+   ],
+   "summary": "Supplier of in-truck telematics hardware.",
+   "claims": [
+    "About 2,300 Trackbox devices are installed in company and subcontractor trucks.",
+    "The current Trackbox firmware is 3.8.",
+    "Trackbox devices report GPS position every 30 seconds while moving.",
+    "Trackbox hardware has a three-year warranty.",
+    "Trackbox raw data lands in the driver telemetry dataset."
+   ]
+  },
+  {
+   "id": "vend-textline",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Textline",
+   "aliases": [
+    "Textline",
+    "SMS vendor"
+   ],
+   "summary": "Vendor sending delivery notification SMS messages.",
+   "claims": [
+    "Textline sends delivery notification SMS to recipients under the sender ID FERNLOG.",
+    "Textline replaced Pingwave as SMS provider on 2026-05-01.",
+    "Textline provides sandbox keys that only deliver to whitelisted numbers.",
+    "Delivery receipts from Textline arrive through a webhook within 60 seconds.",
+    "Textline is billed per segment, not per message."
+   ]
+  },
+  {
+   "id": "vend-mailpost",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Mailpost",
+   "aliases": [
+    "Mailpost",
+    "transactional email"
+   ],
+   "summary": "Vendor for transactional email such as tracking updates and invoices.",
+   "claims": [
+    "The Mailpost plan covers 2 million emails per month.",
+    "Emails from fernwick domains are signed with DKIM keys rotated yearly.",
+    "Mailpost bounces above 2 percent in a day trigger an alert to Customer Integrations.",
+    "Marketing email is not sent through Mailpost."
+   ]
+  },
+  {
+   "id": "vend-cumulus",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Cumulus Cloud",
+   "aliases": [
+    "Cumulus",
+    "cloud provider"
+   ],
+   "summary": "Primary cloud infrastructure provider.",
+   "claims": [
+    "Production runs in Cumulus eu-west; disaster recovery runs in eu-central.",
+    "The committed annual spend with Cumulus is 3.1 million EUR.",
+    "New Cumulus accounts can only be created by the SRE team.",
+    "Cumulus cost reports are reviewed monthly by Finance Systems.",
+    "The Cumulus enterprise agreement renews on 2027-09-01."
+   ]
+  },
+  {
+   "id": "vend-alertly",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Alertly",
+   "aliases": [
+    "Alertly",
+    "paging service"
+   ],
+   "summary": "Paging and alert routing service used for on-call.",
+   "claims": [
+    "The company holds 85 Alertly seats.",
+    "Alertly escalates unacknowledged pages after 10 minutes.",
+    "Alertly schedules mirror the on-call rotation defined in the SRE repository.",
+    "Alertly phone calls bypass Do Not Disturb on company phones."
+   ]
+  },
+  {
+   "id": "vend-shiplink",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "ShipLink",
+   "aliases": [
+    "ShipLink",
+    "carrier API aggregator"
+   ],
+   "summary": "Aggregator giving a single API to many parcel and freight carriers.",
+   "claims": [
+    "ShipLink connects the company to 40 carriers.",
+    "ShipLink charges 0.04 EUR per label created.",
+    "The label printing service creates all carrier labels via ShipLink.",
+    "ShipLink offers a test mode with fake tracking numbers.",
+    "The ShipLink contract renews each January."
+   ]
+  },
+  {
+   "id": "vend-tariffa",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Tariffa",
+   "aliases": [
+    "Tariffa",
+    "customs broker"
+   ],
+   "summary": "Customs broker integration and HS code classification.",
+   "claims": [
+    "Tariffa handles customs declarations for EU and UK imports.",
+    "Tariffa classifies goods to 10-digit HS codes.",
+    "Tariffa filing cut-off is 14:00 CET on the day before arrival.",
+    "Disputed classifications are escalated to a Tariffa specialist within 2 business days."
+   ]
+  },
+  {
+   "id": "vend-fuelnet",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "FuelNet",
+   "aliases": [
+    "FuelNet",
+    "fuel cards"
+   ],
+   "summary": "Fuel card provider for company trucks.",
+   "claims": [
+    "FuelNet delivers a daily transaction file at 06:00 UTC.",
+    "About 410 FuelNet cards are active.",
+    "Cards are blocked automatically when a driver leaves.",
+    "Fuel transactions feed the cost allocation method."
+   ]
+  },
+  {
+   "id": "vend-redkite",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Redkite Security",
+   "aliases": [
+    "Redkite",
+    "pen test vendor"
+   ],
+   "summary": "External penetration testing firm.",
+   "claims": [
+    "Redkite performs the annual penetration test every March.",
+    "The last Redkite report listed 4 high-severity findings, all fixed by 2026-06-30.",
+    "Redkite testers access staging only, never production.",
+    "Redkite reports are shared with the Security team and VP Engineering."
+   ]
+  },
+  {
+   "id": "vend-brightdesk",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Brightdesk contractors",
+   "aliases": [
+    "Brightdesk",
+    "staffing agency"
+   ],
+   "summary": "Staffing agency supplying contract engineers and analysts.",
+   "claims": [
+    "There are 22 Brightdesk contractors currently placed.",
+    "Placements are limited to 12 months.",
+    "Brightdesk contractors get SSO accounts that expire on the placement end date.",
+    "Brightdesk invoices are approved by the hiring manager and Procurement."
+   ]
+  },
+  {
+   "id": "vend-zephyr",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Zephyr printers",
+   "aliases": [
+    "Zephyr",
+    "label printer supplier"
+   ],
+   "summary": "Supplier of thermal label printers for the warehouses.",
+   "claims": [
+    "Warehouses use the Zephyr ZP-420 thermal printer.",
+    "Zephyr printers carry a three-year warranty.",
+    "Replacement printheads are stocked at the Rotterdam warehouse.",
+    "Printer firmware updates are rolled out by Warehouse Engineering."
+   ]
+  },
+  {
+   "id": "vend-scanright",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "ScanRight OCR",
+   "aliases": [
+    "ScanRight",
+    "document OCR"
+   ],
+   "summary": "OCR service reading delivery notes and customs documents.",
+   "claims": [
+    "ScanRight is billed 0.012 EUR per page.",
+    "ScanRight claims 99.1 percent character accuracy on printed documents.",
+    "Handwritten delivery notes are routed to manual review.",
+    "ScanRight is used by the exceptions workflow for damaged-goods claims."
+   ]
+  },
+  {
+   "id": "vend-helpdeskly",
+   "type": "vendor",
+   "folder": "vendors",
+   "title": "Helpdeskly",
+   "aliases": [
+    "Helpdeskly",
+    "IT ticketing"
+   ],
+   "summary": "Ticketing tool for the IT helpdesk and access requests.",
+   "claims": [
+    "Helpdeskly is the only supported channel for access requests.",
+    "Helpdeskly tickets are due for first response within 4 working hours.",
+    "Helpdeskly has 60 agent licences.",
+    "Helpdeskly integrates with SSO for requester identity."
+   ]
+  },
+  {
+   "id": "team-dataplat",
+   "type": "team",
+   "folder": "teams",
+   "title": "Data Platform team",
+   "aliases": [
+    "Data Platform",
+    "data engineering"
+   ],
+   "summary": "Team running data stores, pipelines and the warehouse.",
+   "claims": [
+    "Data Platform owns ORDB, REPWH, Airflow and the Kafka cluster.",
+    "The team is led by Marta Keller and has 9 engineers.",
+    "Data Platform office hours are Tuesdays and Thursdays 14:00 to 15:00 UTC.",
+    "Requests go through the data-platform Helpdeskly queue.",
+    "The team keeps a separate on-call rotation for core data pipelines."
+   ]
+  },
+  {
+   "id": "team-routing",
+   "type": "team",
+   "folder": "teams",
+   "title": "Routing team",
+   "aliases": [
+    "Routing",
+    "route planning"
+   ],
+   "summary": "Team that builds route planning and tracking systems.",
+   "claims": [
+    "The Routing team owns Routewise, TRKDB and the address validation service.",
+    "Tomasz Wieczorek is the Routing tech lead.",
+    "The team has 12 engineers and 2 operations researchers.",
+    "Routing keeps a weekly planning review on Mondays at 10:00 UTC."
+   ]
+  },
+  {
+   "id": "team-whse",
+   "type": "team",
+   "folder": "teams",
+   "title": "Warehouse Engineering",
+   "aliases": [
+    "Warehouse Eng",
+    "WMS team"
+   ],
+   "summary": "Team that supports warehouse software and devices.",
+   "claims": [
+    "Warehouse Engineering owns StockPilot, the label service and warehouse devices.",
+    "Lucas Ferreira leads the team of 8.",
+    "Site visits to each warehouse happen once per quarter.",
+    "The team supports warehouses in Rotterdam, Duisburg, Lyon, Milan, Gdansk and Barcelona."
+   ]
+  },
+  {
+   "id": "team-sre",
+   "type": "team",
+   "folder": "teams",
+   "title": "SRE team",
+   "aliases": [
+    "SRE",
+    "site reliability"
+   ],
+   "summary": "Reliability engineers owning infrastructure, observability and incident response.",
+   "claims": [
+    "SRE operates Gatekeeper, the vault, Grafana and the Cumulus accounts.",
+    "Dmitri Ocampo leads SRE; the team has 7 members.",
+    "SRE provides the incident commander roster.",
+    "SRE runs a game day every quarter."
+   ]
+  },
+  {
+   "id": "team-security",
+   "type": "team",
+   "folder": "teams",
+   "title": "Security team",
+   "aliases": [
+    "Security",
+    "infosec"
+   ],
+   "summary": "Team responsible for application and infrastructure security.",
+   "claims": [
+    "The Security team is led by Nina Castellano and has 4 members.",
+    "Vendor security reviews are performed by Priya Nair.",
+    "Security reviews all new vendors that process customer data.",
+    "Vulnerability patching targets are 7 days for critical and 30 days for high severity."
+   ]
+  },
+  {
+   "id": "team-integrations",
+   "type": "team",
+   "folder": "teams",
+   "title": "Customer Integrations",
+   "aliases": [
+    "Integrations team",
+    "partner engineering"
+   ],
+   "summary": "Team connecting customers and carriers to company systems.",
+   "claims": [
+    "Customer Integrations owns Beacon and the EDI gateway.",
+    "Aiko Brandt manages the team of 10.",
+    "The team runs integration certification calls on Wednesdays.",
+    "Customer Integrations is on the escalation list for Mailpost bounces."
+   ]
+  },
+  {
+   "id": "team-finsys",
+   "type": "team",
+   "folder": "teams",
+   "title": "Finance Systems",
+   "aliases": [
+    "FinSys",
+    "finance engineering"
+   ],
+   "summary": "Team maintaining billing, rating and finance reporting.",
+   "claims": [
+    "Finance Systems owns Ledgerline and the rate engine.",
+    "Hannah Osei is the senior analyst who signs off cost allocation.",
+    "The team closes each month's books on the fifth business day.",
+    "Finance Systems has 5 members."
+   ]
+  },
+  {
+   "id": "team-mobile",
+   "type": "team",
+   "folder": "teams",
+   "title": "Mobile team",
+   "aliases": [
+    "Mobile",
+    "app team"
+   ],
+   "summary": "Builds the Haul driver app.",
+   "claims": [
+    "The Mobile team builds Haul and has 6 engineers.",
+    "Omar Haddad leads the Mobile team.",
+    "Haul releases go out every second Wednesday via staged rollout.",
+    "The team keeps a physical device lab with 25 Android phones."
+   ]
+  },
+  {
+   "id": "team-qa",
+   "type": "team",
+   "folder": "teams",
+   "title": "QA team",
+   "aliases": [
+    "QA",
+    "quality assurance"
+   ],
+   "summary": "Test engineering and release verification.",
+   "claims": [
+    "The QA team is led by Ben Lindqvist and has 6 members.",
+    "QA owns the regression suite of 1,850 automated tests.",
+    "QA signs off every release train candidate before the Tuesday freeze.",
+    "QA maintains the anonymised test data set for staging."
+   ]
+  },
+  {
+   "id": "team-helpdesk",
+   "type": "team",
+   "folder": "teams",
+   "title": "IT helpdesk",
+   "aliases": [
+    "helpdesk",
+    "service desk"
+   ],
+   "summary": "First-line IT support for employees.",
+   "claims": [
+    "Jonas Aberg coordinates the IT helpdesk of 5 agents.",
+    "The helpdesk is staffed 07:00 to 18:00 CET on weekdays.",
+    "Laptops are issued from the Hamburg stock room.",
+    "Lost devices must be reported to the helpdesk within 2 hours."
+   ]
+  },
+  {
+   "id": "person-marta",
+   "type": "person",
+   "folder": "people",
+   "title": "Marta Keller",
+   "aliases": [
+    "Marta"
+   ],
+   "summary": "Head of Data Platform.",
+   "claims": [
+    "Marta Keller leads the Data Platform team.",
+    "Marta prefers asynchronous written proposals over meetings.",
+    "Marta approves new Kafka topics and warehouse role requests.",
+    "Marta is based in Hamburg."
+   ]
+  },
+  {
+   "id": "person-dmitri",
+   "type": "person",
+   "folder": "people",
+   "title": "Dmitri Ocampo",
+   "aliases": [
+    "Dmitri"
+   ],
+   "summary": "SRE lead and incident commander coordinator.",
+   "claims": [
+    "Dmitri Ocampo leads the SRE team.",
+    "Dmitri maintains the incident commander roster.",
+    "Dmitri is the escalation point for Cumulus account issues.",
+    "Dmitri works from the Dublin office."
+   ]
+  },
+  {
+   "id": "person-priya",
+   "type": "person",
+   "folder": "people",
+   "title": "Priya Nair",
+   "aliases": [
+    "Priya"
+   ],
+   "summary": "Security engineer who runs vendor reviews.",
+   "claims": [
+    "Priya Nair performs vendor security reviews.",
+    "Priya reviews every request for access to production customer data.",
+    "Priya hosts the monthly security clinic on the first Friday.",
+    "Priya has been in the Security team since 2024."
+   ]
+  },
+  {
+   "id": "person-tomasz",
+   "type": "person",
+   "folder": "people",
+   "title": "Tomasz Wieczorek",
+   "aliases": [
+    "Tomasz"
+   ],
+   "summary": "Routing tech lead.",
+   "claims": [
+    "Tomasz Wieczorek is the technical lead of the Routing team.",
+    "Tomasz wrote the original Routewise optimisation module.",
+    "Tomasz is the contact for Pathly technical questions.",
+    "Tomasz is based in Gdansk."
+   ]
+  },
+  {
+   "id": "person-aiko",
+   "type": "person",
+   "folder": "people",
+   "title": "Aiko Brandt",
+   "aliases": [
+    "Aiko"
+   ],
+   "summary": "Manager of Customer Integrations.",
+   "claims": [
+    "Aiko Brandt manages Customer Integrations.",
+    "Aiko signs off customer integration go-lives.",
+    "Aiko leads the EDI v1 sunset communication to customers.",
+    "Aiko is based in Lyon."
+   ]
+  },
+  {
+   "id": "person-lucas",
+   "type": "person",
+   "folder": "people",
+   "title": "Lucas Ferreira",
+   "aliases": [
+    "Lucas"
+   ],
+   "summary": "Warehouse Engineering lead.",
+   "claims": [
+    "Lucas Ferreira leads Warehouse Engineering.",
+    "Lucas decides which warehouse gets StockPilot upgrades first; Rotterdam is the pilot site.",
+    "Lucas is the contact for Zephyr printer warranty claims.",
+    "Lucas is based in Rotterdam."
+   ]
+  },
+  {
+   "id": "person-hannah",
+   "type": "person",
+   "folder": "people",
+   "title": "Hannah Osei",
+   "aliases": [
+    "Hannah"
+   ],
+   "summary": "Senior analyst at Finance Systems.",
+   "claims": [
+    "Hannah Osei signs off the monthly cost allocation.",
+    "Hannah approves flags that change pricing behaviour.",
+    "Hannah is the contact for Cumulus cost anomalies.",
+    "Hannah works Tuesday to Friday."
+   ]
+  },
+  {
+   "id": "person-ben",
+   "type": "person",
+   "folder": "people",
+   "title": "Ben Lindqvist",
+   "aliases": [
+    "Ben"
+   ],
+   "summary": "QA lead.",
+   "claims": [
+    "Ben Lindqvist leads QA.",
+    "Ben owns the release train go/no-go decision.",
+    "Ben runs the flaky-test review every Friday.",
+    "Ben prefers bug reports with a failing test attached."
+   ]
+  },
+  {
+   "id": "person-sofia",
+   "type": "person",
+   "folder": "people",
+   "title": "Sofia Reyes",
+   "aliases": [
+    "Sofia"
+   ],
+   "summary": "VP Engineering.",
+   "claims": [
+    "Sofia Reyes is the VP Engineering.",
+    "Sofia is the final approver for purchases above 50,000 EUR together with Procurement.",
+    "Sofia chairs the Change Advisory Board when escalations occur.",
+    "Sofia holds an open Q&A every last Thursday of the month."
+   ]
+  },
+  {
+   "id": "person-omar",
+   "type": "person",
+   "folder": "people",
+   "title": "Omar Haddad",
+   "aliases": [
+    "Omar"
+   ],
+   "summary": "Mobile team lead.",
+   "claims": [
+    "Omar Haddad leads the Mobile team.",
+    "Omar decides the Haul staged rollout percentages.",
+    "Omar is the contact for Android device lab bookings.",
+    "Omar is based in Barcelona."
+   ]
+  },
+  {
+   "id": "person-elena",
+   "type": "person",
+   "folder": "people",
+   "title": "Elena Petrova",
+   "aliases": [
+    "Elena"
+   ],
+   "summary": "Procurement manager.",
+   "claims": [
+    "Elena Petrova is the Procurement manager.",
+    "Elena negotiates all vendor renewals above 50,000 EUR.",
+    "Elena keeps the vendor contract calendar.",
+    "Elena prefers renewal notices at least 90 days in advance."
+   ]
+  },
+  {
+   "id": "person-jonas",
+   "type": "person",
+   "folder": "people",
+   "title": "Jonas Aberg",
+   "aliases": [
+    "Jonas"
+   ],
+   "summary": "IT helpdesk coordinator.",
+   "claims": [
+    "Jonas Aberg coordinates the IT helpdesk.",
+    "Jonas handles laptop refresh requests every 4 years.",
+    "Jonas can issue emergency loaner laptops the same day.",
+    "Jonas is based in Hamburg."
+   ]
+  },
+  {
+   "id": "person-nina",
+   "type": "person",
+   "folder": "people",
+   "title": "Nina Castellano",
+   "aliases": [
+    "Nina"
+   ],
+   "summary": "Head of Security.",
+   "claims": [
+    "Nina Castellano heads the Security team.",
+    "Nina is the named data protection contact for security incidents.",
+    "Nina approves exceptions to the password policy.",
+    "Nina reports quarterly to the board risk committee."
+   ]
+  },
+  {
+   "id": "person-raj",
+   "type": "person",
+   "folder": "people",
+   "title": "Raj Subramanian",
+   "aliases": [
+    "Raj"
+   ],
+   "summary": "Data scientist owning the ETA model.",
+   "claims": [
+    "Raj Subramanian owns the ETA prediction model.",
+    "Raj retrains the ETA model every Sunday night.",
+    "Raj documents model drift in the weekly data quality report.",
+    "Raj works remotely from Pune."
+   ]
+  },
+  {
+   "id": "proc-deploy-approval",
+   "type": "process",
+   "folder": "processes",
+   "title": "Production deployment approval",
+   "aliases": [
+    "prod deploy approval",
+    "release sign-off"
+   ],
+   "summary": "Rules for who must approve a production deployment.",
+   "claims": [
+    "Production deployments need two approvals since 2026-10-01: one from the owning team and one from SRE.",
+    "Approvals are recorded as pull request reviews on the deploy workflow.",
+    "Emergency fixes use the hotfix process instead and need the incident commander's approval.",
+    "Staging deployments need no approval.",
+    "Approvers may not approve their own changes."
+   ]
+  },
+  {
+   "id": "proc-cab",
+   "type": "process",
+   "folder": "processes",
+   "title": "Change Advisory Board (CAB)",
+   "aliases": [
+    "CAB",
+    "infrastructure change approval"
+   ],
+   "summary": "Review board for risky infrastructure and database changes.",
+   "claims": [
+    "The CAB meets Tuesdays at 10:00 UTC.",
+    "CAB requests must be submitted by Monday 12:00 UTC.",
+    "CAB review is required for network changes, database major version upgrades and cloud account changes.",
+    "Routine application deployments do not go through the CAB.",
+    "Sofia Reyes chairs CAB escalations."
+   ]
+  },
+  {
+   "id": "proc-oncall",
+   "type": "process",
+   "folder": "processes",
+   "title": "On-call policy",
+   "aliases": [
+    "on-call rotation",
+    "pager duty policy"
+   ],
+   "summary": "How engineering on-call rotations work.",
+   "claims": [
+    "Since 2026-07-01 on-call rotations are weekly with handover on Wednesdays at 09:00 UTC.",
+    "Primary on-call must acknowledge a page within 10 minutes.",
+    "On-call engineers receive 250 EUR per week and a day off in lieu after a night call-out.",
+    "A secondary on-call is required for services rated Sev1-critical.",
+    "Swaps must be arranged in Alertly at least 24 hours ahead."
+   ]
+  },
+  {
+   "id": "proc-incident",
+   "type": "process",
+   "folder": "processes",
+   "title": "Incident response",
+   "aliases": [
+    "incident process",
+    "Sev levels"
+   ],
+   "summary": "Severity definitions and roles during production incidents.",
+   "claims": [
+    "Sev1 means customers cannot book or track shipments; Sev2 is partial degradation; Sev3 is minor.",
+    "A Sev1 requires an incident commander from the SRE roster within 15 minutes.",
+    "Status page updates for Sev1 go out every 30 minutes.",
+    "Incident channels are named inc-YYYYMMDD-short-name.",
+    "A Sev1 or Sev2 requires a postmortem."
+   ]
+  },
+  {
+   "id": "proc-postmortem",
+   "type": "process",
+   "folder": "processes",
+   "title": "Postmortem process",
+   "aliases": [
+    "blameless review",
+    "incident review"
+   ],
+   "summary": "How incidents are reviewed afterwards.",
+   "claims": [
+    "Postmortem documents are due within 5 business days of a Sev1 or Sev2.",
+    "Postmortems are blameless and name systems, not individuals.",
+    "Every postmortem action item needs an owner and a due date within 30 days.",
+    "Postmortems are stored in the engineering wiki under Incidents.",
+    "Dmitri Ocampo reviews postmortems for completeness."
+   ]
+  },
+  {
+   "id": "proc-vendor-onboard",
+   "type": "process",
+   "folder": "processes",
+   "title": "Vendor onboarding",
+   "aliases": [
+    "new vendor review"
+   ],
+   "summary": "Steps to approve and onboard a new third-party vendor.",
+   "claims": [
+    "Vendors processing customer data need a Security review by Priya Nair before contract signature.",
+    "Vendors with expected spend above 50,000 EUR per year must go through Procurement.",
+    "A signed data processing agreement is mandatory for any EU personal data.",
+    "Vendor reviews take about 10 business days.",
+    "Approved vendors are added to the vendor register."
+   ]
+  },
+  {
+   "id": "proc-purchase",
+   "type": "process",
+   "folder": "processes",
+   "title": "Purchase approval",
+   "aliases": [
+    "spend approval",
+    "buying things"
+   ],
+   "summary": "Who approves company spending.",
+   "claims": [
+    "Managers approve purchases up to 5,000 EUR.",
+    "Directors approve purchases between 5,000 and 50,000 EUR.",
+    "Purchases above 50,000 EUR need the VP Engineering and Procurement.",
+    "Software subscriptions of any size must also be registered with the IT helpdesk.",
+    "Purchase orders are raised in the procurement tool before the invoice arrives."
+   ]
+  },
+  {
+   "id": "proc-access",
+   "type": "process",
+   "folder": "processes",
+   "title": "Access requests",
+   "aliases": [
+    "permission requests",
+    "access recertification"
+   ],
+   "summary": "How people get and keep access to systems.",
+   "claims": [
+    "Access requests are filed in Helpdeskly and approved by the system owner.",
+    "Access to production customer data additionally needs Security approval.",
+    "Access is recertified every quarter by the system owner.",
+    "Temporary access expires after 7 days by default."
+   ]
+  },
+  {
+   "id": "proc-hotfix",
+   "type": "process",
+   "folder": "processes",
+   "title": "Hotfix process",
+   "aliases": [
+    "emergency fix"
+   ],
+   "summary": "Fast path for urgent production fixes.",
+   "claims": [
+    "Hotfixes bypass the release train but need an open incident ID.",
+    "The incident commander approves hotfix deployments.",
+    "Hotfix branches are cut from the latest release tag.",
+    "A hotfix must be merged back to main within 1 business day."
+   ]
+  },
+  {
+   "id": "proc-release-train",
+   "type": "process",
+   "folder": "processes",
+   "title": "Release train",
+   "aliases": [
+    "release schedule",
+    "code freeze"
+   ],
+   "summary": "Regular schedule for releasing core services.",
+   "claims": [
+    "The release train departs every second Thursday.",
+    "Code freeze is Tuesday 18:00 UTC before departure.",
+    "QA must sign off the release candidate before the freeze.",
+    "No release trains run between 2026-11-23 and 2027-01-08 during peak season."
+   ]
+  },
+  {
+   "id": "proc-schema-migration",
+   "type": "process",
+   "folder": "processes",
+   "title": "Schema migrations",
+   "aliases": [
+    "database migrations"
+   ],
+   "summary": "Rules for changing production database schemas.",
+   "claims": [
+    "Schema changes use expand and contract in separate releases.",
+    "Migrations on ORDB need review by a Data Platform engineer.",
+    "Migrations that lock tables for more than 5 seconds are not allowed during business hours.",
+    "Every migration must have a tested rollback script."
+   ]
+  },
+  {
+   "id": "proc-staging-refresh",
+   "type": "process",
+   "folder": "processes",
+   "title": "Staging data refresh",
+   "aliases": [
+    "staging reset"
+   ],
+   "summary": "How staging gets its data.",
+   "claims": [
+    "Staging is refreshed from anonymised production data on the first Sunday of each month.",
+    "Anonymisation replaces names, addresses and phone numbers with synthetic values.",
+    "Staging refresh is run by QA with Data Platform support.",
+    "Staging must not contain real customer data at any time."
+   ]
+  },
+  {
+   "id": "proc-pii-deletion",
+   "type": "process",
+   "folder": "processes",
+   "title": "Personal data deletion requests",
+   "aliases": [
+    "GDPR erasure",
+    "right to be forgotten"
+   ],
+   "summary": "Handling of data subject deletion requests.",
+   "claims": [
+    "Deletion requests must be completed within 30 days.",
+    "Nina Castellano is the contact for data subject requests.",
+    "Deletion covers ORDB, REPWH, TRKDB and the archive.",
+    "Backups are not edited; they age out after 14 days."
+   ]
+  },
+  {
+   "id": "proc-dr-test",
+   "type": "process",
+   "folder": "processes",
+   "title": "Disaster recovery tests",
+   "aliases": [
+    "DR test",
+    "failover drill"
+   ],
+   "summary": "Regular failover drills and recovery objectives.",
+   "claims": [
+    "DR tests are run twice a year, in April and October.",
+    "The recovery time objective for ORDB is 4 hours.",
+    "The recovery point objective for ORDB is 15 minutes.",
+    "DR failover goes from Cumulus eu-west to eu-central."
+   ]
+  },
+  {
+   "id": "proc-onboard",
+   "type": "process",
+   "folder": "processes",
+   "title": "New hire setup",
+   "aliases": [
+    "onboarding checklist"
+   ],
+   "summary": "Standard setup steps for new employees.",
+   "claims": [
+    "New hires get a laptop within 2 business days of their start date.",
+    "Access to GitHub and Slack is granted on day one via SSO groups.",
+    "New engineers shadow an on-call shift in their second month.",
+    "The helpdesk runs a 30-minute welcome session each Monday."
+   ]
+  },
+  {
+   "id": "proc-offboard",
+   "type": "process",
+   "folder": "processes",
+   "title": "Offboarding",
+   "aliases": [
+    "leaver process"
+   ],
+   "summary": "Steps when someone leaves the company.",
+   "claims": [
+    "Access is revoked within 1 hour after the last working day ends.",
+    "Laptops are returned within 5 business days.",
+    "FuelNet cards for departing drivers are blocked automatically.",
+    "Managers transfer ownership of services and vault secrets before the last day."
+   ]
+  },
+  {
+   "id": "proc-integration-cert",
+   "type": "process",
+   "folder": "processes",
+   "title": "Customer integration certification",
+   "aliases": [
+    "partner go-live"
+   ],
+   "summary": "Steps for certifying a customer integration before production use.",
+   "claims": [
+    "Customers pass a 25-point checklist in the sandbox.",
+    "Certification typically takes 10 business days.",
+    "Aiko Brandt signs off the go-live.",
+    "Production keys are issued only after certification."
+   ]
+  },
+  {
+   "id": "proc-travel",
+   "type": "process",
+   "folder": "processes",
+   "title": "Travel and expenses",
+   "aliases": [
+    "expense claims"
+   ],
+   "summary": "Rules for business travel and claiming expenses.",
+   "claims": [
+    "Expense claims must be submitted within 30 days.",
+    "Rail is required for trips under 500 km.",
+    "Hotels are capped at 160 EUR per night in major cities.",
+    "Mileage is reimbursed at 0.30 EUR per km."
+   ]
+  },
+  {
+   "id": "dec-github-actions",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Move CI from Jenkins to GitHub Actions",
+   "aliases": [
+    "Jenkins migration"
+   ],
+   "summary": "Decision to retire Jenkins in favour of GitHub Actions.",
+   "claims": [
+    "The decision to move to GitHub Actions was made on 2025-09-15.",
+    "Jenkins was switched off on 2026-02-28.",
+    "The main reason was maintenance cost of the Jenkins agents.",
+    "Self-hosted runners were kept for access to internal networks."
+   ]
+  },
+  {
+   "id": "dec-kafka",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Adopt Kafka as event bus",
+   "aliases": [
+    "Kafka decision"
+   ],
+   "summary": "Why the company standardised on Kafka for events.",
+   "claims": [
+    "Kafka was chosen in March 2024 over a managed queue service.",
+    "The goal was replayable tracking events for analytics.",
+    "Point-to-point HTTP callbacks between services are discouraged for new work."
+   ]
+  },
+  {
+   "id": "dec-snowflake",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Choose Snowflake for reporting",
+   "aliases": [
+    "warehouse choice"
+   ],
+   "summary": "Selection of Snowflake over BigQuery.",
+   "claims": [
+    "Snowflake was chosen over BigQuery on 2024-11-12.",
+    "Deciding factors were separation of compute and cost predictability.",
+    "The team accepted slower ad-hoc cold starts in exchange."
+   ]
+  },
+  {
+   "id": "dec-no-friday",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "No Friday production deploys",
+   "aliases": [
+    "Friday freeze"
+   ],
+   "summary": "Policy against deploying to production on Fridays.",
+   "claims": [
+    "Production deployments on Fridays have been prohibited since 2026-03-02.",
+    "Hotfixes with an incident ID are exempt.",
+    "The rule followed three Friday-evening incidents in February 2026."
+   ]
+  },
+  {
+   "id": "dec-weekly-rotation",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Switch to weekly on-call rotation",
+   "aliases": [
+    "on-call change"
+   ],
+   "summary": "Why on-call moved to shorter shifts.",
+   "claims": [
+    "The weekly on-call rotation was approved on 2026-05-20 and started 2026-07-01.",
+    "Engineers had complained about two-week shifts causing fatigue.",
+    "The on-call allowance was raised at the same time."
+   ]
+  },
+  {
+   "id": "dec-geocoder",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Replace Geonexus with MapForge",
+   "aliases": [
+    "geocoder switch"
+   ],
+   "summary": "Switch of geocoding vendor.",
+   "claims": [
+    "The geocoder switch was decided on 2025-04-08 and live in June 2025.",
+    "MapForge matched 4 percentage points more addresses in the trial.",
+    "Geonexus data was purged after 30 days."
+   ]
+  },
+  {
+   "id": "dec-sms-switch",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Replace Pingwave with Textline",
+   "aliases": [
+    "SMS vendor switch"
+   ],
+   "summary": "Change of SMS provider.",
+   "claims": [
+    "The SMS provider change was approved on 2026-03-12.",
+    "Pingwave delivery rates in Poland were below 90 percent.",
+    "Cut-over to Textline took place on 2026-05-01."
+   ]
+  },
+  {
+   "id": "dec-edi-sunset",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Retire EDI v1",
+   "aliases": [
+    "AS2 sunset"
+   ],
+   "summary": "Decision to end the legacy EDI v1 endpoint.",
+   "claims": [
+    "EDI v1 will be shut down on 2027-06-30.",
+    "Customers get migration help from Customer Integrations.",
+    "The date was postponed from 2026-12-31 because 38 customers had not migrated."
+   ]
+  },
+  {
+   "id": "dec-python",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Standardise on Python 3.12",
+   "aliases": [
+    "Python version"
+   ],
+   "summary": "Python version policy for services.",
+   "claims": [
+    "All Python services must run Python 3.12 by 2027-01-31.",
+    "Python 3.9 images are blocked from the registry from 2026-12-01.",
+    "Services use uv for dependency management."
+   ]
+  },
+  {
+   "id": "dec-multirepo",
+   "type": "decision",
+   "folder": "decisions",
+   "title": "Stay with multiple repositories",
+   "aliases": [
+    "monorepo decision"
+   ],
+   "summary": "Decision not to move to a monorepo.",
+   "claims": [
+    "The monorepo proposal was rejected on 2026-01-14.",
+    "Cross-repo changes use a shared dependency bot instead.",
+    "The decision will be reviewed in January 2028."
+   ]
+  },
+  {
+   "id": "pref-pr-size",
+   "type": "preference",
+   "folder": "preferences",
+   "title": "Pull request size preference",
+   "aliases": [
+    "small PRs"
+   ],
+   "summary": "Team preference for small reviewable changes.",
+   "claims": [
+    "Pull requests should stay under 400 changed lines.",
+    "Large refactors are split into stacked pull requests.",
+    "Reviewers should respond within one working day."
+   ]
+  },
+  {
+   "id": "pref-no-meeting",
+   "type": "preference",
+   "folder": "preferences",
+   "title": "Meeting-free Wednesdays",
+   "aliases": [
+    "no meeting day"
+   ],
+   "summary": "Engineering keeps Wednesdays free of meetings.",
+   "claims": [
+    "Engineering has meeting-free Wednesdays.",
+    "Integration certification calls are the only recurring exception.",
+    "Incident calls are exempt from the meeting-free rule."
+   ]
+  },
+  {
+   "id": "pref-adr",
+   "type": "preference",
+   "folder": "preferences",
+   "title": "Architecture decision records",
+   "aliases": [
+    "ADR"
+   ],
+   "summary": "Convention to record architectural decisions as ADRs.",
+   "claims": [
+    "Architectural decisions are written as ADRs in the docs repository.",
+    "ADRs use the template with Context, Decision and Consequences.",
+    "ADR numbers are sequential, starting at 0001."
+   ]
+  },
+  {
+   "id": "pref-utc",
+   "type": "preference",
+   "folder": "preferences",
+   "title": "Use UTC for timestamps",
+   "aliases": [
+    "timestamp convention"
+   ],
+   "summary": "Timestamps in systems and logs use UTC.",
+   "claims": [
+    "All stored timestamps use UTC in ISO 8601 format.",
+    "Local times appear only in user-facing displays.",
+    "Meeting invites for cross-site events state the time in UTC."
+   ]
+  },
+  {
+   "id": "pref-naming",
+   "type": "preference",
+   "folder": "preferences",
+   "title": "Service naming conventions",
+   "aliases": [
+    "naming rules"
+   ],
+   "summary": "How services and repositories are named.",
+   "claims": [
+    "Services are named in lowercase kebab-case, for example order-service.",
+    "Kafka topics use dots; Airflow DAG ids use underscores.",
+    "Environment suffixes are -stg and -prod."
+   ]
+  },
+  {
+   "id": "pref-incident-comms",
+   "type": "preference",
+   "folder": "preferences",
+   "title": "Incident communication style",
+   "aliases": [
+    "status update tone"
+   ],
+   "summary": "How to write updates during incidents.",
+   "claims": [
+    "Updates state impact, current action and the time of next update.",
+    "Avoid speculation about causes in customer-facing updates.",
+    "Internal updates go in the incident channel; customer updates go to the status page."
+   ]
+  },
+  {
+   "id": "pref-slack",
+   "type": "preference",
+   "folder": "preferences",
+   "title": "Slack channel etiquette",
+   "aliases": [
+    "Slack rules"
+   ],
+   "summary": "Conventions for using Slack channels.",
+   "claims": [
+    "Questions for teams go in the team channel, not direct messages.",
+    "Alerts go to channels prefixed alerts-.",
+    "Threads are expected for follow-ups."
+   ]
+  },
+  {
+   "id": "method-eta",
+   "type": "method",
+   "folder": "methods",
+   "title": "ETA prediction method",
+   "aliases": [
+    "delivery time estimate"
+   ],
+   "summary": "Gradient-boosted model predicting delivery arrival times.",
+   "claims": [
+    "The ETA model is a gradient-boosted tree model owned by Raj Subramanian.",
+    "It is retrained every Sunday night on the last 12 weeks of data.",
+    "The target mean absolute error is under 18 minutes.",
+    "Features include traffic from Pathly, stop sequence and historical dwell time."
+   ]
+  },
+  {
+   "id": "method-route-opt",
+   "type": "method",
+   "folder": "methods",
+   "title": "Route optimisation approach",
+   "aliases": [
+    "VRP solver"
+   ],
+   "summary": "How Routewise solves vehicle routing problems.",
+   "claims": [
+    "Routewise uses a heuristic vehicle routing solver with a 90-second time limit per depot.",
+    "Time windows are treated as hard constraints; driver breaks are soft.",
+    "Solutions are warm-started from the previous day's plan.",
+    "Solver improvements are benchmarked on 30 historical depot-days."
+   ]
+  },
+  {
+   "id": "method-capacity",
+   "type": "method",
+   "folder": "methods",
+   "title": "Capacity forecasting",
+   "aliases": [
+    "volume forecast"
+   ],
+   "summary": "Forecasting shipment volumes for staffing and fleet.",
+   "claims": [
+    "Volume is forecast 8 weeks ahead per depot using a seasonal model.",
+    "Peak season forecasts are adjusted by account managers for known promotions.",
+    "Forecast error is reported as WAPE; the target is under 12 percent."
+   ]
+  },
+  {
+   "id": "method-slotting",
+   "type": "method",
+   "folder": "methods",
+   "title": "Warehouse slotting method",
+   "aliases": [
+    "pick-face assignment"
+   ],
+   "summary": "How products are assigned to pick locations.",
+   "claims": [
+    "Items are ABC-classified by pick frequency every month.",
+    "A-class items occupy the golden zone between knee and shoulder height.",
+    "Slotting changes are executed on Sunday nights."
+   ]
+  },
+  {
+   "id": "method-cost-alloc",
+   "type": "method",
+   "folder": "methods",
+   "title": "Cost allocation method",
+   "aliases": [
+    "cost per shipment"
+   ],
+   "summary": "How operating costs are allocated to shipments and customers.",
+   "claims": [
+    "Costs are allocated per shipment using weight and distance drivers.",
+    "Fuel costs come from the FuelNet transaction files.",
+    "Hannah Osei signs off the allocation each month.",
+    "Warehouse costs are allocated by pallet-days."
+   ]
+  },
+  {
+   "id": "method-track-anomaly",
+   "type": "method",
+   "folder": "methods",
+   "title": "Tracking anomaly detection",
+   "aliases": [
+    "stuck shipment detection"
+   ],
+   "summary": "Detecting shipments with missing or implausible scans.",
+   "claims": [
+    "A shipment with no scan for 36 hours is flagged as possibly stuck.",
+    "Impossible speeds above 130 km/h between scans are flagged as GPS errors.",
+    "Flagged shipments appear in the delivery exceptions dataset."
+   ]
+  },
+  {
+   "id": "ds-shipments",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Daily shipments table",
+   "aliases": [
+    "shipments_daily"
+   ],
+   "summary": "One row per shipment per day of status in REPWH.",
+   "claims": [
+    "The table is shipments_daily in REPWH, loaded nightly.",
+    "Shipments cancelled before pickup are included with status CANCELLED.",
+    "The timestamp column event_ts is in UTC.",
+    "Rows before 2023-01-01 come from a legacy system and have no weight values."
+   ]
+  },
+  {
+   "id": "ds-carrier-score",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Carrier scorecards",
+   "aliases": [
+    "carrier_scores"
+   ],
+   "summary": "Monthly on-time and damage metrics per carrier.",
+   "claims": [
+    "Carrier scorecards are published on the fifth working day of the month.",
+    "On-time is measured against the promised delivery date, not the first attempt.",
+    "Carriers with fewer than 200 shipments in the month are excluded."
+   ]
+  },
+  {
+   "id": "ds-telemetry",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Driver telemetry",
+   "aliases": [
+    "Trackbox data"
+   ],
+   "summary": "Raw GPS and engine data from Trackbox devices.",
+   "claims": [
+    "Telemetry records arrive about every 30 seconds per vehicle.",
+    "Telemetry is retained for 90 days in raw form.",
+    "Vehicle IDs in telemetry differ from fleet numbers; use the mapping table."
+   ]
+  },
+  {
+   "id": "ds-addr-corr",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Address corrections",
+   "aliases": [
+    "address_fixes"
+   ],
+   "summary": "Manual address corrections made by dispatchers.",
+   "claims": [
+    "About 1,100 corrections are logged per week.",
+    "Corrections are keyed by normalised address hash.",
+    "The dataset is used to retrain the address matching rules."
+   ]
+  },
+  {
+   "id": "ds-hs-codes",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "HS code reference",
+   "aliases": [
+    "customs tariff codes"
+   ],
+   "summary": "Mapping of goods categories to customs HS codes.",
+   "claims": [
+    "The reference holds 10-digit HS codes for EU and UK.",
+    "It is refreshed from Tariffa every quarter.",
+    "About 3 percent of mappings are flagged as disputed."
+   ]
+  },
+  {
+   "id": "ds-inventory",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Warehouse inventory snapshots",
+   "aliases": [
+    "inventory_snapshot"
+   ],
+   "summary": "Hourly stock levels per warehouse and SKU.",
+   "claims": [
+    "Snapshots are taken every hour on the hour.",
+    "Negative stock quantities can appear for up to 2 hours after a scanner sync delay.",
+    "Snapshots older than 13 months are aggregated to daily."
+   ]
+  },
+  {
+   "id": "ds-exceptions",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Delivery exceptions",
+   "aliases": [
+    "delivery_exceptions"
+   ],
+   "summary": "Failed deliveries, damages and delays.",
+   "claims": [
+    "Exceptions are categorised into 14 reason codes.",
+    "Reason code 9 means recipient unavailable.",
+    "Damage exceptions link to ScanRight-processed claim documents."
+   ]
+  },
+  {
+   "id": "ds-rates-history",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Rate history",
+   "aliases": [
+    "rates_history"
+   ],
+   "summary": "Historical list prices and surcharges.",
+   "claims": [
+    "Rate history is versioned weekly on Mondays.",
+    "Key account contract rates are excluded for confidentiality.",
+    "Fuel surcharge values are stored as percentages with two decimals."
+   ]
+  },
+  {
+   "id": "ds-customer-master",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Customer master data",
+   "aliases": [
+    "customer_master"
+   ],
+   "summary": "Golden record of customer accounts.",
+   "claims": [
+    "Customer master has about 6,800 accounts including inactive ones.",
+    "Customer IDs are 8 digits and never reused.",
+    "Duplicate accounts are merged monthly by Customer Integrations."
+   ]
+  },
+  {
+   "id": "topic-peak",
+   "type": "topic",
+   "folder": "topics",
+   "title": "Peak season operating rules",
+   "aliases": [
+    "Q4 peak",
+    "holiday freeze"
+   ],
+   "summary": "Special rules between late November and early January.",
+   "claims": [
+    "Peak season runs from 2026-11-23 to 2027-01-08.",
+    "Non-essential production changes are frozen during peak season.",
+    "Extra on-call secondary coverage is added for Routewise and Gatekeeper.",
+    "StockPilot upgrades are not allowed during peak season."
+   ]
+  },
+  {
+   "id": "topic-sla",
+   "type": "topic",
+   "folder": "topics",
+   "title": "Customer SLA tiers",
+   "aliases": [
+    "service tiers"
+   ],
+   "summary": "Gold, Silver and Bronze service levels.",
+   "claims": [
+    "Gold customers get a 99.95 percent API availability commitment.",
+    "Silver customers get 99.9 percent and Bronze 99.5 percent.",
+    "Gold customers receive a named integration contact."
+   ]
+  },
+  {
+   "id": "topic-sites",
+   "type": "topic",
+   "folder": "topics",
+   "title": "Warehouse sites",
+   "aliases": [
+    "distribution centres"
+   ],
+   "summary": "List of the company's six distribution centres.",
+   "claims": [
+    "Warehouses are in Rotterdam, Duisburg, Lyon, Milan, Gdansk and Barcelona.",
+    "Rotterdam is the largest site with 42,000 pallet positions.",
+    "Lyon operates only chilled goods."
+   ]
+  },
+  {
+   "id": "topic-carbon",
+   "type": "topic",
+   "folder": "topics",
+   "title": "Carbon reporting",
+   "aliases": [
+    "emissions reporting"
+   ],
+   "summary": "How CO2 figures are produced for customers.",
+   "claims": [
+    "Emissions are calculated per shipment from distance and vehicle class.",
+    "Customers receive carbon reports quarterly.",
+    "The calculation follows the GLEC framework."
+   ]
+  },
+  {
+   "id": "hub-databases",
+   "type": "topic",
+   "folder": "",
+   "title": "Databases overview",
+   "aliases": [
+    "data stores hub"
+   ],
+   "summary": "Hub comparing ORDB, TRKDB and REPWH.",
+   "claims": [
+    "ORDB is PostgreSQL for orders, TRKDB is Cassandra for tracking, REPWH is Snowflake for analytics.",
+    "Data Platform owns ORDB and REPWH; Routing owns TRKDB.",
+    "Use REPWH for reporting queries, never ORDB.",
+    "Retention differs: ORDB 14-day snapshots, TRKDB 400-day TTL, REPWH 18 months."
+   ]
+  },
+  {
+   "id": "hub-vendors",
+   "type": "topic",
+   "folder": "",
+   "title": "Vendor landscape",
+   "aliases": [
+    "vendors hub"
+   ],
+   "summary": "Hub listing vendors by function.",
+   "claims": [
+    "Geocoding is MapForge; road matrices are Pathly; carrier labels go through ShipLink.",
+    "Messaging uses Textline for SMS and Mailpost for email.",
+    "Infrastructure and paging come from Cumulus Cloud and Alertly.",
+    "Staffing comes from Brightdesk and penetration testing from Redkite."
+   ]
+  },
+  {
+   "id": "hub-oncall-incident",
+   "type": "topic",
+   "folder": "",
+   "title": "On-call and incidents hub",
+   "aliases": [
+    "reliability hub"
+   ],
+   "summary": "Hub linking on-call, incident response and postmortems.",
+   "claims": [
+    "On-call is weekly; incidents follow Sev1 to Sev3 definitions.",
+    "Alertly pages the on-call; SRE supplies incident commanders.",
+    "Postmortems are due within 5 business days."
+   ]
+  },
+  {
+   "id": "hub-deployment",
+   "type": "topic",
+   "folder": "",
+   "title": "Deployment and release hub",
+   "aliases": [
+    "shipping code hub"
+   ],
+   "summary": "Hub covering how code reaches production.",
+   "claims": [
+    "Routine releases follow the release train; urgent fixes use the hotfix process.",
+    "Production deployments need two approvals; infrastructure changes also need CAB.",
+    "No deployments on Fridays or during peak season freeze.",
+    "CI/CD runs on GitHub Actions."
+   ]
+  },
+  {
+   "id": "hub-security",
+   "type": "topic",
+   "folder": "",
+   "title": "Security overview",
+   "aliases": [
+    "security hub"
+   ],
+   "summary": "Hub for security policies and owners.",
+   "claims": [
+    "Security is led by Nina Castellano; vendor reviews by Priya Nair.",
+    "SSO with mandatory MFA fronts all internal tools.",
+    "Secrets live in the vault and rotate every 90 days.",
+    "Pen tests are run yearly by Redkite."
+   ]
+  },
+  {
+   "id": "hub-data-quality",
+   "type": "topic",
+   "folder": "",
+   "title": "Data quality caveats",
+   "aliases": [
+    "data gotchas"
+   ],
+   "summary": "Hub of known data caveats.",
+   "claims": [
+    "shipments_daily has no weights before 2023-01-01.",
+    "Inventory snapshots can show negative stock after sync delays.",
+    "Telemetry vehicle IDs do not equal fleet numbers.",
+    "Carrier scorecards exclude carriers with under 200 shipments a month."
+   ]
+  },
+  {
+   "id": "hub-warehouse",
+   "type": "topic",
+   "folder": "",
+   "title": "Warehouse operations hub",
+   "aliases": [
+    "warehouse hub"
+   ],
+   "summary": "Hub for warehouse systems and methods.",
+   "claims": [
+    "StockPilot, the label service and Zephyr printers are owned by Warehouse Engineering.",
+    "Slotting is ABC-based and applied on Sunday nights.",
+    "Six sites run StockPilot; Rotterdam is the pilot."
+   ]
+  },
+  {
+   "id": "hub-routing",
+   "type": "topic",
+   "folder": "",
+   "title": "Routing and tracking hub",
+   "aliases": [
+    "routing hub"
+   ],
+   "summary": "Hub for planning and visibility topics.",
+   "claims": [
+    "Routewise plans with Pathly matrices and a heuristic solver.",
+    "TRKDB stores tracking events; the ETA model predicts arrivals.",
+    "Address validation uses MapForge geocoding."
+   ]
+  },
+  {
+   "id": "hub-integrations",
+   "type": "topic",
+   "folder": "",
+   "title": "Customer integration hub",
+   "aliases": [
+    "integration hub"
+   ],
+   "summary": "Hub for how customers connect.",
+   "claims": [
+    "Customers connect via Beacon, REST through Gatekeeper, or EDI.",
+    "Certification happens in the sandbox before production keys are issued.",
+    "EDI v1 retires on 2027-06-30."
+   ]
+  },
+  {
+   "id": "hub-finance",
+   "type": "topic",
+   "folder": "",
+   "title": "Finance systems hub",
+   "aliases": [
+    "finance hub"
+   ],
+   "summary": "Hub for billing, rating and cost topics.",
+   "claims": [
+    "Finance Systems owns Ledgerline and the rate engine.",
+    "Monthly cost allocation is signed off by Hannah Osei.",
+    "Purchases follow the purchase approval tiers."
+   ]
+  },
+  {
+   "id": "hub-onboarding",
+   "type": "topic",
+   "folder": "",
+   "title": "Joining the company hub",
+   "aliases": [
+    "newcomer guide"
+   ],
+   "summary": "Hub for new joiners.",
+   "claims": [
+    "Laptop within 2 business days; access through SSO groups.",
+    "New engineers shadow on-call in month two.",
+    "Questions go to team Slack channels and Helpdeskly."
+   ]
+  },
+  {
+   "id": "hub-envs",
+   "type": "topic",
+   "folder": "",
+   "title": "Staging versus production rules",
+   "aliases": [
+    "environments hub",
+    "stg vs prod"
+   ],
+   "summary": "Hub contrasting rules in staging and production.",
+   "claims": [
+    "Staging deployments need no approval; production deployments need two.",
+    "Staging never sends real SMS or email; sandbox keys only.",
+    "Staging holds anonymised data refreshed monthly; production holds real data.",
+    "Contractors need the VPN for staging; production access also needs Security approval.",
+    "Redkite pen tests target staging only."
+   ]
+  },
+  {
+   "id": "hub-monitoring",
+   "type": "topic",
+   "folder": "",
+   "title": "Monitoring and alerting hub",
+   "aliases": [
+    "observability hub"
+   ],
+   "summary": "Hub for metrics, logs and alert routing.",
+   "claims": [
+    "Prometheus keeps 45 days, Loki 30 days.",
+    "Alerts are defined in the sre-alerts repository and route through Alertly.",
+    "Gatekeeper logs are kept 30 days."
+   ]
+  },
+  {
+   "id": "hub-people",
+   "type": "topic",
+   "folder": "",
+   "title": "Who to ask",
+   "aliases": [
+    "people directory"
+   ],
+   "summary": "Hub mapping topics to the right person.",
+   "claims": [
+    "Data and warehouse: Marta Keller; infrastructure: Dmitri Ocampo.",
+    "Vendors: Priya Nair for security, Elena Petrova for contracts.",
+    "Customer integrations: Aiko Brandt; mobile: Omar Haddad."
+   ]
+  },
+  {
+   "id": "hub-decisions",
+   "type": "topic",
+   "folder": "",
+   "title": "Key engineering decisions",
+   "aliases": [
+    "decision log"
+   ],
+   "summary": "Hub listing major decisions with dates.",
+   "claims": [
+    "Kafka chosen 2024; Snowflake chosen 2024-11-12.",
+    "Jenkins retired 2026-02-28; Friday deploys banned 2026-03-02.",
+    "Weekly on-call from 2026-07-01; Textline live 2026-05-01."
+   ]
+  },
+  {
+   "id": "hub-datasets",
+   "type": "topic",
+   "folder": "",
+   "title": "Dataset catalogue",
+   "aliases": [
+    "data catalogue"
+   ],
+   "summary": "Hub listing key datasets.",
+   "claims": [
+    "Core tables live in REPWH, such as shipments_daily and carrier_scores.",
+    "Raw telemetry is kept 90 days.",
+    "Address corrections and delivery exceptions feed quality improvement."
+   ]
+  },
+  {
+   "id": "hub-mobile",
+   "type": "topic",
+   "folder": "",
+   "title": "Driver mobile hub",
+   "aliases": [
+    "Haul hub"
+   ],
+   "summary": "Hub for the driver app and devices.",
+   "claims": [
+    "Haul runs on Android, built by the Mobile team.",
+    "Offline mode lasts 8 hours.",
+    "Releases go out every second Wednesday."
+   ]
+  },
+  {
+   "id": "hub-compliance",
+   "type": "topic",
+   "folder": "",
+   "title": "Compliance and retention",
+   "aliases": [
+    "compliance hub"
+   ],
+   "summary": "Hub for retention and privacy obligations.",
+   "claims": [
+    "Deletion requests are done within 30 days.",
+    "Archive objects are kept 7 years.",
+    "DR test twice a year with 4 hour RTO for ORDB."
+   ]
+  },
+  {
+   "id": "hub-carriers",
+   "type": "topic",
+   "folder": "",
+   "title": "Carrier network hub",
+   "aliases": [
+    "carrier hub"
+   ],
+   "summary": "Hub for carrier connectivity and scoring.",
+   "claims": [
+    "ShipLink connects 40 carriers.",
+    "Carrier scorecards come out on the fifth working day.",
+    "Labels are ZPL and created via ShipLink."
+   ]
+  },
+  {
+   "id": "hub-cicd",
+   "type": "topic",
+   "folder": "",
+   "title": "CI/CD and tooling hub",
+   "aliases": [
+    "build tooling hub"
+   ],
+   "summary": "Hub for build tooling and registries.",
+   "claims": [
+    "GitHub Actions replaced Jenkins.",
+    "Images are signed and stored in the registry.",
+    "Python 3.12 is the standard with uv."
+   ]
+  },
+  {
+   "id": "hub-glossary",
+   "type": "topic",
+   "folder": "",
+   "title": "Glossary of acronyms",
+   "aliases": [
+    "acronym list"
+   ],
+   "summary": "Hub defining internal acronyms.",
+   "claims": [
+    "ORDB, TRKDB and REPWH are the three core databases.",
+    "CAB is the Change Advisory Board; TMS is Routewise; WMS is StockPilot.",
+    "POD means proof of delivery; RTO and RPO are recovery objectives."
+   ]
+  },
+  {
+   "id": "proc-code-review",
+   "type": "process",
+   "folder": "processes",
+   "title": "Code review rules",
+   "aliases": [
+    "review policy"
+   ],
+   "summary": "Minimum requirements for reviewing changes before merge.",
+   "claims": [
+    "Every pull request needs one approving review from a code owner.",
+    "Security-sensitive paths such as auth and vault clients need a second review from the Security team.",
+    "Reviews must be completed within one working day.",
+    "Merging to main is blocked while CI is red."
+   ]
+  },
+  {
+   "id": "ds-fleet",
+   "type": "dataset",
+   "folder": "datasets",
+   "title": "Fleet register",
+   "aliases": [
+    "fleet_register"
+   ],
+   "summary": "Register of company and subcontractor vehicles.",
+   "claims": [
+    "The register lists about 1,650 vehicles, including subcontractor trucks.",
+    "Each vehicle has a fleet number and a separate Trackbox device ID.",
+    "Subcontractor vehicles are updated monthly, company vehicles weekly."
+   ]
+  }
+ ],
+ "history": [
+  {
+   "note": "sys-apigw",
+   "claim": "Gatekeeper limited each API key to 300 requests per minute."
+  },
+  {
+   "note": "proc-deploy-approval",
+   "claim": "Production deployments needed only one approval from the owning team."
+  },
+  {
+   "note": "proc-oncall",
+   "claim": "On-call rotations lasted two weeks with handover on Mondays at 08:00 UTC."
+  },
+  {
+   "note": "proc-oncall",
+   "claim": "On-call engineers received 150 EUR per week."
+  },
+  {
+   "note": "sys-ordb",
+   "claim": "ORDB nightly snapshots were retained for 7 days."
+  },
+  {
+   "note": "sys-repwh",
+   "claim": "REPWH was refreshed nightly starting at 04:00 UTC."
+  },
+  {
+   "note": "vend-textline",
+   "claim": "Delivery SMS messages were sent through Pingwave with sender ID FERNLOG until 2026-04-30."
+  },
+  {
+   "note": "sys-ci",
+   "claim": "CI ran on Jenkins with 8 build agents."
+  },
+  {
+   "note": "proc-pii-deletion",
+   "claim": "Deletion requests had to be completed within 45 days."
+  },
+  {
+   "note": "sys-driverapp",
+   "claim": "Haul worked offline for only 4 hours."
+  },
+  {
+   "note": "sys-vault",
+   "claim": "Database credentials in the vault rotated every 180 days."
+  },
+  {
+   "note": "proc-access",
+   "claim": "Access was recertified annually."
+  },
+  {
+   "note": "vend-mapforge",
+   "claim": "The MapForge contract allowed 30 million geocoding calls per year."
+  },
+  {
+   "note": "sys-edi",
+   "claim": "The EDI v1 AS2 endpoint was due to be retired on 2026-12-31."
+  },
+  {
+   "note": "proc-release-train",
+   "claim": "The release train departed every week on Thursdays."
+  },
+  {
+   "note": "sys-flags",
+   "claim": "Toggleboard flags could have an expiry up to 90 days away."
+  },
+  {
+   "note": "proc-dr-test",
+   "claim": "The recovery time objective for ORDB was 8 hours."
+  },
+  {
+   "note": "vend-brightdesk",
+   "claim": "Brightdesk placements were limited to 6 months."
+  },
+  {
+   "note": "sys-trkdb",
+   "claim": "TRKDB rows expired after a TTL of 180 days."
+  },
+  {
+   "note": "proc-purchase",
+   "claim": "Managers could approve purchases only up to 2,000 EUR."
+  },
+  {
+   "note": "sys-addrval",
+   "claim": "Addresses with geocoding confidence below 0.75 were sent to manual review."
+  }
+ ],
+ "queries": [
+  {
+   "q": "Who has to sign off before my change goes live for customers?",
+   "expected": [
+    "proc-deploy-approval"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How often do I have to hand the pager over to someone else?",
+   "expected": [
+    "proc-oncall"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which data store should I query for my monthly dashboard so I do not slow down live bookings?",
+   "expected": [
+    "hub-databases",
+    "sys-repwh"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What do we use to turn street addresses into coordinates?",
+   "expected": [
+    "vend-mapforge",
+    "sys-addrval"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which company texts our recipients when a parcel is on its way?",
+   "expected": [
+    "vend-textline"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What happens when a customer integration sends too many calls too fast?",
+   "expected": [
+    "sys-apigw"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Why did we stop running our old build server?",
+   "expected": [
+    "dec-github-actions"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Can I push a fix out on a Friday afternoon?",
+   "expected": [
+    "dec-no-friday",
+    "proc-hotfix"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What is the rule for buying a 20k software licence?",
+   "expected": [
+    "proc-purchase"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How do I get a newly hired colleague laptop and logins sorted?",
+   "expected": [
+    "proc-onboard",
+    "hub-onboarding"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Where do the readings from the GPS boxes in our trucks end up?",
+   "expected": [
+    "ds-telemetry",
+    "vend-trackbox"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What do we do when a customer asks us to wipe everything we know about them?",
+   "expected": [
+    "proc-pii-deletion"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What is the plan if our main cloud region goes down?",
+   "expected": [
+    "proc-dr-test"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which model guesses when a parcel will arrive?",
+   "expected": [
+    "method-eta"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How do we decide which products sit closest to the pickers?",
+   "expected": [
+    "method-slotting"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Who do I talk to about whether a new supplier handling personal information is safe to use?",
+   "expected": [
+    "person-priya",
+    "proc-vendor-onboard"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Why do some stock counts show below zero?",
+   "expected": [
+    "ds-inventory",
+    "hub-data-quality"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "A nightly pipeline run keeps crashing, who gets woken up?",
+   "expected": [
+    "sys-airflow"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How do outside contractors reach our internal tools from home?",
+   "expected": [
+    "sys-vpn"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What is special for engineering in the weeks before New Year?",
+   "expected": [
+    "topic-peak"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How do we judge how bad an outage is and who takes charge?",
+   "expected": [
+    "proc-incident"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "A customer wants to try their integration without touching real shipments. Where can they do it?",
+   "expected": [
+    "sys-sandbox"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Where do I find shipment data from several years back?",
+   "expected": [
+    "sys-archive"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which phone app do couriers use and does it keep working in tunnels?",
+   "expected": [
+    "sys-driverapp"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How are operating costs split across customers each month?",
+   "expected": [
+    "method-cost-alloc"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Who makes the final call on whether a candidate version of core services can ship?",
+   "expected": [
+    "person-ben"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which outside firm tries to break into our systems every year?",
+   "expected": [
+    "vend-redkite"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which group runs our cloud accounts and gets paged when the public front door misbehaves?",
+   "expected": [
+    "team-sre"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What does it take to get a carrier-ready sticker printed for a parcel?",
+   "expected": [
+    "sys-labels",
+    "vend-shiplink"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How do we spot parcels that seem to have vanished in transit?",
+   "expected": [
+    "method-track-anomaly"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What are the rules for naming a new microservice?",
+   "expected": [
+    "pref-naming"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Is there a day when people should not schedule meetings?",
+   "expected": [
+    "pref-no-meeting"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How big can my code change be before reviewers complain?",
+   "expected": [
+    "pref-pr-size"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How should we word messages to customers while something is broken?",
+   "expected": [
+    "pref-incident-comms"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which agency supplies our temporary engineers?",
+   "expected": [
+    "vend-brightdesk"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What approval do I need before touching network setup or upgrading a database engine to a new major version?",
+   "expected": [
+    "proc-cab"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How can test environments get realistic data without exposing real customers?",
+   "expected": [
+    "proc-staging-refresh",
+    "hub-envs"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Why did we pick that cloud analytics platform instead of the Google one?",
+   "expected": [
+    "dec-snowflake"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What is the oldest way customers still send orders electronically and when does it stop working?",
+   "expected": [
+    "dec-edi-sunset",
+    "sys-edi"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Who do I escalate to when a customs classification is disputed?",
+   "expected": [
+    "vend-tariffa"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What uptime are our top-tier customers promised?",
+   "expected": [
+    "topic-sla"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How do I ask for permission to use a system?",
+   "expected": [
+    "proc-access",
+    "vend-helpdeskly"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "What was the reason for shorter pager shifts?",
+   "expected": [
+    "dec-weekly-rotation"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "How do we keep database logins away from developers?",
+   "expected": [
+    "sys-vault"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "Which of our depots handles refrigerated goods and where are they all?",
+   "expected": [
+    "topic-sites"
+   ],
+   "kind": "paraphrase"
+  },
+  {
+   "q": "ORDB replica lag alert",
+   "expected": [
+    "sys-ordb"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "TRKDB TTL",
+   "expected": [
+    "sys-trkdb"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "REPWH Snowflake X-Small auto-suspend",
+   "expected": [
+    "sys-repwh"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Routewise TMS dispatch cut-off",
+   "expected": [
+    "sys-routewise"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "StockPilot WMS cycle counts",
+   "expected": [
+    "sys-stockpilot"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Gatekeeper HTTP 429 Retry-After",
+   "expected": [
+    "sys-apigw"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "CAB submission deadline",
+   "expected": [
+    "proc-cab"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Toggleboard flag expiry",
+   "expected": [
+    "sys-flags"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Haul Android offline mode",
+   "expected": [
+    "sys-driverapp"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Pathly contract review",
+   "expected": [
+    "vend-pathly"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Textline sender ID FERNLOG",
+   "expected": [
+    "vend-textline"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Alertly escalation unacknowledged pages",
+   "expected": [
+    "vend-alertly"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "ShipLink per label fee",
+   "expected": [
+    "vend-shiplink"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "ScanRight OCR handwritten notes",
+   "expected": [
+    "vend-scanright"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Ledgerline monthly invoice run",
+   "expected": [
+    "sys-billing"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Authwise MFA hardware keys",
+   "expected": [
+    "sys-sso"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "bus-prod Kafka topic naming pattern",
+   "expected": [
+    "sys-kafka"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "RTO RPO ORDB DR test",
+   "expected": [
+    "proc-dr-test"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "ADR template Context Decision Consequences",
+   "expected": [
+    "pref-adr"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Marta Keller",
+   "expected": [
+    "person-marta"
+   ],
+   "kind": "lexical"
+  },
+  {
+   "q": "Which Kafka topic does the tracking store ingest from?",
+   "expected": [
+    "sys-trkdb"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "What time does the customer test environment reset on Sundays?",
+   "expected": [
+    "sys-sandbox"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "Which office does Dmitri work from?",
+   "expected": [
+    "person-dmitri"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "How many automated tests are in the regression suite?",
+   "expected": [
+    "team-qa"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "Which distribution centre handles only chilled goods?",
+   "expected": [
+    "topic-sites"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "Which carriers are left out of the monthly scorecards?",
+   "expected": [
+    "ds-carrier-score"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "What is the file size limit for bulk shipment CSV uploads on the portal?",
+   "expected": [
+    "sys-beacon"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "How many customers still send orders over the legacy EDI endpoint?",
+   "expected": [
+    "sys-edi"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "How long do Prometheus metrics stay at full resolution?",
+   "expected": [
+    "sys-grafana"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "Below what geocoding confidence do addresses go to manual review?",
+   "expected": [
+    "sys-addrval"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "What is the nightly hotel cap in major cities?",
+   "expected": [
+    "proc-travel"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "How long does temporary access last by default?",
+   "expected": [
+    "proc-access"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "What is the minimum password length for SSO accounts?",
+   "expected": [
+    "sys-sso"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "Within how many hours must a lost device be reported?",
+   "expected": [
+    "team-helpdesk"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "How long do OAuth tokens last for API partners?",
+   "expected": [
+    "sys-apigw"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "Which weekday are the rate tables reloaded?",
+   "expected": [
+    "sys-rateeng"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "What does delivery exception reason code 9 mean?",
+   "expected": [
+    "ds-exceptions"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "Which city is Tomasz based in?",
+   "expected": [
+    "person-tomasz"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "How soon is emergency break-glass use of the vault reviewed?",
+   "expected": [
+    "sys-vault"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "How long are untagged container images kept before deletion?",
+   "expected": [
+    "sys-registry"
+   ],
+   "kind": "claim-detail"
+  },
+  {
+   "q": "What is our contract end date with Geonexus?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "How do we integrate with the Parcelhub carrier API?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "What is the phone number for Alertly support escalation?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "What is our policy on using AI coding assistants?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "What is the parental leave policy?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "How many API requests per minute does the sandbox allow?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "Which Redis cluster caches rate quotes?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "What is the recovery time objective for TRKDB?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "How do I request a company credit card?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "Who is our account manager at Cumulus Cloud?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "How long does Mailpost keep email delivery logs?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "Which warehouse robots does the Duisburg site use?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "What is the after-hours support SLA for Helpdeskly?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "How are driver bonuses calculated?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "What is the MongoDB backup schedule?",
+   "expected": [],
+   "kind": "out_of_kb"
+  },
+  {
+   "q": "Does ORDB keep its nightly snapshots for just a week?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Is the Gatekeeper limit 300 requests per minute per key?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Is on-call still two weeks long with a Monday 08:00 handover?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Do production deployments need only one approval from the owning team?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Is the REPWH refresh scheduled for 04:00 UTC?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Do we still build on Jenkins with 8 agents?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Do deletion requests have a 45-day deadline?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Does Haul only work offline for 4 hours?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Is the Brightdesk placement limit 6 months?",
+   "expected": [],
+   "kind": "superseded"
+  },
+  {
+   "q": "Are database credentials in the vault rotated every 180 days?",
+   "expected": [],
+   "kind": "superseded"
+  }
+ ]
+}

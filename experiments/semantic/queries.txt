@@ -1,0 +1,165 @@
+Who has to sign off before my change goes live for customers? | proc-deploy-approval | paraphrase
+How often do I have to hand the pager over to someone else? | proc-oncall | paraphrase
+Which data store should I query for my monthly dashboard so I do not slow down live bookings? | hub-databases,sys-repwh | paraphrase
+What do we use to turn street addresses into coordinates? | vend-mapforge,sys-addrval | paraphrase
+Which company texts our recipients when a parcel is on its way? | vend-textline | paraphrase
+What happens when a customer integration sends too many calls too fast? | sys-apigw | paraphrase
+Why did we stop running our old build server? | dec-github-actions | paraphrase
+Can I push a fix out on a Friday afternoon? | dec-no-friday,proc-hotfix | paraphrase
+What is the rule for buying a 20k software licence? | proc-purchase | paraphrase
+How do I get a newly hired colleague laptop and logins sorted? | proc-onboard,hub-onboarding | paraphrase
+Where do the readings from the GPS boxes in our trucks end up? | ds-telemetry,vend-trackbox | paraphrase
+What do we do when a customer asks us to wipe everything we know about them? | proc-pii-deletion | paraphrase
+What is the plan if our main cloud region goes down? | proc-dr-test | paraphrase
+Which model guesses when a parcel will arrive? | method-eta | paraphrase
+How do we decide which products sit closest to the pickers? | method-slotting | paraphrase
+Who do I talk to about whether a new supplier handling personal information is safe to use? | person-priya,proc-vendor-onboard | paraphrase
+Why do some stock counts show below zero? | ds-inventory,hub-data-quality | paraphrase
+A nightly pipeline run keeps crashing, who gets woken up? | sys-airflow | paraphrase
+How do outside contractors reach our internal tools from home? | sys-vpn | paraphrase
+What is special for engineering in the weeks before New Year? | topic-peak | paraphrase
+How do we judge how bad an outage is and who takes charge? | proc-incident | paraphrase
+A customer wants to try their integration without touching real shipments. Where can they do it? | sys-sandbox | paraphrase
+Where do I find shipment data from several years back? | sys-archive | paraphrase
+Which phone app do couriers use and does it keep working in tunnels? | sys-driverapp | paraphrase
+How are operating costs split across customers each month? | method-cost-alloc | paraphrase
+Who makes the final call on whether a candidate version of core services can ship? | person-ben | paraphrase
+Which outside firm tries to break into our systems every year? | vend-redkite | paraphrase
+Which group runs our cloud accounts and gets paged when the public front door misbehaves? | team-sre | paraphrase
+What does it take to get a carrier-ready sticker printed for a parcel? | sys-labels,vend-shiplink | paraphrase
+How do we spot parcels that seem to have vanished in transit? | method-track-anomaly | paraphrase
+What are the rules for naming a new microservice? | pref-naming | paraphrase
+Is there a day when people should not schedule meetings? | pref-no-meeting | paraphrase
+How big can my code change be before reviewers complain? | pref-pr-size | paraphrase
+How should we word messages to customers while something is broken? | pref-incident-comms | paraphrase
+Which agency supplies our temporary engineers? | vend-brightdesk | paraphrase
+What approval do I need before touching network setup or upgrading a database engine to a new major version? | proc-cab | paraphrase
+How can test environments get realistic data without exposing real customers? | proc-staging-refresh,hub-envs | paraphrase
+Why did we pick that cloud analytics platform instead of the Google one? | dec-snowflake | paraphrase
+What is the oldest way customers still send orders electronically and when does it stop working? | dec-edi-sunset,sys-edi | paraphrase
+Who do I escalate to when a customs classification is disputed? | vend-tariffa | paraphrase
+What uptime are our top-tier customers promised? | topic-sla | paraphrase
+How do I ask for permission to use a system? | proc-access,vend-helpdeskly | paraphrase
+What was the reason for shorter pager shifts? | dec-weekly-rotation | paraphrase
+How do we keep database logins away from developers? | sys-vault | paraphrase
+Which of our depots handles refrigerated goods and where are they all? | topic-sites | paraphrase
+ORDB replica lag alert | sys-ordb | lexical
+TRKDB TTL | sys-trkdb | lexical
+REPWH Snowflake X-Small auto-suspend | sys-repwh | lexical
+Routewise TMS dispatch cut-off | sys-routewise | lexical
+StockPilot WMS cycle counts | sys-stockpilot | lexical
+Gatekeeper HTTP 429 Retry-After | sys-apigw | lexical
+CAB submission deadline | proc-cab | lexical
+Toggleboard flag expiry | sys-flags | lexical
+Haul Android offline mode | sys-driverapp | lexical
+Pathly contract review | vend-pathly | lexical
+Textline sender ID FERNLOG | vend-textline | lexical
+Alertly escalation unacknowledged pages | vend-alertly | lexical
+ShipLink per label fee | vend-shiplink | lexical
+ScanRight OCR handwritten notes | vend-scanright | lexical
+Ledgerline monthly invoice run | sys-billing | lexical
+Authwise MFA hardware keys | sys-sso | lexical
+bus-prod Kafka topic naming pattern | sys-kafka | lexical
+RTO RPO ORDB DR test | proc-dr-test | lexical
+ADR template Context Decision Consequences | pref-adr | lexical
+Marta Keller | person-marta | lexical
+Which Kafka topic does the tracking store ingest from? | sys-trkdb | claim-detail
+What time does the customer test environment reset on Sundays? | sys-sandbox | claim-detail
+Which office does Dmitri work from? | person-dmitri | claim-detail
+How many automated tests are in the regression suite? | team-qa | claim-detail
+Which distribution centre handles only chilled goods? | topic-sites | claim-detail
+Which carriers are left out of the monthly scorecards? | ds-carrier-score | claim-detail
+What is the file size limit for bulk shipment CSV uploads on the portal? | sys-beacon | claim-detail
+How many customers still send orders over the legacy EDI endpoint? | sys-edi | claim-detail
+How long do Prometheus metrics stay at full resolution? | sys-grafana | claim-detail
+Below what geocoding confidence do addresses go to manual review? | sys-addrval | claim-detail
+What is the nightly hotel cap in major cities? | proc-travel | claim-detail
+How long does temporary access last by default? | proc-access | claim-detail
+What is the minimum password length for SSO accounts? | sys-sso | claim-detail
+Within how many hours must a lost device be reported? | team-helpdesk | claim-detail
+How long do OAuth tokens last for API partners? | sys-apigw | claim-detail
+Which weekday are the rate tables reloaded? | sys-rateeng | claim-detail
+What does delivery exception reason code 9 mean? | ds-exceptions | claim-detail
+Which city is Tomasz based in? | person-tomasz | claim-detail
+How soon is emergency break-glass use of the vault reviewed? | sys-vault | claim-detail
+How long are untagged container images kept before deletion? | sys-registry | claim-detail
+What is our contract end date with Geonexus? |  | out_of_kb
+How do we integrate with the Parcelhub carrier API? |  | out_of_kb
+What is the phone number for Alertly support escalation? |  | out_of_kb
+What is our policy on using AI coding assistants? |  | out_of_kb
+What is the parental leave policy? |  | out_of_kb
+How many API requests per minute does the sandbox allow? |  | out_of_kb
+Which Redis cluster caches rate quotes? |  | out_of_kb
+What is the recovery time objective for TRKDB? |  | out_of_kb
+How do I request a company credit card? |  | out_of_kb
+Who is our account manager at Cumulus Cloud? |  | out_of_kb
+How long does Mailpost keep email delivery logs? |  | out_of_kb
+Which warehouse robots does the Duisburg site use? |  | out_of_kb
+What is the after-hours support SLA for Helpdeskly? |  | out_of_kb
+How are driver bonuses calculated? |  | out_of_kb
+What is the MongoDB backup schedule? |  | out_of_kb
+Does ORDB keep its nightly snapshots for just a week? |  | superseded
+Is the Gatekeeper limit 300 requests per minute per key? |  | superseded
+Is on-call still two weeks long with a Monday 08:00 handover? |  | superseded
+Do production deployments need only one approval from the owning team? |  | superseded
+Is the REPWH refresh scheduled for 04:00 UTC? |  | superseded
+Do we still build on Jenkins with 8 agents? |  | superseded
+Do deletion requests have a 45-day deadline? |  | superseded
+Does Haul only work offline for 4 hours? |  | superseded
+Is the Brightdesk placement limit 6 months? |  | superseded
+Are database credentials in the vault rotated every 180 days? |  | superseded
+Hoelang worden de nachtelijke momentopnames van de bestellingen-database bewaard? | sys-ordb | dutch
+Na hoeveel dagen worden de scan- en GPS-gebeurtenissen automatisch verwijderd? | sys-trkdb | dutch
+Hoeveel maanden aan zendinggeschiedenis zit er standaard in het rapportagesysteem? | sys-repwh | dutch
+Waarom hebben we het analyseplatform gekozen boven de Google-variant? | dec-snowflake | dutch
+Is er een dag per week waarop niemand vergaderingen mag inplannen? | pref-no-meeting | dutch
+Welke deadline geldt voor het indienen van een verzoek bij de wijzigingsadviesraad? | proc-cab | dutch
+Hoe vaak wordt het model dat de aankomsttijd van pakketten voorspelt opnieuw getraind? | method-eta | dutch
+Hoe lang moet een wachtwoord minimaal zijn voor de centrale inlogdienst? | sys-sso | dutch
+Tot wanneer loopt het contract met de leverancier die adressen omzet in coordinaten? | vend-mapforge | dutch
+Op welke werkdag sluiten we de boeken van de maand af? | team-finsys | dutch
+Welke extra goedkeuring is nodig voor een aankoop van meer dan 50.000 euro? | proc-purchase | dutch
+Waar liggen de reserve-printkoppen voor de labelprinters opgeslagen? | vend-zephyr | dutch
+Binnen hoeveel uur na het einde van de laatste werkdag moet de toegang van een vertrekkende medewerker worden ingetrokken? | proc-offboard | dutch
+Hoeveel voertuigen staan er in het wagenparkregister? | ds-fleet | dutch
+Binnen hoeveel dagen moet een kritieke kwetsbaarheid gepatcht zijn? | team-security | dutch
+How far can a standby copy of the main records lag before an alarm goes off? | sys-ordb | paraphrase2
+How long do messages stay on the message pipe by default before they're removed? | sys-kafka | paraphrase2
+What is the per-minute ceiling on calls a single partner credential may make? | sys-apigw | paraphrase2
+Since October, how many people must okay a change before it reaches the live environment? | proc-deploy-approval | paraphrase2
+Are we allowed to push new versions of the stock system during the busiest period of the year? | sys-stockpilot | paraphrase2
+Is it possible to pull every row without narrowing by a package ID? | sys-trkdb | paraphrase2
+Can a staffer freeze a drop list so the software stops rearranging it on its own? | sys-routewise | paraphrase2
+When does our agreement with the travel-time supplier we pay per query expire? | vend-pathly | paraphrase2
+How many GPS boxes have been fitted into the lorries of us and our subcontractors? | vend-trackbox | paraphrase2
+What name appears as the sender when a receiver gets a notice on their phone? | vend-textline | paraphrase2
+Do outside agency staff need to tunnel in even to reach pre-production servers? | sys-vpn | paraphrase2
+Does the test area return fake data, not real packages, for the same endpoints? | sys-sandbox | paraphrase2
+How long might it take to bring back records that have been moved out of the live stores? | sys-archive | paraphrase2
+What price per printed parcel sticker do we pay the gateway company? | vend-shiplink | paraphrase2
+How long did it take to erase the records from the previous address-lookup supplier? | dec-geocoder | paraphrase2
+What set off the ban on end-of-week launches to live systems? | dec-no-friday | paraphrase2
+Who decides how many devices get a new build first, in waves? | person-omar | paraphrase2
+Who handles the engineering questions for the travel-time supplier? | person-tomasz | paraphrase2
+What rate per kilometre do staff get when they drive their own car for work? | proc-travel | paraphrase2
+When we save dates and times to storage, what zone and notation are expected? | pref-utc | paraphrase2
+What is the licence cost of Alertly per seat per year? |  | near_miss
+How much does Helpdeskly charge per agent licence? |  | near_miss
+What is the Snowflake monthly compute bill for REPWH? |  | near_miss
+What is the uptime SLA of the Cumulus Cloud platform itself? |  | near_miss
+Which version of Grafana is running on the monitoring server? |  | near_miss
+What is Priya Nair's phone extension? |  | near_miss
+How many Redkite staff are on the penetration test team? |  | near_miss
+What is the monthly subscription price of the Mailpost premium tier? |  | near_miss
+Who is the sales contact at Textline? |  | near_miss
+What is the hourly rate Brightdesk charges for a senior engineer? |  | near_miss
+How many Zephyr printers were bought last year? |  | near_miss
+What does a Tariffa filing fee cost per declaration? |  | near_miss
+Which programming language is the Haul app written in? |  | near_miss
+What is the Airflow worker memory limit per task? |  | near_miss
+How many Kafka partitions does the tracking.events.v2 topic have? |  | near_miss
+What is the annual licence fee for the Authwise SSO platform? |  | near_miss
+What is the Pathly API rate limit per second? |  | near_miss
+What is Aiko Brandt's salary band? |  | near_miss
+How much memory does the label service container need? |  | near_miss
+What is the Ledgerline licence renewal date? |  | near_miss

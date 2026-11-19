@@ -1,0 +1,40 @@
+From: Dana Whitcombe <dana.whitcombe@fivewire.example>
+To: Priya Nair, Marcus Lindqvist
+Cc: Helen Okafor
+Date: Mon, 21 Sep 2026 09:12
+Subject: RE: RE: Fivewire renewal - Brightcart
+
+Hi Priya,
+
+Thanks for the call on Friday, always good to hear how the team is doing. As discussed, I have checked with our deal desk. Your current renewal date is 31 January 2027 and I know that feels far away, but the deal desk likes to close things early in the quarter. We can hold you at $1,020 per month for the 12-month term if you sign the renewal by 30 November 2026, which is below the list price. After that date we would be back to list. Happy to jump on another call if useful. Also, congratulations on the new role, well deserved.
+
+Best,
+Dana
+
+---
+From: Priya Nair
+Date: Mon, 21 Sep 2026 11:40
+
+Hi Dana,
+
+Thanks, that is helpful. I need to run it by Helen and by security first, mainly because the DPA refresh is still open. I will not commit to a date today. By the way, our usage was around 4.6 million MAR last month so we are inside the Standard allowance, but not by much. Is there any chance of a higher MAR allowance at the same price?
+
+Priya
+
+---
+From: Dana Whitcombe
+Date: Mon, 21 Sep 2026 14:05
+
+Hi Priya,
+
+I can ask but I would not hold my breath, the Standard allowance is the Standard allowance. Our team would love to get you onto Enterprise at some point for the 1-minute sync interval, I know that is not on your roadmap right now. Hope the weather is better in Berlin than it is here, we had four days of rain and the office roof is leaking.
+
+Dana
+
+---
+From: Marcus Lindqvist
+Date: Mon, 21 Sep 2026 15:30
+
+Looping back on this: Dana is the right person for commercial questions, and for anything about outages we should go through the support portal, not Dana's inbox. I have added her to the vendors page on the wiki as account manager. Let's not forget to put the signing deadline on the shared calendar. Thanks both, and Dana, have a good week.
+
+Marcus

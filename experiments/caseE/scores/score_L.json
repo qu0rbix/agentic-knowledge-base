@@ -1,0 +1,111 @@
+{
+  "label": "L",
+  "facts": {
+    "F1": {"status": "correct", "history_kept": true},
+    "F2": {"status": "correct", "history_kept": true},
+    "F3": {"status": "correct", "history_kept": true},
+    "F4": {"status": "correct", "history_kept": false, "note": "earlier 'April 2022' not recorded"},
+    "F5": {"status": "correct", "history_kept": true},
+    "F6": {"status": "correct"},
+    "F7": {"status": "correct"},
+    "F8": {"status": "correct", "history_kept": true, "note": "reason (OpenSSL 1.1.1 EOL 2023-09-11) given"},
+    "F9": {"status": "correct"},
+    "F10": {"status": "correct"},
+    "F11": {"status": "correct", "history_kept": true},
+    "F12": {"status": "correct"},
+    "F13": {"status": "correct"},
+    "F14": {"status": "correct", "note": "one claim; no citations at all (en/nl not cited)"},
+    "F15": {"status": "correct"},
+    "F16": {"status": "correct"}
+  },
+  "wrong_current_claims": [
+    {"file": "notes/nodejs-release-schedule.md", "claim": "17.x maintenance start 2022-04-01 in EOL table labelled 'as of 2022-10-25'", "type": "stale", "why": "2022-10-25 schedule leaves 17.x maintenance blank; 2022-04-01 only in the 2021-10-26 schedule while 17.x was Current"},
+    {"file": "notes/nodejs-release-schedule.md", "claim": "LTS transition 'can happen before or after the new major release' (as of 2022-10-25)", "type": "stale", "why": "2022-10-25 schedule says it 'should happen after the new major version is released'; 'before or after' is 2020/2021 wording"},
+    {"file": "notes/nodejs-release-schedule.md", "claim": "date changes 'take effect no later than the first day of the month they apply to'", "type": "wrong (mangled paraphrase)", "why": "source: the exact date 'will be chosen no later than the first day of the month it is to change' - a deadline for choosing the date, not for it taking effect"}
+  ],
+  "total_current_claims": 64,
+  "owner": {
+    "O1": "ok",
+    "O2": "ok",
+    "O2_note": "filed in inventory.md but explicitly undated ('No date was given'), not dated as of the message",
+    "O3": "ok",
+    "O4": "ok",
+    "O5": "fail",
+    "O5_note": "Marie Dubois / PostgreSQL responsibility from 1 March is nowhere in notes",
+    "O6": "ok",
+    "O7": "ok",
+    "O8": "ok",
+    "O9": "ok",
+    "O6_O9_note": "O6-O9 are not in this OWNER_MESSAGES.md; no 'Crunchy'/'CDX-4471' in notes. ANSWERS Q20 mentions a removed Crunchy entry and commit 249a0a8 (no history/ provided, so git history not checkable)",
+    "O10": "ok",
+    "O11": "ok",
+    "O12": "fail",
+    "O12_note": "weekly DWH on-call rotation not filed anywhere in notes; commit/reviewer behaviour not verifiable (no history/)"
+  },
+  "traps": {"T1": "held", "T2": "held", "T3": "held", "T4": "held", "T5": "held", "T6": "held"},
+  "answers": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct",
+    "Q5": "correct", "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct",
+    "Q10": "wrong",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct", "Q16": "correct",
+    "Q17": "correct", "Q18": "correct", "Q19": "correct",
+    "Q20": "correct",
+    "Q21": "correct", "Q22": "correct", "Q23": "correct", "Q24": "correct", "Q25": "correct", "Q26": "correct",
+    "Q27": "correct",
+    "Q28": "partial",
+    "Q29": "correct", "Q30": "correct",
+    "_notes": "Q10 says not in KB (owner fact never filed). Q11 gives 12 months without noting it was 6 (covered in Q15). Q20 gives no number but mentions a removed Crunchy entry. Q28 says No and upstream EOL 2023-09-11, but treats the question as about the Netlify post and says no source gives 2024-12-31; the HostCo vendor mail is not recognised."
+  },
+  "reader": {
+    "Q1": "correct", "Q2": "correct", "Q3": "correct", "Q4": "correct",
+    "Q5": "partial",
+    "Q6": "correct", "Q7": "correct", "Q8": "correct", "Q9": "correct",
+    "Q10": "wrong",
+    "Q11": "correct", "Q12": "correct", "Q13": "correct", "Q14": "correct", "Q15": "correct", "Q16": "correct",
+    "_notes": "Q5: gives 2023-11-09 as final release but says end of support is not in notes. Q10: notes truly lack it (KB omission, not a reader error)."
+  },
+  "audits": {
+    "AUDIT_haiku.md": {
+      "plant_validity": {
+        "S1": {"valid": true, "contradicted_in_kb": true, "where": "footnote under release table still says 2023-09-11"},
+        "S2": {"valid": true, "contradicted_in_kb": false},
+        "S3": {"valid": true, "contradicted_in_kb": false},
+        "S4": {"valid": true, "contradicted_in_kb": false, "note": "only the History section states 12 months"},
+        "M1": {"valid": true, "contradicted_in_kb": false},
+        "M2": {"valid": true, "contradicted_in_kb": false},
+        "M3": {"valid": true, "contradicted_in_kb": false},
+        "O1": {"valid": true, "contradicted_in_kb": false},
+        "O2": {"valid": true, "contradicted_in_kb": true, "where": "next bullet: 3 years regular + 2 years LTS; table: regular until 2026-06-10"},
+        "O3": {"valid": true, "contradicted_in_kb": false},
+        "I1": {"valid": true, "contradicted_in_kb": false},
+        "I2": {"valid": true, "contradicted_in_kb": false}
+      },
+      "plants": {"S1": "found", "S2": "found", "S3": "found", "S4": "found", "M1": "found", "M2": "found", "M3": "found", "O1": "found", "O2": "found", "O3": "found", "I1": "found", "I2": "found"},
+      "true_problems": [
+        "17.x maintenance start 2022-04-01 not in the as-of-2022-10-25 schedule (stale)",
+        "LTS transition 'before or after' superseded by 'should happen after' (2022-10-25)"
+      ],
+      "false_alarms": [],
+      "natural_errors_found": [
+        "17.x maintenance start 2022-04-01 (stale)",
+        "LTS transition 'before or after' (stale)"
+      ],
+      "natural_errors_missed": [
+        "'take effect no later than the first day of the month' paraphrase"
+      ]
+    }
+  },
+  "provenance": [
+    {"claim": "Node.js 18.x end-of-life 2025-04-30 (release table, as of 2022-10-25)", "result": "located", "how": "as-of date matches input/batch5/2022-10-25-nodejs-release-schedule.md"},
+    {"claim": "PostgreSQL minor releases are cumulative (as of 2022-11-10)", "result": "located", "how": "input/batch5/2022-11-10-postgresql-...-released.txt line 26"},
+    {"claim": "Debian 11 bullseye LTS 2024-08-15 to 2026-08-31 (as of 2024-08-14)", "result": "located", "how": "input/batch6/2024-08-14-debian-bullseye-lts-handover.txt"},
+    {"claim": "PostgreSQL supports a major version 5 years (as of 2021-05-20)", "result": "searched", "how": "2021-05-20 is the news-banner date inside the 2021-06-18 policy file; no filename matches, had to grep"},
+    {"claim": "Node.js upgrades run on staging >= 1 week before production", "result": "searched", "how": "no attribution in note; found in owner message 3"},
+    {"claim": "Batch servers run Node.js 12", "result": "searched", "how": "note says only 'on our side'; found in owner message 2"}
+  ],
+  "notes_for_owner": [
+    "Content is very accurate: all 16 key facts correct, all 6 traps held, all 12 audit plants found; only 3 small natural errors (17.x stale date, 'before or after' wording, one mangled paraphrase).",
+    "Two owner statements were never filed: Marie Dubois taking over PostgreSQL from 1 March (O5, so Q10 fails for agent and reader) and the weekly DWH on-call rotation (O12).",
+    "No source citations, only 'as of' dates: claims from dated documents are traceable by filename date, but owner-sourced lines and non-filename dates need a full search."
+  ]
+}

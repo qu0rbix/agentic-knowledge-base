@@ -1,0 +1,318 @@
+{
+ "cite1": {
+  "cost": 0.21,
+  "minutes": 11,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 146,
+    "cost": 0.1188,
+    "tools": 17,
+    "turns": 18,
+    "output_tokens": 34270,
+    "found_file": true
+   },
+   "audit_sonnet": {
+    "seconds": 47,
+    "cost": 0.2024,
+    "tools": 11,
+    "turns": 12,
+    "output_tokens": 5780,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 10,
+   "cost": 0.0053,
+   "tools": 6,
+   "turns": 7,
+   "output_tokens": 2030
+  }
+ },
+ "cite2": {
+  "cost": 0.24,
+  "minutes": 14,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 453,
+    "cost": 0.0396,
+    "tools": 20,
+    "turns": 21,
+    "output_tokens": 30490,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 32,
+   "cost": 0.0055,
+   "tools": 7,
+   "turns": 8,
+   "output_tokens": 2357
+  }
+ },
+ "cite3": {
+  "cost": 0.22,
+  "minutes": 14,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 162,
+    "cost": 0.0365,
+    "tools": 15,
+    "turns": 16,
+    "output_tokens": 29332,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 17,
+   "cost": 0.0053,
+   "tools": 5,
+   "turns": 6,
+   "output_tokens": 1997
+  }
+ },
+ "light1": {
+  "cost": 0.18,
+  "minutes": 10,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 157,
+    "cost": 0.156,
+    "tools": 31,
+    "turns": 32,
+    "output_tokens": 37137,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 11,
+   "cost": 0.0049,
+   "tools": 7,
+   "turns": 8,
+   "output_tokens": 2289
+  }
+ },
+ "light2": {
+  "cost": 0.18,
+  "minutes": 11,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 126,
+    "cost": 0.0325,
+    "tools": 16,
+    "turns": 17,
+    "output_tokens": 27580,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 12,
+   "cost": 0.0044,
+   "tools": 6,
+   "turns": 7,
+   "output_tokens": 2482
+  }
+ },
+ "light3": {
+  "cost": 0.18,
+  "minutes": 13,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 180,
+    "cost": 0.036,
+    "tools": 12,
+    "turns": 13,
+    "output_tokens": 28367,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 16,
+   "cost": 0.0043,
+   "tools": 6,
+   "turns": 7,
+   "output_tokens": 1935
+  }
+ },
+ "note1": {
+  "cost": 0.2,
+  "minutes": 10,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 148,
+    "cost": 0.1718,
+    "tools": 37,
+    "turns": 38,
+    "output_tokens": 34667,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 13,
+   "cost": 0.0049,
+   "tools": 10,
+   "turns": 11,
+   "output_tokens": 2914
+  }
+ },
+ "note2": {
+  "cost": 0.17,
+  "minutes": 11,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 162,
+    "cost": 0.1055,
+    "tools": 31,
+    "turns": 32,
+    "output_tokens": 40212,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 10,
+   "cost": 0.0039,
+   "tools": 6,
+   "turns": 7,
+   "output_tokens": 2150
+  }
+ },
+ "none1": {
+  "cost": 0.19,
+  "minutes": 10,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 124,
+    "cost": 0.0362,
+    "tools": 16,
+    "turns": 17,
+    "output_tokens": 29318,
+    "found_file": true
+   },
+   "audit_sonnet": {
+    "seconds": 79,
+    "cost": 0.3012,
+    "tools": 23,
+    "turns": 24,
+    "output_tokens": 9626,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 13,
+   "cost": 0.0047,
+   "tools": 10,
+   "turns": 11,
+   "output_tokens": 2868
+  }
+ },
+ "none2": {
+  "cost": 0.17,
+  "minutes": 9,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 128,
+    "cost": 0.0368,
+    "tools": 19,
+    "turns": 20,
+    "output_tokens": 29381,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 11,
+   "cost": 0.0041,
+   "tools": 6,
+   "turns": 7,
+   "output_tokens": 2181
+  }
+ },
+ "none3": {
+  "cost": 0.17,
+  "minutes": 12,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 147,
+    "cost": 0.1114,
+    "tools": 29,
+    "turns": 30,
+    "output_tokens": 35426,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 21,
+   "cost": 0.0045,
+   "tools": 9,
+   "turns": 10,
+   "output_tokens": 3444
+  }
+ },
+ "kb1": {
+  "cost": 0.29,
+  "minutes": 17,
+  "forget": {
+   "working_tree": [],
+   "in_git_history": true
+  },
+  "audits": {
+   "audit_haiku": {
+    "seconds": 141,
+    "cost": 0.0858,
+    "tools": 51,
+    "turns": 52,
+    "output_tokens": 28037,
+    "found_file": true
+   }
+  },
+  "reader": {
+   "seconds": 34,
+   "cost": 0.0058,
+   "tools": 11,
+   "turns": 12,
+   "output_tokens": 2822
+  }
+ }
+}
